@@ -169,6 +169,8 @@
             border: none;
             transition: var(--transition);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
@@ -178,8 +180,26 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-secondary {
@@ -191,6 +211,7 @@
         .btn-secondary:hover {
             background-color: var(--primary);
             color: var(--white);
+            transform: scale(1.03);
         }
 
         .badge {
@@ -212,6 +233,235 @@
             align-items: center;
             gap: 8px;
             flex-wrap: wrap;
+        }
+
+        /* PROGRESS BAR */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+/* ANIMAÇÕES AOS */
+        [data-anim] {
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        [data-anim].animate-in {
+            opacity: 1;
+        }
+
+        [data-anim="fade-up"] {
+            transform: translateY(30px);
+        }
+
+        [data-anim="fade-up"].animate-in {
+            transform: translateY(0);
+        }
+
+        [data-anim="fade-left"] {
+            transform: translateX(-30px);
+        }
+
+        [data-anim="fade-left"].animate-in {
+            transform: translateX(0);
+        }
+
+        [data-anim="fade-right"] {
+            transform: translateX(30px);
+        }
+
+        [data-anim="fade-right"].animate-in {
+            transform: translateX(0);
+        }
+
+        [data-anim="zoom-in"] {
+            transform: scale(0.9);
+        }
+
+        [data-anim="zoom-in"].animate-in {
+            transform: scale(1);
+        }
+
+        /* TILT 3D */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease;
+        }
+
+        /* PARALLAX */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            will-change: transform;
+        }
+
+        /* CARROSSEL */
+        .testimonials-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #D1D5DB;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: -20px;
+        }
+
+        .carousel-nav.next {
+            right: -20px;
+        }
+
+        @media(max-width: 900px) {
+            .carousel-nav {
+                display: none;
+            }
+        }
+
+        /* RIPPLE EFFECT */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ACCORDION ANIMADO */
+        details {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dark);
+            transition: background 0.3s;
+        }
+
+        summary:hover {
+            background: #F9FAFB;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 20px;
+            color: var(--primary);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        details p {
+            padding: 0 20px 20px;
+            color: var(--body-text);
+            font-size: 14px;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         header {
@@ -522,8 +772,7 @@
             0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
             70%      { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
         }
-
-        .phone-mockup {
+.phone-mockup {
             width: 280px;
             height: 480px;
             background: #fff;
@@ -548,19 +797,19 @@
             gap: 10px;
         }
 
-.wa-body {
-    flex: 1;
-    background-color: #E5DDD5;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    font-size: 13px;
-    color: #333;
-    background-image: linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px),
-                      linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-}
+        .wa-body {
+            flex: 1;
+            background-color: #E5DDD5;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 13px;
+            color: #333;
+            background-image: linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px),
+                              linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
 
         .wa-msg {
             padding: 10px 12px;
@@ -793,12 +1042,13 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border-top: 4px solid transparent;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
             border-top-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
         .icon-box {
@@ -877,6 +1127,12 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .testimonial-header {
@@ -988,704 +1244,651 @@
             max-width: 600px;
             margin: 0 auto;
             background: rgba(255,255,255,0.05);
-padding: 40px;
-border-radius: var(--radius);
-border: 1px solid rgba(255,255,255,0.1);
-}
-.calculator-input {
-        margin-bottom: 30px;
-    }
-
-    .calculator-input label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: 600;
-    }
-
-    .calculator-input input[type="range"] {
-        width: 100%;
-        height: 8px;
-        border-radius: 5px;
-        background: rgba(255,255,255,0.2);
-        outline: none;
-    }
-
-    .calculator-input input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: var(--secondary);
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    .calculator-input input[type="range"]::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        background: var(--secondary);
-        border-radius: 50%;
-        cursor: pointer;
-        border: none;
-    }
-
-    .calculator-value {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 700;
-        color: var(--secondary);
-        margin: 10px 0;
-    }
-
-    .calculator-result {
-        background: var(--gradient);
-        padding: 30px;
-        border-radius: var(--radius);
-        text-align: center;
-        margin-top: 30px;
-    }
-
-    .result-number {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .setup-section {
-        padding: 80px 0;
-        background: #fff;
-        border-bottom: 1px solid #f3f4f6;
-    }
-
-    .setup-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        position: relative;
-    }
-
-    @media(min-width: 900px) {
-        .setup-grid::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            left: 15%;
-            right: 15%;
-            height: 2px;
-            background: repeating-linear-gradient(to right, #e5e7eb 0, #e5e7eb 10px, transparent 10px, transparent 20px);
-            z-index: 1;
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.1);
         }
-    }
-
-    .setup-card {
-        background: white;
-        padding: 0 20px;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-
-    .setup-icon {
-        width: 80px;
-        height: 80px;
-        background: #F3F4FF;
-        color: var(--primary);
-        border-radius: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        margin: 0 auto 25px;
-        transition: all 0.3s ease;
-        border: 2px solid white;
-        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
-    }
-
-    .setup-card:hover .setup-icon {
-        transform: rotateY(180deg);
-        background: var(--gradient);
-        color: white;
-    }
-
-    .step-badge {
-        background: var(--dark);
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 4px 10px;
-        border-radius: 12px;
-        display: inline-block;
-        margin-bottom: 15px;
-    }
-
-    .setup-card h3 {
-        font-size: 20px;
-        margin-bottom: 15px;
-        color: var(--dark);
-    }
-
-    .setup-card p {
-        font-size: 15px;
-        color: var(--body-text);
-        line-height: 1.6;
-    }
-
-    .pricing-card {
-        background: var(--white);
-        border-radius: var(--radius);
-        padding: 40px;
-        text-align: center;
-        box-shadow: var(--shadow);
-        position: relative;
-        border: 1px solid #eee;
-        transition: var(--transition);
-    }
-
-    .pricing-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    }
-
-    .pricing-card.popular {
-        border: 3px solid var(--primary);
-        transform: scale(1.06);
-        z-index: 2;
-        animation: pulse-border 6s infinite;
-    }
-
-    @keyframes pulse-border {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-        50% { box-shadow: 0 0 0 12px rgba(79, 70, 229, 0); }
-    }
-
-    .pricing-card.popular::before {
-        content: 'Mais Escolhido';
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--secondary);
-        color: var(--dark);
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-    .secretary-tag {
-        background: #E0E4FF;
-        color: var(--primary);
-        font-size: 13px;
-        font-weight: 600;
-        padding: 8px 12px;
-        border-radius: 8px;
-        display: inline-block;
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-
-    .nocard {
-        background: #E0E4FF;
-        color: var(--primary);
-        font-size: 12px;
-        font-weight: 600;
-        padding: 5px 10px;
-        border-radius: 8px;
-        display: inline-block;
-        margin-bottom: 15px;
-    }
-
-    .price {
-        font-size: 42px;
-        font-weight: 700;
-        color: var(--primary);
-        margin: 10px 0;
-    }
-
-    .price span {
-        font-size: 14px;
-        color: var(--body-text);
-        font-weight: 400;
-    }
-
-    .price-micro {
-        font-size: 13px;
-        color: #6B7280;
-        margin-top: 5px;
-        font-weight: 400;
-    }
-
-    .features-list li {
-        margin-bottom: 12px;
-        font-size: 14px;
-        text-align: left;
-    }
-
-    .features-list i {
-        color: var(--whatsapp);
-        margin-right: 8px;
-    }
-
-    .urgency-banner {
-        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
-        color: white;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
-        border-radius: var(--radius);
-    }
-
-    .urgency-banner strong {
-        font-size: 18px;
-    }
-
-    details {
-        background: var(--white);
-        margin-bottom: 15px;
-        border-radius: var(--radius);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        border: 1px solid #eee;
-        overflow: hidden;
-        text-align: left;
-    }
-
-    summary {
-        padding: 20px;
-        cursor: pointer;
-        font-weight: 600;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--dark);
-    }
-
-    summary::after {
-        content: '+';
-        font-size: 20px;
-        color: var(--primary);
-        font-weight: bold;
-    }
-
-    details[open] summary::after { content: '-'; }
-
-    details p {
-        padding: 0 20px 20px;
-        color: var(--body-text);
-        font-size: 14px;
-        border-top: 1px solid #f0f0f0;
-        padding-top: 15px;
-    }
-
-    .cookie-banner {
-        position: fixed;
-        bottom: -100px;
-        left: 0;
-        width: 100%;
-        background: var(--dark);
-        color: white;
-        padding: 20px;
-        z-index: 3000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-        transition: bottom 0.5s ease;
-    }
-
-    .cookie-banner.show {
-        bottom: 0;
-    }
-
-    .cookie-content {
-        font-size: 13px;
-        max-width: 800px;
-    }
-
-    .cookie-content a {
-        color: var(--secondary);
-        text-decoration: underline;
-    }
-
-    .btn-cookie {
-        background: var(--secondary);
-        color: var(--dark);
-        padding: 8px 20px;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 13px;
-        white-space: nowrap;
-    }
-
-    .btn-cookie-reject {
-        background: transparent;
-        border: 1px solid rgba(255,255,255,0.3);
-        color: white;
-    }
-
-    .btn-cookie-reject:hover {
-        background: rgba(255,255,255,0.1);
-    }
-
-    .exit-modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(17, 24, 39, 0.8);
-        backdrop-filter: blur(5px);
-        z-index: 9999;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .exit-modal-overlay.show {
-        opacity: 1;
-        display: flex;
-    }
-
-    .exit-modal-content {
-        background: white;
-        width: 90%;
-        max-width: 500px;
-        padding: 40px;
-        border-radius: 20px;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        transform: translateY(30px);
-        transition: transform 0.3s ease;
-    }
-
-    .exit-modal-overlay.show .exit-modal-content {
-        transform: translateY(0);
-    }
-
-    .exit-modal-title {
-        font-family: 'League Spartan', sans-serif;
-        font-size: 28px;
-        color: var(--dark);
-        margin-bottom: 15px;
-        line-height: 1.2;
-    }
-
-    .exit-modal-text {
-        color: var(--body-text);
-        margin-bottom: 25px;
-        font-size: 16px;
-    }
-
-    .exit-close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #9CA3AF;
-        cursor: pointer;
-        transition: color 0.2s;
-    }
-
-    .exit-close-btn:hover {
-        color: var(--dark);
-    }
-
-    .link-secondary {
-        display: block;
-        margin-top: 15px;
-        color: #6B7280;
-        font-size: 14px;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    .link-secondary:hover {
-        color: var(--dark);
-    }
-
-    .whatsapp-float {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background: #25D366;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        z-index: 1000;
-        transition: all 0.3s;
-    }
-
-    .whatsapp-float:hover {
-        transform: scale(1.1);
-    }
-
-    footer {
-        background: var(--dark);
-        color: #b0b0b0;
-        padding: 80px 0 30px;
-    }
-
-    footer h4 {
-        color: white;
-        margin-bottom: 20px;
-        font-size: 20px;
-    }
-
-    .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
-    }
-
-    .footer-links li {
-        margin-bottom: 10px;
-    }
-
-    .footer-links a:hover {
-        color: var(--primary);
-    }
-
-    @media(max-width: 900px) {
-        .hero-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 50px;
+        .calculator-input {
+            margin-bottom: 30px;
         }
 
-        .hero-content {
-            order: 1;
-        }
-
-        .hero-demo-wrapper {
-            order: 2;
-            margin-top: 0;
-        }
-
-        .hero h1 {
-            font-size: 36px;
-        }
-
-        .nav-links {
-            display: none;
-        }
-
-        .mobile-menu-btn {
+        .calculator-input label {
             display: block;
-        }
-
-        .pricing-card.popular {
-            transform: scale(1);
-            margin: 20px 0;
-        }
-
-        .comparison-row {
-            grid-template-columns: 1fr;
-        }
-
-        .comparison-cell {
-            text-align: left;
-            border-bottom: 1px solid #E5E7EB;
-        }
-
-        .testimonials-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .trust-items {
-            justify-content: center;
-        }
-
-        .trust-item {
-            font-size: 12px;
-        }
-
-        .how-it-works-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .cookie-banner {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .scene-container {
-            flex-direction: column;
-            gap: 30px;
-            transform: none !important;
-        }
-
-        .flow-container {
-            width: 2px;
-            height: 60px;
-            flex-direction: column;
-        }
-
-        .long-connector {
-            width: 2px;
-            height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                #e5e7eb 0,
-                #e5e7eb 10px,
-                transparent 10px,
-                transparent 20px
-            );
-        }
-
-        .ai-node {
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
-        }
-
-        .scene-card,
-        .phone-mockup {
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .phone-mockup {
-            height: 450px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .calculator-input input[type="range"] {
-            height: 12px;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.2);
+            outline: none;
         }
 
         .calculator-input input[type="range"]::-webkit-slider-thumb {
-            width: 28px;
-            height: 28px;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            cursor: pointer;
         }
 
         .calculator-input input[type="range"]::-moz-range-thumb {
-            width: 28px;
-            height: 28px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
         }
 
-        .social-proof-list {
-            flex-direction: column;
+        .calculator-value {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 10px 0;
+        }
+
+        .calculator-result {
+            background: var(--gradient);
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .result-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .setup-section {
+            padding: 80px 0;
+            background: #fff;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
+
+        @media(min-width: 900px) {
+            .setup-grid::before {
+                content: '';
+                position: absolute;
+                top: 50px;
+                left: 15%;
+                right: 15%;
+                height: 2px;
+                background: repeating-linear-gradient(to right, #e5e7eb 0, #e5e7eb 10px, transparent 10px, transparent 20px);
+                z-index: 1;
+            }
+        }
+
+        .setup-card {
+            background: white;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .setup-icon {
+            width: 80px;
+            height: 80px;
+            background: #F3F4FF;
+            color: var(--primary);
+            border-radius: 24px;
+            display: flex;
             align-items: center;
-            gap: 15px;
-        }
-    }
-
-    @media(max-width: 480px) {
-        .hero h1 {
-            font-size: 26px;
-            line-height: 1.2;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
         }
 
-        .hero p {
+        .setup-card:hover .setup-icon {
+            transform: rotateY(180deg);
+            background: var(--gradient);
+            color: white;
+        }
+
+        .step-badge {
+            background: var(--dark);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .setup-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .setup-card p {
             font-size: 15px;
+            color: var(--body-text);
             line-height: 1.6;
         }
 
-        .btn {
-            padding: 12px 20px;
+        .pricing-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .pricing-card.popular {
+            border: 3px solid var(--primary);
+            transform: scale(1.06);
+            z-index: 2;
+            animation: pulse-border 6s infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(79, 70, 229, 0); }
+        }
+
+        .pricing-card.popular::before {
+            content: 'Mais Escolhido';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .secretary-tag {
+            background: #E0E4FF;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .nocard {
+            background: #E0E4FF;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .price span {
             font-size: 14px;
-        }
-    }
-
-    @media(max-width: 380px) {
-        .hero h1 {
-            font-size: 2.2rem !important;
+            color: var(--body-text);
+            font-weight: 400;
         }
 
-        .phone-mockup {
-            width: 260px;
+        .price-micro {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 5px;
+            font-weight: 400;
         }
 
-        .scene-card {
-            width: 260px;
+        .features-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-align: left;
         }
 
-        .trust-item {
-            font-size: 11px;
+        .features-list i {
+            color: var(--whatsapp);
+            margin-right: 8px;
         }
 
-        .testimonial-card {
+        .urgency-banner {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+            color: white;
             padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: var(--radius);
         }
-    }
 
-    @keyframes slideInLeft {
-        from { transform: translateX(-100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
+        .urgency-banner strong {
+            font-size: 18px;
+        }
+.cookie-banner {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            transition: bottom 0.5s ease;
+        }
 
-    @keyframes slideOutLeft {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(-100%); opacity: 0; }
-    }
+        .cookie-banner.show {
+            bottom: 0;
+        }
 
-/* ESTILO DOS NOVOS CARDS DE PROVA SOCIAL */
-.proof-grid {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 25px;
-}
+        .cookie-content {
+            font-size: 13px;
+            max-width: 800px;
+        }
 
-.proof-card {
-    background: white;
-    padding: 15px 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave */
-    border: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 600;
-    color: var(--dark);
-    transition: transform 0.3s ease;
-    min-width: 140px; /* Garante tamanho uniforme */
-    justify-content: center;
-}
+        .cookie-content a {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
 
-/* Efeito ao passar o mouse */
-.proof-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
-    border-color: var(--primary);
-}
+        .btn-cookie {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            white-space: nowrap;
+        }
 
-/* Cor dos ícones */
-.proof-card i {
-    color: var(--primary);
-    font-size: 18px;
-}
+        .btn-cookie-reject {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
 
-/* Ajuste para Mobile */
-@media(max-width: 600px) {
-    .proof-grid {
-        gap: 10px;
-    }
-    .proof-card {
-        padding: 12px 15px;
-        font-size: 14px;
-        flex: 1 1 40%; /* Faz ficar 2 por linha no celular */
-    }
-}
+        .btn-cookie-reject:hover {
+            background: rgba(255,255,255,0.1);
+        }
 
-</style>
-<meta name="robots" content="index, follow">
+        .exit-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .exit-modal-overlay.show {
+            opacity: 1;
+            display: flex;
+        }
+
+        .exit-modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .exit-modal-overlay.show .exit-modal-content {
+            transform: translateY(0);
+        }
+
+        .exit-modal-title {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 28px;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .exit-modal-text {
+            color: var(--body-text);
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .exit-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #9CA3AF;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .exit-close-btn:hover {
+            color: var(--dark);
+        }
+
+        .link-secondary {
+            display: block;
+            margin-top: 15px;
+            color: #6B7280;
+            font-size: 14px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .link-secondary:hover {
+            color: var(--dark);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background: var(--dark);
+            color: #b0b0b0;
+            padding: 80px 0 30px;
+        }
+
+        footer h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .proof-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .proof-card {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            transition: transform 0.3s ease;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .proof-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
+            border-color: var(--primary);
+        }
+
+        .proof-card i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        @media(max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-demo-wrapper {
+                order: 2;
+                margin-top: 0;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+                margin: 20px 0;
+            }
+
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-cell {
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-items {
+                justify-content: center;
+            }
+
+            .trust-item {
+                font-size: 12px;
+            }
+
+            .how-it-works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .scene-container {
+                flex-direction: column;
+                gap: 30px;
+                transform: none !important;
+            }
+
+            .flow-container {
+                width: 2px;
+                height: 60px;
+                flex-direction: column;
+            }
+
+            .long-connector {
+                width: 2px;
+                height: 100%;
+                background: repeating-linear-gradient(
+                    to bottom,
+                    #e5e7eb 0,
+                    #e5e7eb 10px,
+                    transparent 10px,
+                    transparent 20px
+                );
+            }
+
+            .ai-node {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .scene-card,
+            .phone-mockup {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .phone-mockup {
+                height: 450px;
+            }
+
+            .calculator-input input[type="range"] {
+                height: 12px;
+            }
+
+            .calculator-input input[type="range"]::-webkit-slider-thumb {
+                width: 28px;
+                height: 28px;
+            }
+
+            .calculator-input input[type="range"]::-moz-range-thumb {
+                width: 28px;
+                height: 28px;
+            }
+
+            .social-proof-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .proof-grid {
+                gap: 10px;
+            }
+            .proof-card {
+                padding: 12px 15px;
+                font-size: 14px;
+                flex: 1 1 40%;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .hero h1 {
+                font-size: 26px;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media(max-width: 380px) {
+            .hero h1 {
+                font-size: 2.2rem !important;
+            }
+
+            .phone-mockup {
+                width: 260px;
+            }
+
+            .scene-card {
+                width: 260px;
+            }
+
+            .trust-item {
+                font-size: 11px;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+        }
+    </style>
+    <meta name="robots" content="index, follow">
 </head>
 <body>
+    <div class="scroll-progress"></div>
     <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
 <header aria-label="Cabeçalho principal">
     <div class="container">
         <div class="logo" aria-label="Fama Local">
@@ -1708,6 +1911,7 @@ border: 1px solid rgba(255,255,255,0.1);
         </button>
     </div>
 </header>
+
 <div class="mobile-backdrop" id="mobileBackdrop"></div>
 <div class="mobile-nav-overlay" id="mobileMenu" aria-label="Menu mobile">
     <button class="mobile-close-btn" id="closeMobileMenu" aria-label="Fechar menu">
@@ -1724,6 +1928,7 @@ border: 1px solid rgba(255,255,255,0.1);
     </ul>
     <a href="https://app.famalocal.com.br/cadastro" class="btn btn-primary" style="margin-top: 20px; width: 100%;" aria-label="Começar 30 dias grátis sem cartão de crédito">Começar 30 Dias Grátis</a>
 </div>
+
 <main id="main-content">
 
 <section class="hero" id="hero-section" aria-labelledby="hero-title">
@@ -1847,11 +2052,13 @@ border: 1px solid rgba(255,255,255,0.1);
         </div>
     </div>
 </div>
-<section class="clients-section">
+
+<section class="clients-section parallax-section">
+    <div class="parallax-bg"></div>
     <div class="container">
         <div class="clients-header">
-            <h3>CONFIANÇA DE MAIS DE 250 NEGÓCIOS LOCAIS</h3>
-            <div class="rating-display">
+            <h3 data-anim="fade-up">CONFIANÇA DE MAIS DE 250 NEGÓCIOS LOCAIS</h3>
+            <div class="rating-display" data-anim="fade-up">
                 <div class="stars-large" aria-label="5 estrelas">
                     <i class="fas fa-star" aria-hidden="true"></i>
                     <i class="fas fa-star" aria-hidden="true"></i>
@@ -1859,195 +2066,214 @@ border: 1px solid rgba(255,255,255,0.1);
                     <i class="fas fa-star" aria-hidden="true"></i>
                     <i class="fas fa-star" aria-hidden="true"></i>
                 </div>
-                <span class="rating-text">4.9/5.0</span>
+                <span class="rating-text" data-countup="4.9">4.9</span>/5.0
             </div>
         </div>
 
-<div class="social-proof-box">
-    <div class="proof-grid">
-        <div class="proof-card">
-            <i class="fas fa-stethoscope"></i>
-            <span>Clínicas</span>
-        </div>
-        <div class="proof-card">
-            <i class="fas fa-dumbbell"></i>
-            <span>Academias</span>
-        </div>
-        <div class="proof-card">
-            <i class="fas fa-utensils"></i>
-            <span>Restaurantes</span>
-        </div>
-        <div class="proof-card">
-            <i class="fas fa-cut"></i>
-            <span>Beleza</span>
-        </div>
-        <div class="proof-card">
-            <i class="fas fa-wrench"></i>
-            <span>Oficinas</span>
+        <div class="social-proof-box">
+            <div class="proof-grid">
+                <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Clínicas</span>
+                </div>
+                <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Academias</span>
+                </div>
+                <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurantes</span>
+                </div>
+                <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-cut"></i>
+                    <span>Beleza</span>
+                </div>
+                <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-wrench"></i>
+                    <span>Oficinas</span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-</div>
 </section>
+
 <section class="section">
     <div class="container">
         <div class="section-header">
-            <h2>Você está perdendo clientes agora sem gestão de avaliações</h2>
-            <p>Dados do Google mostram o impacto real de ignorar avaliações</p>
+            <h2 data-anim="fade-up">Você está perdendo clientes agora sem gestão de avaliações</h2>
+            <p data-anim="fade-up">Dados do Google mostram o impacto real de ignorar avaliações</p>
         </div>
-    <div class="impact-stat">
-        <span class="big-number">86%</span>
-        <p>dos consumidores NÃO escolhem negócios que ignoram avaliações negativas</p>
-        <a href="https://www.brightlocal.com/research/local-consumer-review-survey/" target="_blank" rel="noopener noreferrer" style="font-size: 16px; margin-top: 10px; opacity: 0.9; color: white; text-decoration: underline; font-weight: 600;">
-            <i class="fas fa-check-circle" aria-hidden="true"></i> Fonte: BrightLocal Consumer Review Survey
-        </a>
-    </div>
-<div class="card-grid">
-    <div class="feature-card">
-        <div class="icon-box warning"><i class="far fa-clock" aria-hidden="true"></i></div>
-        <h4>3-5 Horas Perdidas/Semana</h4>
-        <p>Tempo médio que donos de pequenos negócios gastam pensando e escrevendo respostas manualmente. Com IA, isso cai para minutos.</p>
-</div>
-<div class="feature-card" style="border-top-color: #FF3B30;">
-<div class="icon-box warning"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
-<h4>Ranking Prejudicado</h4>
-<p>O Google favorece negócios que respondem em até 24h. Respostas rápidas e constantes ajudam seu posicionamento local.</p>
-</div>
-<div class="feature-card">
-<div class="icon-box warning"><i class="fas fa-robot" aria-hidden="true"></i></div>
-<h4>"Obrigado pelo Feedback"</h4>
-<p>Templates repetitivos (Ctrl+C / Ctrl+V) podem afastar clientes. Clientes percebem quando você não se importa de verdade.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="comparison-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Antes vs Depois do Fama Local</h2>
-            <p>Veja a transformação real</p>
+        <div class="impact-stat" data-anim="zoom-in">
+            <div class="big-number"> <span data-countup="86">86</span>%</div>
+            <p>dos consumidores REJEITAM negócios que ignoram avaliações negativas</p>
+            <a href="https://www.brightlocal.com/research/local-consumer-review-survey/" target="_blank" rel="noopener noreferrer" style="font-size: 16px; margin-top: 10px; opacity: 0.9; color: white; text-decoration: underline; font-weight: 600;">
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Fonte: BrightLocal Consumer Review Survey
+            </a>
         </div>
-    <div class="comparison-table">
-        <div class="comparison-row">
-            <div class="comparison-cell">Métrica</div>
-            <div class="comparison-cell">Antes (Manual)</div>
-            <div class="comparison-cell">Depois (Fama Local)</div>
-        </div>
-        <div class="comparison-row">
-            <div class="comparison-cell"><strong>Tempo de Resposta</strong></div>
-            <div class="comparison-cell negative">2-5 dias</div>
-            <div class="comparison-cell highlight">5 segundos</div>
-        </div>
-        <div class="comparison-row">
-            <div class="comparison-cell"><strong>Horas Gastas/Semana</strong></div>
-            <div class="comparison-cell negative">3-5 horas</div>
-            <div class="comparison-cell highlight">15 minutos</div>
-        </div>
-        <div class="comparison-row">
-            <div class="comparison-cell"><strong>Qualidade das Respostas</strong></div>
-            <div class="comparison-cell negative">Genéricas/Cansadas</div>
-            <div class="comparison-cell highlight">Personalizadas/IA</div>
-        </div>
-        <div class="comparison-row">
-            <div class="comparison-cell"><strong>Taxa de Aprovação</strong></div>
-            <div class="comparison-cell negative">-</div>
-            <div class="comparison-cell highlight">94% sem edição</div>
-        </div>
-        <div class="comparison-row">
-            <div class="comparison-cell" style="grid-column: 1 / -1; text-align: center; background: #F9FAFB; font-size: 13px; padding: 15px; color: var(--body-text);">
-                📊 <strong>Dados baseados em:</strong> Média de 15 avaliações/semana, tempo manual de 20min/resposta, taxa de resposta histórica de clientes.
+
+        <div class="card-grid">
+            <div class="feature-card tilt-card" data-anim="fade-up">
+                <div class="icon-box warning"><i class="far fa-clock" aria-hidden="true"></i></div>
+                <h4>3-5 Horas Perdidas/Semana</h4>
+                <p>Tempo médio que donos de pequenos negócios gastam pensando e escrevendo respostas manualmente. Com IA, isso cai para minutos.</p>
+            </div>
+            <div class="feature-card tilt-card" data-anim="fade-up" style="border-top-color: #FF3B30;">
+                <div class="icon-box warning"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+                <h4>Ranking Prejudicado</h4>
+                <p>O Google favorece negócios que respondem em até 24h. Respostas rápidas e constantes ajudam seu posicionamento local.</p>
+            </div>
+            <div class="feature-card tilt-card" data-anim="fade-up">
+                <div class="icon-box warning"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                <h4>"Obrigado pelo Feedback"</h4>
+                <p>Templates repetitivos (Ctrl+C / Ctrl+V) podem afastar clientes. Clientes percebem quando você não se importa de verdade.</p>
             </div>
         </div>
     </div>
-</div>
 </section>
-<section class="testimonials-section">
-    <div class="container">
-<div class="section-header">
-<h2>Resultados Reais de Clientes</h2>
-<p>Veja o impacto em negócios como o seu</p>
-</div>
-<div class="testimonials-grid">
-<div class="testimonial-card">
-<div class="testimonial-header">
-<div class="testimonial-avatar">K</div>
-<div class="testimonial-info">
-<h4>Katya Dias</h4>
-<div class="testimonial-role">Psicóloga Clínica</div>
 
-<div class="stars" aria-label="5 estrelas">
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-</div>
-
-</div>
-</div>
-<p class="testimonial-text">"Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
-<div class="testimonial-metric">
-<div class="metric-item">
-<i class="fas fa-arrow-up" aria-hidden="true"></i>
-<span><strong>+340%</strong> visitas</span>
-</div>
-<div class="metric-item">
-<i class="fas fa-calendar" aria-hidden="true"></i>
-<span>2 meses de uso</span>
-</div>
-</div>
-</div>
-<div class="testimonial-card">
-<div class="testimonial-header">
-<div class="testimonial-avatar">C</div>
-<div class="testimonial-info">
-<h4>Carlos Mendes</h4>
-<div class="testimonial-role">Dono - Academia Central</div>
-
-<div class="stars" aria-label="5 estrelas">
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-    <i class="fas fa-star" aria-hidden="true"></i>
-</div>
-
-</div>
-</div>
-<p class="testimonial-text">"Tirou um PESO das minhas costas. Agora respondo tudo enquanto almoço, direto pelo celular. As respostas da IA são melhores que as minhas - elas têm personalidade!"</p>
-<div class="testimonial-metric">
-<div class="metric-item">
-<i class="fas fa-clock" aria-hidden="true"></i>
-<span><strong>5h/semana</strong> economizadas</span>
-</div>
-<div class="metric-item">
-<i class="fas fa-star" aria-hidden="true"></i>
-<span>4.8 → 4.9 rating</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="how-it-works-section" id="como-funciona">
+<section class="comparison-section parallax-section">
+    <div class="parallax-bg"></div>
     <div class="container">
         <div class="section-header">
-            <h2>Como Funciona: Fama Local em 3 Passos Simples</h2>
-            <p>Automatize a gestão da sua reputação sem complicações</p>
+            <h2 data-anim="fade-up">Antes vs Depois do Fama Local</h2>
+            <p data-anim="fade-up">Veja a transformação real</p>
+        </div>
+        <div class="comparison-table" data-anim="zoom-in">
+            <div class="comparison-row">
+                <div class="comparison-cell">Métrica</div>
+                <div class="comparison-cell">Antes (Manual)</div>
+                <div class="comparison-cell">Depois (Fama Local)</div>
+            </div>
+            <div class="comparison-row" data-anim="fade-left">
+                <div class="comparison-cell"><strong>Tempo de Resposta</strong></div>
+                <div class="comparison-cell negative">2-5 dias</div>
+                <div class="comparison-cell highlight">5 segundos</div>
+            </div>
+            <div class="comparison-row" data-anim="fade-left">
+                <div class="comparison-cell"><strong>Horas Gastas/Semana</strong></div>
+                <div class="comparison-cell negative">3-5 horas</div>
+                <div class="comparison-cell highlight">15 minutos</div>
+            </div>
+            <div class="comparison-row" data-anim="fade-left">
+                <div class="comparison-cell"><strong>Qualidade das Respostas</strong></div>
+                <div class="comparison-cell negative">Genéricas/Cansadas</div>
+                <div class="comparison-cell highlight">Personalizadas/IA</div>
+            </div>
+            <div class="comparison-row" data-anim="fade-left">
+                <div class="comparison-cell"><strong>Taxa de Aprovação</strong></div>
+                <div class="comparison-cell negative">-</div>
+                <div class="comparison-cell highlight"><span data-countup="94">94</span>% sem edição</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-cell" style="grid-column: 1 / -1; text-align: center; background: #F9FAFB; font-size: 13px; padding: 15px; color: var(--body-text);">
+                    📊 <strong>Dados baseados em:</strong> Média de 15 avaliações/semana, tempo manual de 20min/resposta, taxa de resposta histórica de clientes.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-anim="fade-up">Resultados Reais de Clientes</h2>
+            <p data-anim="fade-up">Veja o impacto em negócios como o seu</p>
+        </div>
+
+        <div class="testimonials-carousel">
+            <div class="testimonials-track">
+                <div class="testimonial-slide">
+                    <div class="testimonial-card tilt-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">K</div>
+                            <div class="testimonial-info">
+                                <h4>Katya Dias</h4>
+                                <div class="testimonial-role">Psicóloga Clínica</div>
+                                <div class="stars" aria-label="5 estrelas">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
+                        <div class="testimonial-metric">
+                            <div class="metric-item">
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span><strong>+340</span>%</strong> visitas</span>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-calendar" aria-hidden="true"></i>
+                                <span>2 meses de uso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-card tilt-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">C</div>
+                            <div class="testimonial-info">
+                                <h4>Carlos Mendes</h4>
+                                <div class="testimonial-role">Dono - Academia Central</div>
+                                <div class="stars" aria-label="5 estrelas">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Tirou um PESO das minhas costas. Agora respondo tudo enquanto almoço, direto pelo celular. As respostas da IA são melhores que as minhas - elas têm personalidade!"</p>
+                        <div class="testimonial-metric">
+                            <div class="metric-item">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span><strong>5</span>h/semana</strong> economizadas</span>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span>4.8 → 4.9 rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-nav prev" aria-label="Depoimento anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-nav next" aria-label="Próximo depoimento">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div class="carousel-dots"></div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works-section parallax-section" id="como-funciona">
+    <div class="parallax-bg"></div>
+    <div class="container">
+        <div class="section-header">
+            <h2 data-anim="fade-up">Como Funciona: Fama Local em 3 Passos Simples</h2>
+            <p data-anim="fade-up">Automatize a gestão da sua reputação sem complicações</p>
         </div>
         <div class="how-it-works-grid">
-            <div class="step-card">
+            <div class="step-card" data-anim="fade-up">
                 <div class="step-number">1</div>
                 <h3>Cliente Avalia no Google</h3>
                 <p>Assim que seu cliente deixa uma avaliação no seu perfil do Google Meu Negócio, você é avisado na hora.</p>
             </div>
-            <div class="step-card">
+            <div class="step-card" data-anim="fade-up">
                 <div class="step-number">2</div>
                 <h3>IA Cria a Resposta</h3>
                 <p>Nossa IA analisa o sentimento (positivo/negativo) e cria uma resposta empática em segundos. <br><span style="font-size:12px; color:#999;">(Seus dados não são usados para treinar a IA)</span></p>
             </div>
-            <div class="step-card">
+            <div class="step-card" data-anim="fade-up">
                 <div class="step-number">3</div>
                 <h3>Você Aprova no WhatsApp</h3>
                 <p>Você recebe uma notificação no WhatsApp. Basta clicar em "Aprovar" e a resposta é publicada automaticamente.</p>
@@ -2055,216 +2281,221 @@ border: 1px solid rgba(255,255,255,0.1);
         </div>
     </div>
 </section>
+
 <section class="calculator-section" id="calculadora">
     <div class="container">
         <div class="section-header">
-            <h2>Calcule Sua Economia</h2>
-            <p>Descubra quanto tempo (e dinheiro) você recuperará</p>
+            <h2 data-anim="fade-up">Calcule Sua Economia</h2>
+            <p data-anim="fade-up">Descubra quanto tempo (e dinheiro) você recuperará</p>
         </div>
-    <div class="calculator-container">
-        <div class="calculator-input">
-            <label for="reviews-slider" id="reviews-label">
-                Quantas avaliações você recebe por mês?
-                <span style="cursor: help; color: var(--secondary);" title="Considere avaliações do Google">ℹ️</span>
-            </label>
-            <label for="reviews-slider" class="sr-only">Número de avaliações por mês</label>
+        <div class="calculator-container" data-anim="zoom-in">
+            <div class="calculator-input">
+                <label for="reviews-slider" id="reviews-label">
+                    Quantas avaliações você recebe por mês?
+                    <span style="cursor: help; color: var(--secondary);" title="Considere avaliações do Google">ℹ️</span>
+                </label>
+                <label for="reviews-slider" class="sr-only">Número de avaliações por mês</label>
 
-<input type="range" id="reviews-slider" min="5" max="100" value="20" step="5"
-       list="reviews-marks" aria-label="Selecione quantidade de avaliações recebidas por mês"
-       aria-labelledby="reviews-label"
-       aria-valuemin="5" aria-valuemax="100" aria-valuenow="20">
-<datalist id="reviews-marks">
-    <option value="5" label="5">
-    <option value="20">
-    <option value="40">
-    <option value="60">
-    <option value="80">
-    <option value="100" label="100+">
-</datalist>
+                <input type="range" id="reviews-slider" min="5" max="100" value="20" step="5"
+                       list="reviews-marks" aria-label="Selecione quantidade de avaliações recebidas por mês"
+                       aria-labelledby="reviews-label"
+                       aria-valuemin="5" aria-valuemax="100" aria-valuenow="20">
+                <datalist id="reviews-marks">
+                    <option value="5" label="5">
+                    <option value="20">
+                    <option value="40">
+                    <option value="60">
+                    <option value="80">
+                    <option value="100" label="100+">
+                </datalist>
 
-            <div class="calculator-value" id="reviews-value">20 avaliações</div>
+                <div class="calculator-value" id="reviews-value">20 avaliações</div>
+            </div>
+            <div class="calculator-result">
+                <p style="margin-bottom: 10px;">Você economizará</p>
+                <div class="result-number" id="time-saved">6.7 horas/mês</div>
+                <p style="font-size: 14px; opacity: 0.9;">Isso equivale a <strong id="money-saved">R$ 800</strong> em tempo recuperado</p>
+                <p style="font-size: 12px; margin-top: 15px; opacity: 0.8;">*Baseado em 20min por resposta manual + R$ 120/hora de custo de oportunidade</p>
+            </div>
+
+            <a href="https://app.famalocal.com.br/cadastro" class="btn btn-primary" style="width: 100%; margin-top: 20px;" aria-label="Começar a economizar agora">Começar a Economizar Agora</a>
+            <p class="no-risk" style="justify-content: center; margin-top: 12px;">
+                <div class="nocard">💳 Sem cartão</div>
+                <div class="nocard">✅ 30 dias grátis</div>
+                <div class="nocard">❌ Cancele quando quiser</div>
+            </p>
         </div>
-    <div class="calculator-result">
-        <p style="margin-bottom: 10px;">Você economizará</p>
-        <div class="result-number" id="time-saved">6.7 horas/mês</div>
-        <p style="font-size: 14px; opacity: 0.9;">Isso equivale a <strong id="money-saved">R$ 800</strong> em tempo recuperado</p>
-        <p style="font-size: 12px; margin-top: 15px; opacity: 0.8;">*Baseado em 20min por resposta manual + R$ 120/hora de custo de oportunidade</p>
     </div>
-
-    <a href="https://app.famalocal.com.br/cadastro" class="btn btn-primary" style="width: 100%; margin-top: 20px;" aria-label="Começar a economizar agora">Começar a Economizar Agora</a>
-    <p class="no-risk" style="justify-content: center; margin-top: 12px;">
-        <div class="nocard">💳 Sem cartão</div>
-        <div class="nocard">✅ 30 dias grátis</div>
-        <div class="nocard">❌ Cancele quando quiser</div>
-    </p>
-</div>
-</div>
 </section>
+
 <section class="setup-section">
     <div class="container">
         <div class="section-header">
-            <h2>Comece em menos de 3 Minutos</h2>
-            <p>Esqueça configurações complexas. Fazemos o trabalho pesado.</p>
+            <h2 data-anim="fade-up">Comece em menos de 3 Minutos</h2>
+            <p data-anim="fade-up">Esqueça configurações complexas. Fazemos o trabalho pesado.</p>
         </div>
-    <div class="setup-grid">
-        <div class="setup-card">
-            <div class="step-badge">01</div>
-            <div class="setup-icon">
-                <i class="fab fa-google" aria-hidden="true"></i>
+        <div class="setup-grid">
+            <div class="setup-card tilt-card" data-anim="fade-up">
+                <div class="step-badge">01</div>
+                <div class="setup-icon">
+                    <i class="fab fa-google" aria-hidden="true"></i>
+                </div>
+                <h3>Conecte sua conta</h3>
+                <p>Integração oficial com o Google. 100% segura e leva 1 minuto.</p>
             </div>
-            <h3>Conecte sua conta</h3>
-            <p>Integração oficial com o Google. 100% segura e leva 1 minuto.</p>
+            <div class="setup-card tilt-card" data-anim="fade-up">
+                <div class="step-badge">02</div>
+                <div class="setup-icon">
+                    <i class="fas fa-sliders-h" aria-hidden="true"></i>
+                </div>
+                <h3>Ajuste em 1 Clique</h3>
+                <p>Defina o tom de voz da IA para soar exatamente como você.</p>
+            </div>
+            <div class="setup-card tilt-card" data-anim="fade-up">
+                <div class="step-badge">03</div>
+                <div class="setup-icon">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                </div>
+                <h3>Você no Controle</h3>
+                <p>Aprovação via WhatsApp. Você define as regras.</p>
+            </div>
         </div>
-    <div class="setup-card">
-        <div class="step-badge">02</div>
-        <div class="setup-icon">
-            <i class="fas fa-sliders-h" aria-hidden="true"></i>
-        </div>
-        <h3>Ajuste em 1 Clique</h3>
-        <p>Defina o tom de voz da IA para soar exatamente como você.</p>
     </div>
-
-    <div class="setup-card">
-        <div class="step-badge">03</div>
-        <div class="setup-icon">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        </div>
-        <h3>Você no Controle</h3>
-        <p>Aprovação via WhatsApp. Você define as regras.</p>
-    </div>
-</div>
-</div>
 </section>
 <section id="precos" class="section bg-light">
     <div class="container">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <div style="display: inline-block; background: white; padding: 20px 40px; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #E5E7EB;">
-            <div style="font-size: 32px; margin-bottom: 5px;">🛡️</div>
-            <h3 style="font-size: 20px; color: var(--dark); margin-bottom: 5px;">Garantia de 30 Dias</h3>
-            <p style="font-size: 14px; color: var(--body-text);">Teste sem riscos. Cancele quando quiser.</p>
+        <div style="text-align: center; margin-bottom: 50px;" data-anim="fade-up">
+            <div style="display: inline-block; background: white; padding: 20px 40px; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #E5E7EB;">
+                <div style="font-size: 32px; margin-bottom: 5px;">🛡️</div>
+                <h3 style="font-size: 20px; color: var(--dark); margin-bottom: 5px;">Garantia de 30 Dias</h3>
+                <p style="font-size: 14px; color: var(--body-text);">Teste sem riscos. Cancele quando quiser.</p>
+            </div>
+        </div>
+
+        <div style="background: #F0FDF4; border-left: 4px solid #10B981; padding: 20px; border-radius: 12px; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;" data-anim="fade-up">
+            <h4 style="color: #059669; margin-bottom: 10px; font-size: 18px;">
+                <i class="fas fa-shield-check" aria-hidden="true"></i> Transparência Total
+            </h4>
+            <ul style="font-size: 14px; line-height: 1.8; color: #065F46; list-style: none; padding: 0;">
+                <li>✅ Sem taxa de setup ou cobranças ocultas</li>
+                <li>✅ Cancele online a qualquer momento, sem multa</li>
+                <li>✅ Suporte em português (Seg-Sex)</li>
+                <li>✅ Se exceder limite, você escolhe: upgrade ou pacote avulso</li>
+                <li>✅ Dados protegidos por LGPD</li>
+            </ul>
+        </div>
+
+        <div class="section-header">
+            <h2 data-anim="fade-up">Escolha Seu Plano</h2>
+            <p data-anim="fade-up">Primeiros 30 dias grátis em qualquer plano.</p>
+            <div class="nocard">💳 Sem cadastro de cartão</div>
+        </div>
+        <div class="card-grid">
+            <div class="pricing-card tilt-card" data-anim="zoom-in">
+                <h3>Estreante</h3>
+                <div class="price">R$ 29,90<span>/mês</span></div>
+                <p style="font-size: 13px; color: #777; margin-bottom: 20px;">Ideal para começar</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30 respostas de IA/mês</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Aprovação via WhatsApp</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 1 Perfil Google</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Respostas em português</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Suporte por email</li>
+                </ul>
+                <a href="https://app.famalocal.com.br/cadastro?plano=estreante" class="btn btn-secondary" style="width: 100%; margin-top: 20px;" aria-label="Testar plano Estreante por 30 dias grátis sem cartão">Testar 30 Dias Grátis</a>
+                <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
+                    <div class="nocard">💳 Sem cartão</div>
+                    <div class="nocard">✅ 30 dias grátis</div>
+                    <div class="nocard">❌ Cancele quando quiser</div>
+                </p>
+            </div>
+
+            <div class="pricing-card popular tilt-card" data-anim="zoom-in">
+                <h3>Protagonista</h3>
+                <div class="price">R$ 79,90<span>/mês</span></div>
+                <div class="price-micro">Equivale a menos de R$ 2,66 por dia</div>
+                <div class="secretary-tag">⚡ Menos que 1 hora de trabalho terceirizado</div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 180 respostas de IA/mês</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> WhatsApp Ilimitado</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 Perfis Google</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Relatórios de Crescimento</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tom de voz personalizado</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Suporte prioritário</li>
+                </ul>
+                <a href="https://app.famalocal.com.br/cadastro?plano=protagonista" class="btn btn-primary" style="width: 100%; margin-top: 20px;" aria-label="Testar plano Protagonista por 30 dias grátis sem cartão">Testar 30 Dias Grátis</a>
+                <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
+                    <div class="nocard">💳 Sem cartão</div>
+                    <div class="nocard">✅ 30 dias grátis</div>
+                    <div class="nocard">❌ Cancele quando quiser</div>
+                </p>
+            </div>
+
+            <div class="pricing-card tilt-card" data-anim="zoom-in">
+                <h3>Astro</h3>
+                <div class="price">R$ 229,90<span>/mês</span></div>
+                <p style="font-size: 13px; color: #777; margin-bottom: 20px;">Para redes e agências</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 600 respostas de IA/mês</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Painel Multi-lojas</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 10 Perfis Google</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> API de integração</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> White label (remove marca)</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Gerente de conta dedicado</li>
+                </ul>
+                <a href="https://app.famalocal.com.br/contato" class="btn btn-secondary" style="width: 100%; margin-top: 20px;" aria-label="Falar com especialista sobre plano Astro">Falar com Especialista</a>
+                <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
+                    <div class="nocard">💳 Sem cartão</div>
+                    <div class="nocard">✅ 30 dias grátis</div>
+                    <div class="nocard">❌ Cancele quando quiser</div>
+                </p>
+            </div>
+        </div>
+        <div class="urgency-banner" data-anim="fade-up">
+            <p><strong>🎁 Promoção:</strong> Teste qualquer plano por <strong>30 dias grátis</strong>.</p>
+            <p style="font-size: 13px; margin-top: 8px;">Oferta válida para novos cadastros • Cancele quando quiser</p>
         </div>
     </div>
+</section>
 
-    <div style="background: #F0FDF4; border-left: 4px solid #10B981; padding: 20px; border-radius: 12px; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
-        <h4 style="color: #059669; margin-bottom: 10px; font-size: 18px;">
-            <i class="fas fa-shield-check" aria-hidden="true"></i> Transparência Total
-        </h4>
-        <ul style="font-size: 14px; line-height: 1.8; color: #065F46; list-style: none; padding: 0;">
-            <li>✅ Sem taxa de setup ou cobranças ocultas</li>
-            <li>✅ Cancele online a qualquer momento, sem multa</li>
-            <li>✅ Suporte em português (Seg-Sex)</li>
-            <li>✅ Se exceder limite, você escolhe: upgrade ou pacote avulso</li>
-            <li>✅ Dados protegidos por LGPD</li>
-        </ul>
-    </div>
-
-    <div class="section-header">
-        <h2>Escolha Seu Plano</h2>
-        <p>Primeiros 30 dias grátis em qualquer plano.</p>
-        <div class="nocard">💳 Sem cadastro de cartão</div>
-    </div>
-    <div class="card-grid">
-        <div class="pricing-card">
-            <h3>Estreante</h3>
-            <div class="price">R$ 29,90<span>/mês</span></div>
-            <p style="font-size: 13px; color: #777; margin-bottom: 20px;">Ideal para começar</p>
-            <ul class="features-list">
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30 respostas de IA/mês</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Aprovação via WhatsApp</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> 1 Perfil Google</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Respostas em português</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Suporte por email</li>
-            </ul>
-            <a href="https://app.famalocal.com.br/cadastro?plano=estreante" class="btn btn-secondary" style="width: 100%; margin-top: 20px;" aria-label="Testar plano Estreante por 30 dias grátis sem cartão">Testar 30 Dias Grátis</a>
-            <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
-        <div class="nocard">💳 Sem cartão</div>
-        <div class="nocard">✅ 30 dias grátis</div>
-        <div class="nocard">❌ Cancele quando quiser</div>
-            </p>
+<section id="faq" class="section">
+    <div class="container" style="max-width: 800px;">
+        <div class="section-header">
+            <h2 data-anim="fade-up">Perguntas Frequentes</h2>
         </div>
-    <div class="pricing-card popular">
-        <h3>Protagonista</h3>
-        <div class="price">R$ 79,90<span>/mês</span></div>
-        <div class="price-micro">Equivale a menos de R$ 2,66 por dia</div>
-        <div class="secretary-tag">⚡ Menos que 1 hora de trabalho terceirizado</div>
-        <ul class="features-list">
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>180 respostas de IA/mês</strong></li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> WhatsApp Ilimitado</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 Perfis Google</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Relatórios de Crescimento</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tom de voz personalizado</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Suporte prioritário</li>
-        </ul>
-        <a href="https://app.famalocal.com.br/cadastro?plano=protagonista" class="btn btn-primary" style="width: 100%; margin-top: 20px;" aria-label="Testar plano Protagonista por 30 dias grátis sem cartão">Testar 30 Dias Grátis</a>
-        <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
-        <div class="nocard">💳 Sem cartão</div>
-        <div class="nocard">✅ 30 dias grátis</div>
-        <div class="nocard">❌ Cancele quando quiser</div>
-        </p>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">Como funciona o teste grátis de 30 dias?</summary>
+            <p>Você acessa todos os recursos por 30 dias sem precisar cadastrar cartão de crédito. Após o período, você decide se quer continuar.</p>
+        </details>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">A IA pode cometer erros nas respostas?</summary>
+            <p>Nossa IA é treinada para alta precisão. Ainda assim, você sempre revisa e aprova antes de publicar. Se não gostar da sugestão, pode editar ou pedir outra.</p>
+        </details>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">O que acontece se eu exceder o limite de respostas?</summary>
+            <p>Você receberá um aviso ao atingir 80%. Se exceder, pode fazer upgrade, comprar um pacote avulso ou aprovar manualmente até o próximo mês. Nunca bloqueamos seu acesso.</p>
+        </details>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">Meus dados estão seguros? Como funciona a LGPD?</summary>
+            <p>Sim. Utilizamos conexão OAuth oficial do Google (não pedimos senha) e criptografia SSL. Aplicamos controles compatíveis com a LGPD. Seus dados não são usados para treinar IAs públicas.</p>
+        </details>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">Posso responder pelo WhatsApp?</summary>
+            <p>Sim! Você recebe a notificação no WhatsApp, vê a sugestão da IA e aprova com um clique.</p>
+        </details>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">Como cancelo minha assinatura? É difícil?</summary>
+            <p>Você cancela em 2 cliques no painel. Sem multa, sem falar com atendente. Simples assim.</p>
+        </details>
+        <details data-anim="fade-up">
+            <summary aria-expanded="false">A IA pode gerar respostas ofensivas?</summary>
+            <p>Não. Nosso sistema tem filtros anti-toxicidade e análise de sentimento. Além disso, como você aprova cada resposta, o risco é zero.</p>
+        </details>
     </div>
+</section>
 
-    <div class="pricing-card">
-        <h3>Astro</h3>
-        <div class="price">R$ 229,90<span>/mês</span></div>
-        <p style="font-size: 13px; color: #777; margin-bottom: 20px;">Para redes e agências</p>
-        <ul class="features-list">
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> 600 respostas de IA/mês</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Painel Multi-lojas</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> 10 Perfis Google</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> API de integração</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> White label (remove marca)</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Gerente de conta dedicado</li>
-            </ul>
-			        <a href="https://app.famalocal.com.br/contato" class="btn btn-secondary" style="width: 100%; margin-top: 20px;" aria-label="Falar com especialista sobre plano Astro">Falar com Especialista</a>
-			        <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
-        <div class="nocard">💳 Sem cartão</div>
-        <div class="nocard">✅ 30 dias grátis</div>
-        <div class="nocard">❌ Cancele quando quiser</div>
-			        </p>
-			    </div>
-			</div>
-			<div class="urgency-banner">
-			    <p><strong>🎁 Promoção:</strong> Teste qualquer plano por <strong>30 dias grátis</strong>.</p>
-			    <p style="font-size: 13px; margin-top: 8px;">Oferta válida para novos cadastros • Cancele quando quiser</p>
-			</div>
-			</div>
-			</section>
-			<section id="faq" class="section">
-			    <div class="container" style="max-width: 800px;">
-			        <div class="section-header">
-			            <h2>Perguntas Frequentes</h2>
-			        </div>
-			        <details>
-			            <summary aria-expanded="false">Como funciona o teste grátis de 30 dias?</summary>
-			            <p>Você acessa todos os recursos por 30 dias sem precisar cadastrar cartão de crédito. Após o período, você decide se quer continuar.</p>
-			        </details>
-			        <details>
-			            <summary aria-expanded="false">A IA pode cometer erros nas respostas?</summary>
-			            <p>Nossa IA é treinada para alta precisão. Ainda assim, você sempre revisa e aprova antes de publicar. Se não gostar da sugestão, pode editar ou pedir outra.</p>
-			        </details>
-			    <details>
-			        <summary aria-expanded="false">O que acontece se eu exceder o limite de respostas?</summary>
-			        <p>Você receberá um aviso ao atingir 80%. Se exceder, pode fazer upgrade, comprar um pacote avulso ou aprovar manualmente até o próximo mês. Nunca bloqueamos seu acesso.</p>
-			    </details>
-			    <details>
-			        <summary aria-expanded="false">Meus dados estão seguros? Como funciona a LGPD?</summary>
-			        <p>Sim. Utilizamos conexão OAuth oficial do Google (não pedimos senha) e criptografia SSL. Aplicamos controles compatíveis com a LGPD. Seus dados não são usados para treinar IAs públicas.</p>
-			    </details>
-			    <details>
-			        <summary aria-expanded="false">Posso responder pelo WhatsApp?</summary>
-			        <p>Sim! Você recebe a notificação no WhatsApp, vê a sugestão da IA e aprova com um clique.</p>
-			    </details>
-			    <details>
-			        <summary aria-expanded="false">Como cancelo minha assinatura? É difícil?</summary>
-			        <p>Você cancela em 2 cliques no painel. Sem multa, sem falar com atendente. Simples assim.</p>
-			    </details>
-			    <details>
-			        <summary aria-expanded="false">A IA pode gerar respostas ofensivas?</summary>
-			        <p>Não. Nosso sistema tem filtros anti-toxicidade e análise de sentimento. Além disso, como você aprova cada resposta, o risco é zero.</p>
-			    </details>
-			</div>
-			</section>
 </main>
+
 <div class="cookie-banner" id="cookieBanner">
     <div class="cookie-content">
         🍪 Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa
@@ -2297,12 +2528,13 @@ border: 1px solid rgba(255,255,255,0.1);
 <a href="https://wa.me/5511999999999?text=Oi!%20Quero%20testar%20o%20Fama%20Local" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
     <i class="fab fa-whatsapp" aria-hidden="true"></i>
 </a>
+
 <footer>
     <div class="container">
         <div style="border-bottom: 1px solid #333; padding-bottom: 40px; margin-bottom: 40px; text-align: center;">
             <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; align-items: center;">
                 <div>
-                    <div style="font-size: 24px; color: var(--secondary); font-weight: 700;">256-bit</div>
+                    <div style="font-size: 24px; color: var(--secondary); font-weight: 700;">256</div>
                     <div style="font-size: 13px; color: #b0b0b0;">Criptografia SSL</div>
                 </div>
                 <div>
@@ -2310,61 +2542,339 @@ border: 1px solid rgba(255,255,255,0.1);
                     <div style="font-size: 13px; color: #b0b0b0;">Compatível com LGPD (política aplicada)</div>
                 </div>
                 <div>
-                    <div style="font-size: 24px; color: var(--secondary); font-weight: 700;">99.9%</div>
+                    <div style="font-size: 24px; color: var(--secondary); font-weight: 700;">99.9</span>%</div>
                     <div style="font-size: 13px; color: #b0b0b0;">Uptime Garantido</div>
                 </div>
             </div>
         </div>
-    <div class="footer-grid">
-        <div>
-            <div class="logo" style="margin-bottom: 20px; color: white;">
-                <i class="fas fa-star" style="color: var(--secondary);" aria-hidden="true"></i> Fama Local
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="margin-bottom: 20px; color: white;">
+                    <i class="fas fa-star" style="color: var(--secondary);" aria-hidden="true"></i> Fama Local
+                </div>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    Automatize respostas de avaliações<br>
+                    com IA via WhatsApp<br><br>
+                    São Paulo, SP, Brasil<br>
+                    suporte@famalocal.com.br
+                </p>
             </div>
-            <p style="font-size: 14px; line-height: 1.8;">
-                Automatize respostas de avaliações<br>
-                com IA via WhatsApp<br><br>
-                São Paulo, SP, Brasil<br>
-                suporte@famalocal.com.br
-            </p>
+            <div>
+                <h4>Empresa</h4>
+                <ul class="footer-links" style="font-size: 14px;">
+                    <li><a href="/sobre">Sobre Nós</a></li>
+                    <li><a href="/como-funciona">Como Funciona</a></li>
+                    <li><a href="/casos">Casos de Sucesso</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul class="footer-links" style="font-size: 14px;">
+                    <li><a href="/termos">Termos de Uso</a></li>
+                    <li><a href="/privacidade">Política de Privacidade</a></li>
+                    <li><a href="/lgpd">LGPD</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Suporte</h4>
+                <ul class="footer-links" style="font-size: 14px;">
+                    <li><a href="/ajuda">Central de Ajuda</a></li>
+                    <li><a href="/status">Status do Sistema</a></li>
+                    <li><a href="/contato">Contato</a></li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <h4>Empresa</h4>
-            <ul class="footer-links" style="font-size: 14px;">
-                <li><a href="/sobre">Sobre Nós</a></li>
-                <li><a href="/como-funciona">Como Funciona</a></li>
-                <li><a href="/casos">Casos de Sucesso</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>Legal</h4>
-            <ul class="footer-links" style="font-size: 14px;">
-                <li><a href="/termos">Termos de Uso</a></li>
-                <li><a href="/privacidade">Política de Privacidade</a></li>
-                <li><a href="/lgpd">LGPD</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>Suporte</h4>
-            <ul class="footer-links" style="font-size: 14px;">
-                <li><a href="/ajuda">Central de Ajuda</a></li>
-                <li><a href="/status">Status do Sistema</a></li>
-                <li><a href="/contato">Contato</a></li>
-            </ul>
+        <div style="margin-top: 50px; text-align: center; font-size: 13px; border-top: 1px solid #333; padding-top: 20px;">
+            © 2025 Fama Local. Todos os direitos reservados.
         </div>
     </div>
-    <div style="margin-top: 50px; text-align: center; font-size: 13px; border-top: 1px solid #333; padding-top: 20px;">
-        © 2025 Fama Local. Todos os direitos reservados.
-    </div>
-</div>
 </footer>
-
 <script>
 (function(){
     window.dataLayer = window.dataLayer || [];
 
     const COOKIE_EXPIRY_DAYS = 365;
     let lastFocusedElement = null;
+
+    // ========== PROGRESS BAR DO SCROLL ==========
+    function updateProgressBar() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        const progressBar = document.querySelector('.scroll-progress');
+        if (progressBar) {
+            progressBar.style.width = scrollPercent + '%';
+        }
+    }
+
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            window.cancelAnimationFrame(scrollTimeout);
+        }
+        scrollTimeout = window.requestAnimationFrame(function() {
+            updateProgressBar();
+        });
+    }, { passive: true });
+
+    // ========== ANIMAÇÕES AOS (ANIMATE ON SCROLL) ==========
+    function initAOS() {
+        const animElements = document.querySelectorAll('[data-anim]');
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animElements.forEach(function(el) {
+            observer.observe(el);
+        });
+    }
+
+    // ========== COUNT UP ANIMATION ==========
+    function animateCountUp(element, target, duration) {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(function() {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+
+            // Formato com decimais se necessário
+            if (target % 1 !== 0) {
+                element.textContent = current.toFixed(1);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, 16);
+    }
+
+    function initCountUp() {
+        const countElements = document.querySelectorAll('[data-countup]');
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && !entry.target.dataset.counted) {
+                    const target = parseFloat(entry.target.dataset.countup);
+                    entry.target.dataset.counted = 'true';
+                    animateCountUp(entry.target, target, 1200);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        countElements.forEach(function(el) {
+            observer.observe(el);
+        });
+    }
+
+    // ========== PARALLAX EFFECT ==========
+    function initParallax() {
+        const parallaxSections = document.querySelectorAll('.parallax-section');
+
+        window.addEventListener('scroll', function() {
+            parallaxSections.forEach(function(section) {
+                const scrolled = window.pageYOffset;
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (scrolled > sectionTop - window.innerHeight && scrolled < sectionTop + sectionHeight) {
+                    const parallaxBg = section.querySelector('.parallax-bg');
+                    if (parallaxBg) {
+                        const offset = (scrolled - sectionTop) * 0.3;
+                        parallaxBg.style.transform = 'translateY(' + offset + 'px)';
+                    }
+                }
+            });
+        }, { passive: true });
+    }
+
+    // ========== TILT 3D EFFECT ==========
+    function initTilt() {
+        if (window.innerWidth <= 768) return; // Desabilita no mobile
+
+        const tiltCards = document.querySelectorAll('.tilt-card');
+
+        tiltCards.forEach(function(card) {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'transform 0.15s ease';
+            });
+
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / centerY * -4;
+                const rotateY = (x - centerX) / centerX * 4;
+
+                this.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale3d(1.02, 1.02, 1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+    }
+
+    // ========== RIPPLE EFFECT NOS BOTÕES ==========
+    function createRipple(event) {
+        const button = event.currentTarget;
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        button.appendChild(ripple);
+
+        setTimeout(function() {
+            ripple.remove();
+        }, 600);
+    }
+
+    function initRipple() {
+        const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', createRipple);
+        });
+    }
+
+    // ========== CARROSSEL DE DEPOIMENTOS ==========
+    function initTestimonialsCarousel() {
+        const track = document.querySelector('.testimonials-track');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        const prevBtn = document.querySelector('.carousel-nav.prev');
+        const nextBtn = document.querySelector('.carousel-nav.next');
+
+        if (!track || slides.length === 0) return;
+
+        let currentIndex = 0;
+        let autoplayInterval;
+        let startX = 0;
+        let isDragging = false;
+
+        // Criar dots
+        slides.forEach(function(_, index) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            dot.setAttribute('aria-label', 'Ir para depoimento ' + (index + 1));
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', function() {
+                goToSlide(index);
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function updateCarousel() {
+            track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+            dots.forEach(function(dot, index) {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 7000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        // Navegação
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                resetAutoplay();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                resetAutoplay();
+            });
+        }
+
+        // Touch swipe
+        track.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                resetAutoplay();
+            }
+        });
+
+        startAutoplay();
+
+        // Pausar autoplay quando não visível
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(autoplayInterval);
+            } else {
+                startAutoplay();
+            }
+        });
+    }
 
     // ========== GESTÃO DE CONSENTIMENTO DE COOKIES (LGPD) ==========
     function loadGTM() {
@@ -2386,17 +2896,15 @@ border: 1px solid rgba(255,255,255,0.1);
         return daysSince > COOKIE_EXPIRY_DAYS;
     }
 
-    // STUB: Aceitar Cookies (LGPD Compliant)
     window.acceptCookies = function() {
         const now = Date.now();
         localStorage.setItem('famalocal_consent', 'accepted');
         localStorage.setItem('cookieTimestamp', now);
         document.getElementById('cookieBanner')?.classList.remove('show');
-        loadGTM(); // Carrega GTM apenas após consentimento
+        loadGTM();
         dataLayer.push({event:'cookie_consent', consent: 'granted', timestamp: now});
     };
 
-    // STUB: Rejeitar Cookies (LGPD Compliant)
     window.rejectCookies = function() {
         const now = Date.now();
         localStorage.setItem('famalocal_consent', 'rejected');
@@ -2409,7 +2917,6 @@ border: 1px solid rgba(255,255,255,0.1);
         const consent = localStorage.getItem('famalocal_consent');
         const timestamp = localStorage.getItem('cookieTimestamp');
 
-        // Verifica se consentimento expirou ou não existe
         if (!consent || isCookieExpired(timestamp)) {
             localStorage.removeItem('famalocal_consent');
             localStorage.removeItem('cookieTimestamp');
@@ -2417,12 +2924,10 @@ border: 1px solid rgba(255,255,255,0.1);
                 document.getElementById('cookieBanner')?.classList.add('show');
             }, 1000);
         } else if (consent === 'accepted') {
-            // Carrega GTM apenas se consentimento foi aceito
             loadGTM();
         }
     });
-
-    // ========== MENU MOBILE COM ACESSIBILIDADE ==========
+// ========== MENU MOBILE COM ACESSIBILIDADE ==========
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -2436,7 +2941,6 @@ border: 1px solid rgba(255,255,255,0.1);
         mobileMenuBtn.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
 
-        // Acessibilidade: Oculta conteúdo principal
         if(mainContent) mainContent.setAttribute('aria-hidden', 'true');
 
         const firstLink = mobileMenu.querySelector('a, button');
@@ -2450,7 +2954,6 @@ border: 1px solid rgba(255,255,255,0.1);
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
 
-        // Acessibilidade: Restaura conteúdo principal
         if(mainContent) mainContent.removeAttribute('aria-hidden');
 
         if(lastFocusedElement) {
@@ -2462,12 +2965,10 @@ border: 1px solid rgba(255,255,255,0.1);
     }
 
     function handleMenuKeydown(e) {
-        // ESC fecha o menu
         if (e.key === 'Escape') {
             closeMenu();
         }
 
-        // Focus Trap: TAB cycling
         if (e.key === 'Tab' && mobileMenu.classList.contains('active')) {
             const focusableElements = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
             const firstElement = focusableElements[0];
@@ -2537,7 +3038,6 @@ border: 1px solid rgba(255,255,255,0.1);
         document.querySelector('.btn-reset').focus();
     };
 
-    // STUB: Reset da Simulação
     window.resetSimulation = function() {
         const approveBtn = document.querySelector('.wa-btn.approve');
         if (approveBtn) {
@@ -2582,14 +3082,23 @@ border: 1px solid rgba(255,255,255,0.1);
             timeSaved.textContent = hoursSaved + ' horas/mês';
             moneySaved.textContent = 'R$ ' + moneySavedValue.toLocaleString('pt-BR');
 
-// No evento de input do slider:
-moneySaved.style.transform = "scale(1.1)";
-moneySaved.style.color = "#10B981"; // Verde forte
-setTimeout(() => {
-    moneySaved.style.transform = "scale(1)";
-    moneySaved.style.color = ""; // Volta ao original
-}, 200);
+            // Animação no valor
+            const resultNumber = document.querySelector('.result-number');
+            if (resultNumber) {
+                resultNumber.style.transform = "scale(1.1)";
+                resultNumber.style.color = "#10B981";
+                setTimeout(function() {
+                    resultNumber.style.transform = "scale(1)";
+                    resultNumber.style.color = "";
+                }, 200);
+            }
 
+            moneySaved.style.transform = "scale(1.1)";
+            moneySaved.style.color = "#10B981";
+            setTimeout(function() {
+                moneySaved.style.transform = "scale(1)";
+                moneySaved.style.color = "";
+            }, 200);
         });
     }
 
@@ -2600,7 +3109,6 @@ setTimeout(() => {
         const overlay = document.getElementById('exitModalOverlay');
         overlay.classList.remove('show');
 
-        // Restaura conteúdo principal
         if(mainContent) mainContent.removeAttribute('aria-hidden');
         document.body.style.overflow = '';
 
@@ -2608,7 +3116,6 @@ setTimeout(() => {
             overlay.style.display = 'none';
         }, 300);
 
-        // Retorna foco ao elemento que abriu o modal
         if(modalLastFocusedElement) {
             modalLastFocusedElement.focus();
         }
@@ -2619,12 +3126,10 @@ setTimeout(() => {
     function handleModalKeydown(e) {
         const overlay = document.getElementById('exitModalOverlay');
 
-        // ESC fecha o modal
         if (e.key === 'Escape') {
             window.closeExitModal();
         }
 
-        // Focus Trap
         if (e.key === 'Tab' && overlay.classList.contains('show')) {
             const focusableElements = overlay.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
             const firstElement = focusableElements[0];
@@ -2646,14 +3151,12 @@ setTimeout(() => {
 
         overlay.style.display = 'flex';
 
-        // Acessibilidade: Oculta conteúdo principal
         if(mainContent) mainContent.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'hidden';
 
         setTimeout(function() {
             overlay.classList.add('show');
 
-            // Move foco para botão primário
             const primaryButton = overlay.querySelector('.exit-intent-modal-action-button');
             if(primaryButton) primaryButton.focus();
         }, 10);
@@ -2661,7 +3164,6 @@ setTimeout(() => {
         document.addEventListener('keydown', handleModalKeydown);
     }
 
-    // STUB: Iniciar Demo (usado no modal)
     window.startInteractiveDemo = function() {
         window.closeExitModal();
         setTimeout(function() {
@@ -2714,8 +3216,6 @@ setTimeout(() => {
         }
     }
 
-    initExitIntent();
-
     // ========== SMOOTH SCROLL ==========
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function (e) {
@@ -2736,6 +3236,32 @@ setTimeout(() => {
             });
         }
     });
+
+    // ========== INICIALIZAÇÃO ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializa todas as funcionalidades
+        initAOS();
+        initCountUp();
+        initParallax();
+        initTilt();
+        initRipple();
+        initTestimonialsCarousel();
+        initExitIntent();
+        updateProgressBar();
+
+        // Log de sucesso (pode remover em produção)
+        console.log('✅ Todas as animações e microinterações foram inicializadas');
+    });
+
+    // Reinicializa tilt ao redimensionar
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            initTilt();
+        }, 250);
+    });
+
 })();
 </script>
 
