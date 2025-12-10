@@ -383,11 +383,6 @@ section, main {
     right: -20px;
 }
 
-@media(max-width: 900px) {
-    .carousel-nav {
-        display: none;
-    }
-}
 
 /* RIPPLE EFFECT */
 .ripple {
@@ -1164,6 +1159,8 @@ header .btn-primary {
     gap: 15px;
     margin-bottom: 20px;
 }
+
+
 
 .testimonial-avatar {
     width: 50px;
@@ -1943,6 +1940,15 @@ footer h4 {
     .exit-modal-text {
         font-size: 14px;
     }
+
+/* Após a linha 1167 (dentro do @media(max-width: 900px)) */
+.result-number {
+    font-size: 32px !important;
+    word-break: break-word;
+    line-height: 1.3;
+    hyphens: auto;
+}
+
 }
 
 @media(max-width: 480px) {
@@ -2112,6 +2118,41 @@ footer h4 {
     }
 }
 
+/* CORREÇÃO ADICIONAL PARA O CARROSSEL */
+@media(max-width: 900px) {
+    .testimonial-slide {
+        padding: 0;
+        width: 100%;
+    }
+    
+    .testimonials-track {
+        width: 100%;
+    }
+    
+    .testimonial-card {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+}
+
+@media(max-width: 600px) {
+    .testimonial-card {
+        max-width: 100%;
+    }
+}
+
+@media(max-width: 768px) {
+    .cookie-banner {
+        padding-bottom: 20px;
+        min-height: 140px; /* Garante espaço para os botões */
+    }
+
+    .cookie-banner > div:last-child {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
 
     </style>
     <meta name="robots" content="index, follow">
@@ -2410,10 +2451,9 @@ footer h4 {
             <h2 data-anim="fade-up">Resultados Reais de Clientes</h2>
             <p data-anim="fade-up">Veja o impacto em negócios como o seu</p>
         </div>
-        
+
         <div class="testimonials-carousel">
             <div class="testimonials-track">
-                <!-- SLIDE 1 -->
                 <div class="testimonial-slide">
                     <div class="testimonial-card tilt-card">
                         <div class="testimonial-header">
@@ -2422,29 +2462,28 @@ footer h4 {
                                 <h4>Katya Dias</h4>
                                 <div class="testimonial-role">Psicóloga Clínica</div>
                                 <div class="stars" aria-label="5 estrelas">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
                         <p class="testimonial-text">"Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
                         <div class="testimonial-metric">
                             <div class="metric-item">
-                                <i class="fas fa-arrow-up"></i>
-                                <span><strong>+<span data-countup="340">340</span>%</strong> visitas</span>
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span><strong>+340%</strong> visitas</span>
                             </div>
                             <div class="metric-item">
-                                <i class="fas fa-calendar"></i>
+                                <i class="fas fa-calendar" aria-hidden="true"></i>
                                 <span>2 meses de uso</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- SLIDE 2 -->
                 <div class="testimonial-slide">
                     <div class="testimonial-card tilt-card">
                         <div class="testimonial-header">
@@ -2453,22 +2492,22 @@ footer h4 {
                                 <h4>Carlos Mendes</h4>
                                 <div class="testimonial-role">Dono - Academia Central</div>
                                 <div class="stars" aria-label="5 estrelas">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
                         <p class="testimonial-text">"Tirou um PESO das minhas costas. Agora respondo tudo enquanto almoço, direto pelo celular. As respostas da IA são melhores que as minhas - elas têm personalidade!"</p>
                         <div class="testimonial-metric">
                             <div class="metric-item">
-                                <i class="fas fa-clock"></i>
-                                <span><strong><span data-countup="5">5</span>h/semana</strong> economizadas</span>
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span><strong>5h/semana</strong> economizadas</span>
                             </div>
                             <div class="metric-item">
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
                                 <span>4.8 → 4.9 rating</span>
                             </div>
                         </div>
@@ -2994,172 +3033,226 @@ footer h4 {
         });
     }
 
-    // ========== CARROSSEL DE DEPOIMENTOS ==========
-    function initTestimonialsCarousel() {
-        const track = document.querySelector('.testimonials-track');
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dotsContainer = document.querySelector('.carousel-dots');
-        const prevBtn = document.querySelector('.carousel-nav.prev');
-        const nextBtn = document.querySelector('.carousel-nav.next');
+function initTestimonialsCarousel() {
+    const track = document.querySelector('.testimonials-track');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevBtn = document.querySelector('.carousel-nav.prev');
+    const nextBtn = document.querySelector('.carousel-nav.next');
 
-        if (!track || slides.length === 0) return;
+    if (!track || slides.length === 0) return;
 
-        let currentIndex = 0;
-        let autoplayInterval;
-        let startX = 0;
-        let isDragging = false;
+    let currentIndex = 0;
+    let autoplayInterval;
+    let startX = 0;
+    let isDragging = false;
 
-        // Criar dots
-        slides.forEach(function(_, index) {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            dot.setAttribute('aria-label', 'Ir para depoimento ' + (index + 1));
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', function() {
-                goToSlide(index);
-            });
-            dotsContainer.appendChild(dot);
+    // Criar dots
+    slides.forEach(function(_, index) {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', 'Ir para depoimento ' + (index + 1));
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', function() {
+            goToSlide(index);
         });
+        dotsContainer.appendChild(dot);
+    });
 
-        const dots = document.querySelectorAll('.carousel-dot');
+    const dots = document.querySelectorAll('.carousel-dot');
 
-        function updateCarousel() {
-            track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-            dots.forEach(function(dot, index) {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
+    function updateCarousel() {
+        const offset = currentIndex * 100;
+        track.style.transform = 'translateX(-' + offset + '%)';
+        
+        dots.forEach(function(dot, index) {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
 
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+        resetAutoplay();
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    }
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 7000);
+    }
+
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+
+    // Navegação
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            nextSlide();
+            resetAutoplay();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            prevSlide();
+            resetAutoplay();
+        });
+    }
+
+    // Touch swipe
+    track.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
             resetAutoplay();
         }
+    });
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
-        }
+    startAutoplay();
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
-        }
-
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 7000);
-        }
-
-        function resetAutoplay() {
+    // Pausar autoplay quando não visível
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
             clearInterval(autoplayInterval);
+        } else {
             startAutoplay();
         }
-
-        // Navegação
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                nextSlide();
-                resetAutoplay();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                prevSlide();
-                resetAutoplay();
-            });
-        }
-
-        // Touch swipe
-        track.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        }, { passive: true });
-
-        track.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-        }, { passive: true });
-
-        track.addEventListener('touchend', function(e) {
-            if (!isDragging) return;
-            isDragging = false;
-
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-                resetAutoplay();
-            }
-        });
-
-        startAutoplay();
-
-        // Pausar autoplay quando não visível
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                clearInterval(autoplayInterval);
-            } else {
-                startAutoplay();
-            }
-        });
-    }
-
-    // ========== GESTÃO DE CONSENTIMENTO DE COOKIES (LGPD) ==========
-    function loadGTM() {
-        if (window._gtm_loaded) return;
-        window._gtm_loaded = true;
-        (function(w,d,s,l,i){
-            w[l]=w[l]||[];
-            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-            var f=d.getElementsByTagName(s)[0], j=d.createElement(s);
-            j.async=true;
-            j.src='https://www.googletagmanager.com/gtm.js?id='+i;
-            f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-WTS69L36');
-    }
-
-    function isCookieExpired(timestamp) {
-        if (!timestamp) return true;
-        const daysSince = (Date.now() - parseInt(timestamp)) / (1000 * 60 * 60 * 24);
-        return daysSince > COOKIE_EXPIRY_DAYS;
-    }
-
-    window.acceptCookies = function() {
-        const now = Date.now();
-        localStorage.setItem('famalocal_consent', 'accepted');
-        localStorage.setItem('cookieTimestamp', now);
-        document.getElementById('cookieBanner')?.classList.remove('show');
-        loadGTM();
-        dataLayer.push({event:'cookie_consent', consent: 'granted', timestamp: now});
-    };
-
-    window.rejectCookies = function() {
-        const now = Date.now();
-        localStorage.setItem('famalocal_consent', 'rejected');
-        localStorage.setItem('cookieTimestamp', now);
-        document.getElementById('cookieBanner')?.classList.remove('show');
-        dataLayer.push({event:'cookie_consent', consent: 'rejected', timestamp: now});
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const consent = localStorage.getItem('famalocal_consent');
-        const timestamp = localStorage.getItem('cookieTimestamp');
-
-        if (!consent || isCookieExpired(timestamp)) {
-            localStorage.removeItem('famalocal_consent');
-            localStorage.removeItem('cookieTimestamp');
-            setTimeout(function() {
-                document.getElementById('cookieBanner')?.classList.add('show');
-            }, 1000);
-        } else if (consent === 'accepted') {
-            loadGTM();
-        }
     });
+}
+
+
+// ========== GESTÃO DE CONSENTIMENTO DE COOKIES (LGPD) ==========
+function loadGTM() {
+    if (window._gtm_loaded) return;
+    window._gtm_loaded = true;
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0], j=d.createElement(s);
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WTS69L36');
+}
+
+function isCookieExpired(timestamp) {
+    if (!timestamp) return true;
+    const daysSince = (Date.now() - parseInt(timestamp)) / (1000 * 60 * 60 * 24);
+    return daysSince > COOKIE_EXPIRY_DAYS;
+}
+
+// Função para ajustar posição do WhatsApp float
+function adjustWhatsAppPosition() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const whatsappFloat = document.querySelector('.whatsapp-float');
+    
+    if (!cookieBanner || !whatsappFloat) return;
+    
+    if (cookieBanner.classList.contains('show')) {
+        if (window.innerWidth <= 900) {
+            whatsappFloat.style.bottom = '180px';
+        } else {
+            whatsappFloat.style.bottom = '20px';
+        }
+    } else {
+        if (window.innerWidth <= 900) {
+            whatsappFloat.style.bottom = '90px';
+        } else {
+            whatsappFloat.style.bottom = '20px';
+        }
+    }
+}
+
+window.acceptCookies = function() {
+    const now = Date.now();
+    localStorage.setItem('famalocal_consent', 'accepted');
+    localStorage.setItem('cookieTimestamp', now);
+    document.getElementById('cookieBanner')?.classList.remove('show');
+    
+    // Ajustar posição do WhatsApp após fechar banner
+    setTimeout(adjustWhatsAppPosition, 500);
+    
+    loadGTM();
+    dataLayer.push({event:'cookie_consent', consent: 'granted', timestamp: now});
+};
+
+window.rejectCookies = function() {
+    const now = Date.now();
+    localStorage.setItem('famalocal_consent', 'rejected');
+    localStorage.setItem('cookieTimestamp', now);
+    document.getElementById('cookieBanner')?.classList.remove('show');
+    
+    // Ajustar posição do WhatsApp após fechar banner
+    setTimeout(adjustWhatsAppPosition, 500);
+    
+    dataLayer.push({event:'cookie_consent', consent: 'rejected', timestamp: now});
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    const consent = localStorage.getItem('famalocal_consent');
+    const timestamp = localStorage.getItem('cookieTimestamp');
+
+    if (!consent || isCookieExpired(timestamp)) {
+        localStorage.removeItem('famalocal_consent');
+        localStorage.removeItem('cookieTimestamp');
+        setTimeout(function() {
+            const banner = document.getElementById('cookieBanner');
+            if (banner) {
+                banner.classList.add('show');
+                // Ajustar posição do WhatsApp quando banner aparecer
+                setTimeout(adjustWhatsAppPosition, 100);
+            }
+        }, 1000);
+    } else if (consent === 'accepted') {
+        loadGTM();
+    }
+    
+    // Observer para mudanças no cookie banner
+    const cookieBanner = document.getElementById('cookieBanner');
+    if (cookieBanner) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    adjustWhatsAppPosition();
+                }
+            });
+        });
+        
+        observer.observe(cookieBanner, { attributes: true });
+    }
+    
+    // Ajustar também no resize
+    window.addEventListener('resize', function() {
+        adjustWhatsAppPosition();
+    });
+});
+
+
 // ========== MENU MOBILE COM ACESSIBILIDADE ==========
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
