@@ -351,37 +351,41 @@ section, main {
     border-radius: 5px;
 }
 
-@media(min-width: 769px) {
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.carousel-nav:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: 10px;
+}
+
+.carousel-nav.next {
+    right: 10px;
+}
+
+@media(max-width: 768px) {
     .carousel-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: white;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s;
-        z-index: 10;
-    }
-
-    .carousel-nav:hover {
-        background: var(--primary);
-        color: white;
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    .carousel-nav.prev {
-        left: -20px;
-    }
-
-    .carousel-nav.next {
-        right: -20px;
+        display: none;
     }
 }
 
@@ -1129,9 +1133,24 @@ header .btn-primary {
     color: #FF5B5B;
 }
 
+
 .testimonials-section {
     background: #F9FAFB;
     padding: 80px 0;
+}
+
+.testimonials-carousel {
+    position: relative;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+@media(max-width: 768px) {
+    .testimonials-carousel {
+        padding: 0 20px;
+    }
 }
 
 .testimonials-grid {
@@ -2317,6 +2336,7 @@ body {
 
         <div class="testimonials-carousel">
             <div class="testimonials-track">
+                
                 <div class="testimonial-slide">
                     <div class="testimonial-card tilt-card">
                         <div class="testimonial-header">
@@ -2333,7 +2353,67 @@ body {
                                 </div>
                             </div>
                         </div>
-                        <p class="testimonial-text">"Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
+                        <p class="testimonial-text">"1-Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
+                        <div class="testimonial-metric">
+                            <div class="metric-item">
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span><strong>+340%</strong> visitas</span>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-calendar" aria-hidden="true"></i>
+                                <span>2 meses de uso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-card tilt-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">K</div>
+                            <div class="testimonial-info">
+                                <h4>Katya Dias</h4>
+                                <div class="testimonial-role">Psicóloga Clínica</div>
+                                <div class="stars" aria-label="5 estrelas">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"2-Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
+                        <div class="testimonial-metric">
+                            <div class="metric-item">
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span><strong>+340%</strong> visitas</span>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-calendar" aria-hidden="true"></i>
+                                <span>2 meses de uso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-card tilt-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">K</div>
+                            <div class="testimonial-info">
+                                <h4>Katya Dias</h4>
+                                <div class="testimonial-role">Psicóloga Clínica</div>
+                                <div class="stars" aria-label="5 estrelas">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"3-Em menos de 1 semana subimos para o top 3 no Google para 'psicóloga Vila Mariana'. O Fama Local mantém meu perfil sempre atualizado e engajado com respostas com IA. Antes eu demorava dias para responder."</p>
                         <div class="testimonial-metric">
                             <div class="metric-item">
                                 <i class="fas fa-arrow-up" aria-hidden="true"></i>
@@ -2363,7 +2443,7 @@ body {
                                 </div>
                             </div>
                         </div>
-                        <p class="testimonial-text">"Tirou um PESO das minhas costas. Agora respondo tudo enquanto almoço, direto pelo celular. As respostas da IA são melhores que as minhas - elas têm personalidade!"</p>
+                        <p class="testimonial-text">"4-Tirou um PESO das minhas costas. Agora respondo tudo enquanto almoço, direto pelo celular. As respostas da IA são melhores que as minhas - elas têm personalidade!"</p>
                         <div class="testimonial-metric">
                             <div class="metric-item">
                                 <i class="fas fa-clock" aria-hidden="true"></i>
@@ -2786,7 +2866,6 @@ body {
                 clearInterval(timer);
             }
 
-            // Formato com decimais se necessário
             if (target % 1 !== 0) {
                 element.textContent = current.toFixed(1);
             } else {
@@ -2839,7 +2918,7 @@ body {
 
     // ========== TILT 3D EFFECT ==========
     function initTilt() {
-        if (window.innerWidth <= 768) return; // Desabilita no mobile
+        if (window.innerWidth <= 768) return;
 
         const tiltCards = document.querySelectorAll('.tilt-card');
 
@@ -2896,206 +2975,196 @@ body {
         });
     }
 
-function initTestimonialsCarousel() {
-    const track = document.querySelector('.testimonials-track');
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dotsContainer = document.querySelector('.carousel-dots');
-    const prevBtn = document.querySelector('.carousel-nav.prev');
-    const nextBtn = document.querySelector('.carousel-nav.next');
+    // ========== CARROSSEL DE TESTEMUNHOS ==========
+    function initTestimonialsCarousel() {
+        const track = document.querySelector('.testimonials-track');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        const prevBtn = document.querySelector('.carousel-nav.prev');
+        const nextBtn = document.querySelector('.carousel-nav.next');
 
-    if (!track || slides.length === 0) return;
+        if (!track || slides.length === 0) return;
 
-    let currentIndex = 0;
-    let autoplayInterval;
-    let startX = 0;
-    let isDragging = false;
+        let currentIndex = 0;
+        let autoplayInterval;
+        let startX = 0;
+        let isDragging = false;
 
-    // Criar dots
-    slides.forEach(function(_, index) {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot');
-        dot.setAttribute('aria-label', 'Ir para depoimento ' + (index + 1));
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', function() {
-            goToSlide(index);
+        slides.forEach(function(_, index) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            dot.setAttribute('aria-label', 'Ir para depoimento ' + (index + 1));
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', function() {
+                goToSlide(index);
+            });
+            dotsContainer.appendChild(dot);
         });
-        dotsContainer.appendChild(dot);
-    });
 
-    const dots = document.querySelectorAll('.carousel-dot');
+        const dots = document.querySelectorAll('.carousel-dot');
 
-    function updateCarousel() {
-        const offset = currentIndex * 100;
-        track.style.transform = 'translateX(-' + offset + '%)';
-        
-        dots.forEach(function(dot, index) {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    }
+        function updateCarousel() {
+            const offset = currentIndex * 100;
+            track.style.transform = 'translateX(-' + offset + '%)';
+            
+            dots.forEach(function(dot, index) {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
 
-    function goToSlide(index) {
-        currentIndex = index;
-        updateCarousel();
-        resetAutoplay();
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateCarousel();
-    }
-
-    function startAutoplay() {
-        autoplayInterval = setInterval(nextSlide, 7000);
-    }
-
-    function resetAutoplay() {
-        clearInterval(autoplayInterval);
-        startAutoplay();
-    }
-
-    // Navegação
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-            nextSlide();
-            resetAutoplay();
-        });
-    }
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-            prevSlide();
-            resetAutoplay();
-        });
-    }
-
-    // Touch swipe
-    track.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    }, { passive: true });
-
-    track.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
-        isDragging = false;
-
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
             resetAutoplay();
         }
-    });
 
-    startAutoplay();
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }
 
-    // Pausar autoplay quando não visível
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 7000);
+        }
+
+        function resetAutoplay() {
             clearInterval(autoplayInterval);
-        } else {
             startAutoplay();
         }
-    });
-}
 
-
-// ========== GESTÃO DE CONSENTIMENTO DE COOKIES (LGPD) ==========
-function loadGTM() {
-    if (window._gtm_loaded) return;
-    window._gtm_loaded = true;
-    (function(w,d,s,l,i){
-        w[l]=w[l]||[];
-        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-        var f=d.getElementsByTagName(s)[0], j=d.createElement(s);
-        j.async=true;
-        j.src='https://www.googletagmanager.com/gtm.js?id='+i;
-        f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WTS69L36');
-}
-
-function isCookieExpired(timestamp) {
-    if (!timestamp) return true;
-    const daysSince = (Date.now() - parseInt(timestamp)) / (1000 * 60 * 60 * 24);
-    return daysSince > COOKIE_EXPIRY_DAYS;
-}
-
-// Função para ajustar posição do WhatsApp float
-function adjustWhatsAppPosition() {
-    const cookieBanner = document.getElementById('cookieBanner');
-    const whatsappFloat = document.querySelector('.whatsapp-float');
-    
-    if (!cookieBanner || !whatsappFloat) return;
-    
-    if (cookieBanner.classList.contains('show')) {
-        if (window.innerWidth <= 900) {
-            whatsappFloat.style.bottom = '180px';
-        } else {
-            whatsappFloat.style.bottom = '20px';
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                resetAutoplay();
+            });
         }
-    } else {
-        if (window.innerWidth <= 900) {
-            whatsappFloat.style.bottom = '90px';
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                resetAutoplay();
+            });
+        }
+
+        track.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                resetAutoplay();
+            }
+        });
+
+        startAutoplay();
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(autoplayInterval);
+            } else {
+                startAutoplay();
+            }
+        });
+    }
+
+    // ========== GESTÃO DE COOKIES (LGPD) ==========
+    function loadGTM() {
+        if (window._gtm_loaded) return;
+        window._gtm_loaded = true;
+        (function(w,d,s,l,i){
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0], j=d.createElement(s);
+            j.async=true;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+            f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WTS69L36');
+    }
+
+    function isCookieExpired(timestamp) {
+        if (!timestamp) return true;
+        const daysSince = (Date.now() - parseInt(timestamp)) / (1000 * 60 * 60 * 24);
+        return daysSince > COOKIE_EXPIRY_DAYS;
+    }
+
+    function adjustWhatsAppPosition() {
+        const cookieBanner = document.getElementById('cookieBanner');
+        const whatsappFloat = document.querySelector('.whatsapp-float');
+        
+        if (!cookieBanner || !whatsappFloat) return;
+        
+        if (cookieBanner.classList.contains('show')) {
+            if (window.innerWidth <= 900) {
+                whatsappFloat.style.bottom = '180px';
+            } else {
+                whatsappFloat.style.bottom = '20px';
+            }
         } else {
-            whatsappFloat.style.bottom = '20px';
+            if (window.innerWidth <= 900) {
+                whatsappFloat.style.bottom = '90px';
+            } else {
+                whatsappFloat.style.bottom = '20px';
+            }
         }
     }
-}
 
-window.acceptCookies = function() {
-    const now = Date.now();
-    localStorage.setItem('famalocal_consent', 'accepted');
-    localStorage.setItem('cookieTimestamp', now);
-    document.getElementById('cookieBanner')?.classList.remove('show');
-    
-    // Ajustar posição do WhatsApp após fechar banner
-    setTimeout(adjustWhatsAppPosition, 500);
-    
-    loadGTM();
-    dataLayer.push({event:'cookie_consent', consent: 'granted', timestamp: now});
-};
+    window.acceptCookies = function() {
+        const now = Date.now();
+        localStorage.setItem('famalocal_consent', 'accepted');
+        localStorage.setItem('cookieTimestamp', now);
+        document.getElementById('cookieBanner')?.classList.remove('show');
+        
+        setTimeout(adjustWhatsAppPosition, 500);
+        
+        loadGTM();
+        dataLayer.push({event:'cookie_consent', consent: 'granted', timestamp: now});
+    };
 
-window.rejectCookies = function() {
-    const now = Date.now();
-    localStorage.setItem('famalocal_consent', 'rejected');
-    localStorage.setItem('cookieTimestamp', now);
-    document.getElementById('cookieBanner')?.classList.remove('show');
-    
-    // Ajustar posição do WhatsApp após fechar banner
-    setTimeout(adjustWhatsAppPosition, 500);
-    
-    dataLayer.push({event:'cookie_consent', consent: 'rejected', timestamp: now});
-};
+    window.rejectCookies = function() {
+        const now = Date.now();
+        localStorage.setItem('famalocal_consent', 'rejected');
+        localStorage.setItem('cookieTimestamp', now);
+        document.getElementById('cookieBanner')?.classList.remove('show');
+        
+        setTimeout(adjustWhatsAppPosition, 500);
+        
+        dataLayer.push({event:'cookie_consent', consent: 'rejected', timestamp: now});
+    };
 
-document.addEventListener('DOMContentLoaded', function() {
-    const consent = localStorage.getItem('famalocal_consent');
-    const timestamp = localStorage.getItem('cookieTimestamp');
+    setTimeout(function() {
+        const consent = localStorage.getItem('famalocal_consent');
+        const timestamp = localStorage.getItem('cookieTimestamp');
 
-    if (!consent || isCookieExpired(timestamp)) {
-        localStorage.removeItem('famalocal_consent');
-        localStorage.removeItem('cookieTimestamp');
-        setTimeout(function() {
+        if (!consent || isCookieExpired(timestamp)) {
+            localStorage.removeItem('famalocal_consent');
+            localStorage.removeItem('cookieTimestamp');
             const banner = document.getElementById('cookieBanner');
             if (banner) {
                 banner.classList.add('show');
-                // Ajustar posição do WhatsApp quando banner aparecer
                 setTimeout(adjustWhatsAppPosition, 100);
             }
-        }, 1000);
-    } else if (consent === 'accepted') {
-        loadGTM();
-    }
-    
-    // Observer para mudanças no cookie banner
+        } else if (consent === 'accepted') {
+            loadGTM();
+        }
+    }, 1000);
+
     const cookieBanner = document.getElementById('cookieBanner');
     if (cookieBanner) {
         const observer = new MutationObserver(function(mutations) {
@@ -3108,15 +3177,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         observer.observe(cookieBanner, { attributes: true });
     }
-    
-    // Ajustar também no resize
+
     window.addEventListener('resize', function() {
         adjustWhatsAppPosition();
     });
-});
 
-
-// ========== MENU MOBILE COM ACESSIBILIDADE ==========
+    // ========== MENU MOBILE ==========
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -3181,7 +3247,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', closeMenu);
     });
 
-    // ========== SIMULAÇÃO DE DEMO INTERATIVA ==========
+    // ========== SIMULAÇÃO DEMO INTERATIVA ==========
     window.approveReview = function() {
         const approveBtn = document.querySelector('.wa-btn.approve');
         if (!approveBtn) return;
@@ -3271,7 +3337,6 @@ document.addEventListener('DOMContentLoaded', function() {
             timeSaved.textContent = hoursSaved + ' horas/mês';
             moneySaved.textContent = 'R$ ' + moneySavedValue.toLocaleString('pt-BR');
 
-            // Animação no valor
             const resultNumber = document.querySelector('.result-number');
             if (resultNumber) {
                 resultNumber.style.transform = "scale(1.1)";
@@ -3291,7 +3356,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== EXIT INTENT MODAL COM ACESSIBILIDADE ==========
+    // ========== EXIT INTENT MODAL ==========
     let modalLastFocusedElement = null;
 
     window.closeExitModal = function() {
@@ -3365,7 +3430,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const overlay = document.getElementById('exitModalOverlay');
         let exitIntentShown = sessionStorage.getItem('exitIntentShown');
 
-        // Desktop: Mouse leave
         document.addEventListener('mouseleave', function(e) {
             if (e.clientY < 0 && !exitIntentShown && window.innerWidth > 768) {
                 showExitModal();
@@ -3374,7 +3438,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Mobile: Scroll up
         let lastScrollY = window.scrollY;
         window.addEventListener('scroll', function() {
             const currentScrollY = window.scrollY;
@@ -3386,7 +3449,6 @@ document.addEventListener('DOMContentLoaded', function() {
             lastScrollY = currentScrollY;
         }, { passive: true });
 
-        // Mobile: Touch gesture
         document.addEventListener('touchmove', function(e) {
             if (e.touches[0].clientY < 50 && !exitIntentShown && window.innerWidth <= 768) {
                 showExitModal();
@@ -3395,7 +3457,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, { passive: true });
 
-        // Click fora fecha modal
         if(overlay) {
             overlay.addEventListener('click', function(e) {
                 if (e.target === overlay) {
@@ -3428,7 +3489,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== INICIALIZAÇÃO ==========
     document.addEventListener('DOMContentLoaded', function() {
-        // Inicializa todas as funcionalidades
         initAOS();
         initCountUp();
         initParallax();
@@ -3438,11 +3498,9 @@ document.addEventListener('DOMContentLoaded', function() {
         initExitIntent();
         updateProgressBar();
 
-        // Log de sucesso (pode remover em produção)
         console.log('✅ Todas as animações e microinterações foram inicializadas');
     });
 
-    // Reinicializa tilt ao redimensionar
     let resizeTimeout;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
