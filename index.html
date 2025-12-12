@@ -3498,7 +3498,14 @@ body {
         initExitIntent();
         updateProgressBar();
 
-        console.log('✅ Todas as animações e microinterações foram inicializadas');
+        // --- INÍCIO DO CÓDIGO DE TESTE ---
+        // Adicione estas linhas para limpar a memória sempre que iniciar
+        localStorage.removeItem('famalocal_consent');
+        localStorage.removeItem('cookieTimestamp');
+        // --- FIM DO CÓDIGO DE TESTE ---
+
+
+
     });
 
     let resizeTimeout;
