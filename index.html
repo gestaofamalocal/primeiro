@@ -311,10 +311,14 @@ section, main {
     will-change: transform;
 }
 
+
 /* CARROSSEL */
 .testimonials-carousel {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
 }
 
 .testimonials-track {
@@ -325,7 +329,40 @@ section, main {
 .testimonial-slide {
     min-width: 100%;
     flex-shrink: 0;
-    padding: 0 10px;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+@media(min-width: 769px) {
+    .testimonials-carousel {
+        padding: 0 100px;
+    }
+
+    .testimonial-slide {
+        min-width: 33.333%;
+        flex-shrink: 0;
+    }
+
+    .testimonial-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+    .testimonial-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        transform: translateY(-5px);
+    }
+}
+
+@media(max-width: 768px) {
+    .testimonials-carousel {
+        padding: 0 20px;
+    }
+
+    .testimonial-slide {
+        padding: 0;
+    }
 }
 
 .carousel-dots {
@@ -356,31 +393,35 @@ section, main {
     top: 50%;
     transform: translateY(-50%);
     background: white;
-    border: none;
-    width: 40px;
-    height: 40px;
+    border: 2px solid #E5E7EB;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
-    z-index: 10;
+    z-index: 100;
+    font-size: 20px;
+    color: var(--primary);
 }
 
 .carousel-nav:hover {
     background: var(--primary);
     color: white;
+    border-color: var(--primary);
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
 }
 
 .carousel-nav.prev {
-    left: 10px;
+    left: 20px;
 }
 
 .carousel-nav.next {
-    right: 10px;
+    right: 20px;
 }
 
 @media(max-width: 768px) {
@@ -495,16 +536,16 @@ header .container {
     gap: 10px;
 }
 
-.nav-links { 
-    display: flex; 
-    gap: 30px; 
+.nav-links {
+    display: flex;
+    gap: 30px;
     align-items: center;
     flex: 1;
     justify-content: center;
 }
 
-.nav-links a:hover { 
-    color: var(--primary); 
+.nav-links a:hover {
+    color: var(--primary);
 }
 
 header .btn-primary {
@@ -1134,39 +1175,129 @@ header .btn-primary {
 }
 
 
-.testimonials-section {
-    background: #F9FAFB;
-    padding: 80px 0;
-}
-
+/* CARROSSEL - INICIO -  testimonials*/
 .testimonials-carousel {
     position: relative;
     overflow: hidden;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 80px;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.testimonial-slide {
+    flex: 0 0 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+@media(min-width: 769px) {
+    .testimonials-carousel {
+        padding: 0 80px;
+    }
+
+    .testimonial-slide {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
 }
 
 @media(max-width: 768px) {
     .testimonials-carousel {
         padding: 0 20px;
     }
+
+    .testimonial-slide {
+        padding: 0;
+        flex: 0 0 100%;
+    }
 }
 
-
-.testimonial-text {
-    font-style: italic;
-    line-height: 1.7;
-    color: var(--body-text);
-    /* ADICIONAR: */
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex: 1;
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
 }
 
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #D1D5DB;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-dot.active {
+    background: var(--primary);
+    width: 24px;
+    border-radius: 5px;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 2px solid #E5E7EB;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 100;
+    font-size: 18px;
+    color: var(--primary);
+}
+
+.carousel-nav:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+}
+
+.carousel-nav.prev {
+    left: 10px;
+}
+
+.carousel-nav.next {
+    right: 10px;
+}
+
+@media(max-width: 768px) {
+    .carousel-nav {
+        display: none;
+    }
+}
+
+.testimonial-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+@media(min-width: 769px) {
+    .testimonial-card {
+        min-height: 360px;
+    }
+}
 
 .testimonial-card:hover {
     transform: translateY(-5px);
@@ -1178,6 +1309,7 @@ header .btn-primary {
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .testimonial-avatar {
@@ -1191,6 +1323,7 @@ header .btn-primary {
     color: white;
     font-weight: 700;
     font-size: 20px;
+    flex-shrink: 0;
 }
 
 .testimonial-info h4 {
@@ -1203,24 +1336,40 @@ header .btn-primary {
     color: var(--body-text);
 }
 
+.testimonial-text {
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--body-text);
+    flex: 1;
+    margin-bottom: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
 
 .testimonial-metric {
-    margin-top: 15px;
+    margin-top: auto;
     padding-top: 15px;
-border-top: 1px solid #E5E7EB;
-display: flex;
-gap: 20px;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
 }
 
 .metric-item {
-display: flex;
-align-items: center;
-gap: 5px;
-font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
 }
+
 .metric-item i {
-color: var(--primary);
+    color: var(--primary);
 }
+
+/* CARROSSEL - FIM -  testimonials*/
+
 .how-it-works-section {
 background-color: white;
 padding: 80px 0;
@@ -2343,7 +2492,7 @@ body {
 
         <div class="testimonials-carousel">
             <div class="testimonials-track">
-                
+
                 <div class="testimonial-slide">
                     <div class="testimonial-card tilt-card">
                         <div class="testimonial-header">
@@ -2982,114 +3131,143 @@ body {
         });
     }
 
-    // ========== CARROSSEL DE TESTEMUNHOS ==========
-    function initTestimonialsCarousel() {
-        const track = document.querySelector('.testimonials-track');
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dotsContainer = document.querySelector('.carousel-dots');
-        const prevBtn = document.querySelector('.carousel-nav.prev');
-        const nextBtn = document.querySelector('.carousel-nav.next');
+// ========== CARROSSEL DE TESTEMUNHOS ==========
+function initTestimonialsCarousel() {
+    const track = document.querySelector('.testimonials-track');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevBtn = document.querySelector('.carousel-nav.prev');
+    const nextBtn = document.querySelector('.carousel-nav.next');
 
-        if (!track || slides.length === 0) return;
+    if (!track || slides.length === 0) return;
 
-        let currentIndex = 0;
-        let autoplayInterval;
-        let startX = 0;
-        let isDragging = false;
+    let currentIndex = 0;
+    let slidesPerView = window.innerWidth > 768 ? 3 : 1;
+    let autoplayInterval;
+    let startX = 0;
+    let isDragging = false;
 
-        slides.forEach(function(_, index) {
+    // Criar dots - 1 dot por página completa de slides
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        const totalPages = Math.ceil(slides.length / slidesPerView);
+
+        for (let i = 0; i < totalPages; i++) {
             const dot = document.createElement('button');
             dot.classList.add('carousel-dot');
-            dot.setAttribute('aria-label', 'Ir para depoimento ' + (index + 1));
-            if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', 'Ir para página ' + (i + 1));
+            if (i === 0) dot.classList.add('active');
             dot.addEventListener('click', function() {
-                goToSlide(index);
+                goToSlide(i);
             });
             dotsContainer.appendChild(dot);
-        });
+        }
+    }
+
+    createDots();
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function updateCarousel() {
+        // Pegar a largura real de um slide incluindo padding
+        const slideWidth = slides[0].offsetWidth;
+        // Mover apenas pelo número de slides (não multiplicar por slidesPerView)
+        const offset = currentIndex * slideWidth;
+        track.style.transform = 'translateX(-' + offset + 'px)';
 
         const dots = document.querySelectorAll('.carousel-dot');
-
-        function updateCarousel() {
-            const offset = currentIndex * 100;
-            track.style.transform = 'translateX(-' + offset + '%)';
-            
-            dots.forEach(function(dot, index) {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
-        }
-
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 7000);
-        }
-
-        function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            startAutoplay();
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                nextSlide();
-                resetAutoplay();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                prevSlide();
-                resetAutoplay();
-            });
-        }
-
-        track.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        }, { passive: true });
-
-        track.addEventListener('touchend', function(e) {
-            if (!isDragging) return;
-            isDragging = false;
-
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-                resetAutoplay();
-            }
-        });
-
-        startAutoplay();
-
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                clearInterval(autoplayInterval);
-            } else {
-                startAutoplay();
-            }
+        dots.forEach(function(dot, index) {
+            dot.classList.toggle('active', index === currentIndex);
         });
     }
+
+    function goToSlide(index) {
+        const maxIndex = Math.ceil(slides.length / slidesPerView) - 1;
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateCarousel();
+        resetAutoplay();
+    }
+
+    function nextSlide() {
+        const maxIndex = Math.ceil(slides.length / slidesPerView) - 1;
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        const maxIndex = Math.ceil(slides.length / slidesPerView) - 1;
+        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+        updateCarousel();
+    }
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 7000);
+    }
+
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            nextSlide();
+            resetAutoplay();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            prevSlide();
+            resetAutoplay();
+        });
+    }
+
+    track.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            resetAutoplay();
+        }
+    });
+
+    startAutoplay();
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            clearInterval(autoplayInterval);
+        } else {
+            startAutoplay();
+        }
+    });
+
+    window.addEventListener('resize', function() {
+        const newSlidesPerView = window.innerWidth > 768 ? 3 : 1;
+        if (newSlidesPerView !== slidesPerView) {
+            slidesPerView = newSlidesPerView;
+            currentIndex = 0;
+            createDots();
+            updateCarousel();
+        }
+    });
+
+    // Inicializar
+    updateCarousel();
+}
+
 
     // ========== GESTÃO DE COOKIES (LGPD) ==========
     function loadGTM() {
@@ -3114,9 +3292,9 @@ body {
     function adjustWhatsAppPosition() {
         const cookieBanner = document.getElementById('cookieBanner');
         const whatsappFloat = document.querySelector('.whatsapp-float');
-        
+
         if (!cookieBanner || !whatsappFloat) return;
-        
+
         if (cookieBanner.classList.contains('show')) {
             if (window.innerWidth <= 900) {
                 whatsappFloat.style.bottom = '180px';
@@ -3137,9 +3315,9 @@ body {
         localStorage.setItem('famalocal_consent', 'accepted');
         localStorage.setItem('cookieTimestamp', now);
         document.getElementById('cookieBanner')?.classList.remove('show');
-        
+
         setTimeout(adjustWhatsAppPosition, 500);
-        
+
         loadGTM();
         dataLayer.push({event:'cookie_consent', consent: 'granted', timestamp: now});
     };
@@ -3149,9 +3327,9 @@ body {
         localStorage.setItem('famalocal_consent', 'rejected');
         localStorage.setItem('cookieTimestamp', now);
         document.getElementById('cookieBanner')?.classList.remove('show');
-        
+
         setTimeout(adjustWhatsAppPosition, 500);
-        
+
         dataLayer.push({event:'cookie_consent', consent: 'rejected', timestamp: now});
     };
 
@@ -3181,7 +3359,7 @@ body {
                 }
             });
         });
-        
+
         observer.observe(cookieBanner, { attributes: true });
     }
 
@@ -3504,17 +3682,12 @@ body {
         initTestimonialsCarousel();
         initExitIntent();
         updateProgressBar();
-        initExitIntent();
-        updateProgressBar();
 
         // --- INÍCIO DO CÓDIGO DE TESTE ---
         // Adicione estas linhas para limpar a memória sempre que iniciar
         localStorage.removeItem('famalocal_consent');
         localStorage.removeItem('cookieTimestamp');
         // --- FIM DO CÓDIGO DE TESTE ---
-
-
-
     });
 
     let resizeTimeout;
