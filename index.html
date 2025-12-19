@@ -47,7 +47,7 @@
           "name": "Como funciona o teste grátis de 30 dias?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Você acessa todos os recursos do plano Protagonista por 30 dias sem precisar cadastrar cartão de crédito. Após o período, você decide se quer continuar."
+            "text": "Você acessa todos os recursos do plano Estreante por 30 dias sem precisar cadastrar cartão de crédito. Após o período, você decide se quer continuar."
           }
         },
         {
@@ -2256,9 +2256,11 @@ body {
             <a href="https://app.famalocal.com.br/cadastro" class="btn btn-primary" style="flex: 1; min-width: 200px;" aria-label="Começar teste grátis de 30 dias sem cartão de crédito">Começar 30 Dias Grátis →</a>
         </div>
 
-        <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
-<div class="nocard">💳 Sem cadastro de cartão</div>
-        </p>
+        <div style="display: flex; justify-content: center; margin-top: 8px;">
+            <div class="nocard">💳 Sem cadastro de cartão</div>
+        </div>
+
+
 
     </div>
 
@@ -2286,6 +2288,7 @@ body {
                     <div style="font-weight: 700; margin-bottom: 5px; color: var(--primary);">Sua Empresa (Proprietário)</div>
                     "Olá Maria! 💙 Ficamos muito felizes com seu feedback. Nossa equipe trabalha duro para oferecer o melhor. Esperamos vê-la em breve!"
                 </div>
+
             </div>
 
             <div id="forward-flow" class="flow-container">
@@ -2326,16 +2329,20 @@ body {
                             <button class="wa-btn approve" onclick="window.approveReview()" aria-label="Aprovar resposta sugerida para avaliação">Aprovar ✅</button>
                             <button class="wa-btn" style="color: #FF3B30;" aria-label="Editar resposta sugerida">Editar</button>
                         </div>
+                        <div style="font-size: 10px; color: #666; margin-top: 5px; text-align: center;">✍️ Você pode editar qualquer resposta antes de publicar</div>
                     </div>
 
                     <div id="success-msg-container" role="status" aria-live="polite" aria-atomic="true"></div>
                 </div>
-            </div>
+
+        </div>
 
             <div class="sim-reset" id="reset-container">
                 <button class="btn-reset" onclick="window.resetSimulation()" aria-label="Testar demonstração novamente"><i class="fas fa-redo" aria-hidden="true"></i> Testar Novamente</button>
             </div>
+
         </div>
+
     </div>
     </div>
 </div>
@@ -2383,26 +2390,32 @@ body {
         <div class="social-proof-box">
             <div class="proof-grid">
                 <div class="proof-card" data-anim="zoom-in">
-                    <i class="fas fa-stethoscope"></i>
-                    <span>Clínicas</span>
-                </div>
-                <div class="proof-card" data-anim="zoom-in">
                     <i class="fas fa-dumbbell"></i>
                     <span>Academias</span>
                 </div>
                 <div class="proof-card" data-anim="zoom-in">
-                    <i class="fas fa-utensils"></i>
-                    <span>Restaurantes</span>
+                    <i class="fas fa-gavel"></i>
+                    <span>Advogados</span>
                 </div>
                 <div class="proof-card" data-anim="zoom-in">
                     <i class="fas fa-cut"></i>
                     <span>Beleza</span>
                 </div>
                 <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Clínicas</span>
+                </div>
+                <div class="proof-card" data-anim="zoom-in">
                     <i class="fas fa-wrench"></i>
                     <span>Oficinas</span>
                 </div>
+                <div class="proof-card" data-anim="zoom-in">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurantes</span>
+                </div>
+                </div>
             </div>
+            <p style="font-size: 14px; margin-top: 20px; opacity: 0.8; text-align: center;">Funciona para qualquer negócio com perfil no Google</p>
         </div>
     </div>
 </section>
@@ -2638,11 +2651,12 @@ body {
                 <div class="step-number">1</div>
                 <h3>Cliente Avalia no Google</h3>
                 <p>Assim que seu cliente deixa uma avaliação no seu perfil do Google Meu Negócio, você é avisado na hora.</p>
+                <small style="display:block; margin-top:10px; color:#666;">⏱️ Conectou o Google, já funciona</small>
             </div>
             <div class="step-card" data-anim="fade-up">
                 <div class="step-number">2</div>
                 <h3>IA Cria a Resposta</h3>
-                <p>Nossa IA analisa o sentimento (positivo/negativo) e cria uma resposta empática em segundos. <br><span style="font-size:12px; color:#999;">(Seus dados não são usados para treinar a IA)</span></p>
+                <p>Nossa IA analisa o sentimento (positivo/negativo) e cria uma resposta empática em segundos, com o seu tom de voz. <br><span style="font-size:12px; color:#999;">(Seus dados não são usados para treinar a IA)</span></p>
             </div>
             <div class="step-card" data-anim="fade-up">
                 <div class="step-number">3</div>
@@ -2667,7 +2681,7 @@ body {
                 </label>
                 <label for="reviews-slider" class="sr-only">Número de avaliações por mês</label>
 
-                <input type="range" id="reviews-slider" min="5" max="100" value="20" step="5"
+                <input type="range" id="reviews-slider" min="5" max="100" value="10" step="5"
                        list="reviews-marks" aria-label="Selecione quantidade de avaliações recebidas por mês"
                        aria-labelledby="reviews-label"
                        aria-valuemin="5" aria-valuemax="100" aria-valuenow="20">
@@ -2680,21 +2694,22 @@ body {
                     <option value="100" label="100+">
                 </datalist>
 
-                <div class="calculator-value" id="reviews-value">20 avaliações</div>
+                <div class="calculator-value" id="reviews-value">10 avaliações</div>
             </div>
             <div class="calculator-result">
                 <p style="margin-bottom: 10px;">Você economizará</p>
-                <div class="result-number" id="time-saved">6.7 horas/mês</div>
-                <p style="font-size: 14px; opacity: 0.9;">Isso equivale a <strong id="money-saved">R$ 800</strong> em tempo recuperado</p>
+                <div class="result-number" id="time-saved">3.3 horas/mês</div>
+                <p style="font-size: 14px; opacity: 0.9;">Isso equivale a <strong id="money-saved">R$ 396</strong> em tempo recuperado</p>
                 <p style="font-size: 12px; margin-top: 15px; opacity: 0.8;">*Baseado em 20min por resposta manual + R$ 120/hora de custo de oportunidade</p>
             </div>
 
             <a href="https://app.famalocal.com.br/cadastro" class="btn btn-primary" style="width: 100%; margin-top: 20px;" aria-label="Começar a economizar agora">Começar a Economizar Agora</a>
-            <p class="no-risk" style="justify-content: center; margin-top: 12px;">
-                <div class="nocard">💳 Sem cartão</div>
-                <div class="nocard">✅ 30 dias grátis</div>
-                <div class="nocard">❌ Cancele quando quiser</div>
-            </p>
+
+        <div style="display: flex; justify-content: center; margin-top: 8px;">
+            <div class="nocard" style="margin-right: 8px;" >💳 Sem cadastro de cartão</div>
+                <div class="nocard"  style="margin-right: 8px;" >✅ 30 dias grátis</div>
+                <div class="nocard" >❌ Cancele quando quiser</div>
+</div>
         </div>
     </div>
 </section>
@@ -2719,7 +2734,7 @@ body {
                 <div class="setup-icon">
                     <i class="fas fa-sliders-h" aria-hidden="true"></i>
                 </div>
-                <h3>Ajuste em 1 Clique</h3>
+                <h3>Seu Tom de Voz</h3>
                 <p>Defina o tom de voz da IA para soar exatamente como você.</p>
             </div>
             <div class="setup-card tilt-card" data-anim="fade-up">
@@ -2749,7 +2764,7 @@ body {
             </h4>
             <ul style="font-size: 14px; line-height: 1.8; color: #065F46; list-style: none; padding: 0;">
                 <li>✅ Sem taxa de setup ou cobranças ocultas</li>
-                <li>✅ Cancele online a qualquer momento, sem multa</li>
+                <li>✅ Sem necessidade de cancelar, basta parar de usar</li>
                 <li>✅ Suporte em português (Seg-Sex)</li>
                 <li>✅ Se exceder limite, você escolhe: upgrade ou pacote avulso</li>
                 <li>✅ Dados protegidos por LGPD</li>
@@ -2758,7 +2773,7 @@ body {
 
         <div class="section-header">
             <h2 data-anim="fade-up">Escolha Seu Plano</h2>
-            <p data-anim="fade-up">Primeiros 30 dias grátis em qualquer plano.</p>
+            <p data-anim="fade-up">Primeiros 30 dias grátis.</p>
             <div class="nocard">💳 Sem cadastro de cartão</div>
         </div>
         <div class="card-grid">
@@ -2768,7 +2783,7 @@ body {
                 <p style="font-size: 13px; color: #777; margin-bottom: 20px;">Ideal para começar</p>
                 <ul class="features-list">
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30 respostas de IA/mês</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Aprovação via WhatsApp</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 5 aprovações via WhatsApp</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> 1 Perfil Google</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> Respostas em português</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> Suporte por email</li>
@@ -2777,7 +2792,6 @@ body {
                 <p class="no-risk" style="justify-content: center; font-size: 12px; margin-top: 8px;">
                     <div class="nocard">💳 Sem cartão</div>
                     <div class="nocard">✅ 30 dias grátis</div>
-                    <div class="nocard">❌ Cancele quando quiser</div>
                 </p>
             </div>
 
@@ -2788,7 +2802,7 @@ body {
                 <div class="secretary-tag">⚡ Menos que 1 hora de trabalho terceirizado</div>
                 <ul class="features-list">
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> 180 respostas de IA/mês</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> WhatsApp Ilimitado</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30 aprovações via WhatsApp</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> 3 Perfis Google</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> Relatórios de Crescimento</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> Tom de voz personalizado</li>
@@ -2808,7 +2822,7 @@ body {
                 <p style="font-size: 13px; color: #777; margin-bottom: 20px;">Para redes e agências</p>
                 <ul class="features-list">
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> 600 respostas de IA/mês</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Painel Multi-lojas</li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> 150 aprovações via WhatsApp</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> 10 Perfis Google</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> API de integração</li>
                     <li><i class="fas fa-check-circle" aria-hidden="true"></i> White label (remove marca)</li>
@@ -2823,8 +2837,10 @@ body {
             </div>
         </div>
         <div class="urgency-banner" data-anim="fade-up">
-            <p><strong>🎁 Promoção:</strong> Teste qualquer plano por <strong>30 dias grátis</strong>.</p>
-            <p style="font-size: 13px; margin-top: 8px;">Oferta válida para novos cadastros • Cancele quando quiser</p>
+            <p><strong>🎁 Promoção:</strong> Teste por <strong>30 dias grátis</strong>.</p>
+            <p style="font-size: 13px; margin-top: 8px;">Oferta válida para novos cadastros.</p>
+            <p style="font-size: 14px; margin-top: 10px; font-weight: bold;">Se no primeiro mês você não economizar tempo, basta deixar de usar.</p>
+            <p><strong>Sem cancelamento, sem burocracia</strong>.</p>
         </div>
     </div>
 </section>
@@ -2856,7 +2872,7 @@ body {
         </details>
         <details data-anim="fade-up">
             <summary aria-expanded="false">Como cancelo minha assinatura? É difícil?</summary>
-            <p>Você cancela em 2 cliques no painel. Sem multa, sem falar com atendente. Simples assim.</p>
+            <p>Você só precisa deixar de usar. Sem burocracia, sem falar com atendente. Simples assim.</p>
         </details>
         <details data-anim="fade-up">
             <summary aria-expanded="false">A IA pode gerar respostas ofensivas?</summary>
