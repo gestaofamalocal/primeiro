@@ -1170,6 +1170,55 @@ ul{margin:0;padding:0;list-style:none}
       return m[1]==='granted'?'accepted':(m[1]==='denied'?'necessary':null);
     }
   };
+
+  var ATTR_KEY='fl_attr';
+  var ATTR_PARAMS=['gclid','fbclid','msclkid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+  var APP='https://app.famalocal.com.br';
+
+  function firstTouch(){
+    try{
+      var raw=sessionStorage.getItem(ATTR_KEY);
+      return raw?JSON.parse(raw):null;
+    }catch(e){return null}
+  }
+
+  window.flAttr={
+    /**
+     * Guarda a campanha da sessão e reescreve os CTAs que apontam para o app.
+     *
+     * Recebe o consentimento já resolvido em vez de reler o cookie: quem aceitou
+     * com cookie bloqueado tem a escolha só no localStorage, e reler aqui
+     * descartaria uma decisão que a página conhece.
+     *
+     * First-touch: uma vez gravada, a origem não é reescrita. Sem isso a busca
+     * pela própria marca — que a pessoa só conhece porque viu o anúncio —
+     * roubaria a atribuição de toda campanha de descoberta.
+     */
+    apply:function(consent){
+      if(consent!=='accepted')return;
+      var attr=firstTouch();
+      if(!attr){
+        var query=new URLSearchParams(location.search),found={},any=false;
+        for(var i=0;i<ATTR_PARAMS.length;i++){
+          var value=query.get(ATTR_PARAMS[i]);
+          if(value){found[ATTR_PARAMS[i]]=value.slice(0,200);any=true}
+        }
+        if(!any)return;
+        attr=found;
+        try{sessionStorage.setItem(ATTR_KEY,JSON.stringify(attr))}catch(e){}
+      }
+      var links=document.querySelectorAll('a[href^="'+APP+'"]');
+      for(var j=0;j<links.length;j++){
+        var url=new URL(links[j].href),touched=false;
+        for(var key in attr){
+          // Parâmetro já presente no href vence: é escolha explícita de quem
+          // escreveu o link, não ruído de campanha.
+          if(!url.searchParams.has(key)){url.searchParams.set(key,attr[key]);touched=true}
+        }
+        if(touched)links[j].href=url.toString();
+      }
+    }
+  };
 })();
 </script>
 
@@ -1418,7 +1467,7 @@ ul{margin:0;padding:0;list-style:none}
         try{localStorage.setItem('famalocal-cookie-consent',value)}catch(error){cookie.setAttribute('data-storage-error','true')}
         window.flConsent.write(value);
         updateGoogleConsent(value);
-        if(value==='accepted')loadGtm();
+        if(value==='accepted'){loadGtm();window.flAttr.apply(value)}
         cookie.classList.remove('show');
         if(value==='necessary'&&document.getElementById('gtm-script'))window.location.reload();
       }
@@ -1426,7 +1475,7 @@ ul{margin:0;padding:0;list-style:none}
       try{consent=localStorage.getItem('famalocal-cookie-consent')}catch(error){cookie.setAttribute('data-storage-error','true')}
       // Quem já respondeu na plataforma não precisa responder de novo aqui.
       if(!consent)consent=window.flConsent.read();
-      if(consent==='accepted'){updateGoogleConsent(consent);loadGtm()}
+      if(consent==='accepted'){updateGoogleConsent(consent);loadGtm();window.flAttr.apply(consent)}
       else if(consent==='necessary'){updateGoogleConsent(consent)}
       else{window.setTimeout(function(){cookie.classList.add('show')},900)}
       accept.addEventListener('click',function(){saveConsent('accepted')});
