@@ -166,7 +166,7 @@
             "name": "Alguém pode alterar minha ficha no Google sem eu saber?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sim. O Google permite que usuários sugiram alterações no nome, telefone, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando o valor anterior e o novo. Nome, telefone e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google — a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente."
+              "text": "Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando o valor anterior e o novo. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar — a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente."
             }
           },
           {
@@ -848,7 +848,7 @@ ul{margin:0;padding:0;list-style:none}
         <div class="friction-list reveal">
           <article class="friction"><span><svg class="icon"><use href="#i-message"/></svg></span><div><h3>Avaliações ficam sem resposta</h3><p>Cada silêncio é visível para os próximos clientes, principalmente nas críticas.</p></div></article>
           <article class="friction"><span><svg class="icon"><use href="#i-calendar"/></svg></span><div><h3>Conteúdo depende da memória</h3><p>Posts, fotos, produtos e serviços só mudam quando alguém encontra tempo.</p></div></article>
-          <article class="friction"><span><svg class="icon"><use href="#i-shield"/></svg></span><div><h3>A ficha muda sem aviso</h3><p>Terceiros sugerem alterações em nome, telefone e categoria — e o Google pode aplicá-las sem avisar você.</p></div></article>
+          <article class="friction"><span><svg class="icon"><use href="#i-shield"/></svg></span><div><h3>A ficha muda sem aviso</h3><p>Terceiros sugerem alterações em nome, telefone, endereço e horário — e o Google pode aplicá-las sem avisar você.</p></div></article>
           <article class="friction"><span><svg class="icon"><use href="#i-map"/></svg></span><div><h3>A posição local vira um palpite</h3><p>Sem medir diferentes pontos do mapa, você não sabe onde aparece bem ou onde perde espaço.</p></div></article>
         </div>
       </div>
@@ -900,13 +900,13 @@ ul{margin:0;padding:0;list-style:none}
         <div class="shield-copy reveal">
           <span class="eyebrow">Blindagem da ficha</span>
           <h2 class="title-lg">Alteraram sua ficha no Google. <span class="highlight">Você fica sabendo na hora.</span></h2>
-          <p class="lead" style="margin-top:20px">O Google aceita sugestões de terceiros para o nome, o telefone e a categoria da sua empresa — e pode aplicá-las sem avisar ninguém. A Blindagem compara o perfil com a cópia de referência da sua empresa e te avisa assim que algo muda, para você decidir o que fazer.</p>
+          <p class="lead" style="margin-top:20px">O Google aceita sugestões de terceiros para o nome, o telefone, o endereço, o horário e a categoria da sua empresa — e pode aplicá-las sem avisar ninguém. A Blindagem compara o perfil com a cópia de referência da sua empresa e te avisa assim que algo muda, para você decidir o que fazer.</p>
           <div class="benefit-list">
-            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Aviso imediato no WhatsApp e no painel</strong><span>Nome, telefone principal e categoria: você recebe o valor anterior e o novo, e decide se a mudança era legítima.</span></div></div>
-            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Site externo restaurado sozinho</strong><span>O endereço do seu site é o único campo que a Fama Local repõe automaticamente, por não depender de revalidação no Google.</span></div></div>
+            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Cinco campos vigiados</strong><span>Nome, telefone principal, endereço, horário de funcionamento e categoria.</span></div></div>
+            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Aviso imediato no WhatsApp e no painel</strong><span>Você recebe o valor anterior e o novo, e decide se a mudança era legítima.</span></div></div>
             <div class="benefit"><span class="benefit-check">✓</span><div><strong>Convite de propriedade recusado</strong><span>Tentativas de terceiros de assumir a ficha são recusadas no Google e registradas para você.</span></div></div>
           </div>
-          <p class="simulation-note" style="color:var(--muted)">Nome, telefone e categoria não são revertidos automaticamente de propósito: alterar esses campos pode acionar uma nova validação do perfil pelo Google. Quem decide é você — a Fama Local garante que a mudança não passe despercebida. A Blindagem vale 10 pontos no Score de Ficha.</p>
+          <p class="simulation-note" style="color:var(--muted)">Esses cinco campos não são revertidos automaticamente de propósito: alterar qualquer um deles pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar. Quem decide é você — a Fama Local garante que a mudança não passe despercebida. O endereço do site externo é a exceção: esse volta sozinho. A Blindagem vale 10 pontos no Score de Ficha.</p>
         </div>
         <div class="shield-card reveal">
           <div class="shield-card-head">
@@ -916,11 +916,13 @@ ul{margin:0;padding:0;list-style:none}
           <div class="shield-rows" data-shield>
             <div class="shield-row" data-field="Nome da empresa" data-mode="alert"><span class="field">Nome da empresa</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
             <div class="shield-row" data-field="Telefone principal" data-mode="alert"><span class="field">Telefone principal</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Endereço" data-mode="alert"><span class="field">Endereço</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Horário de funcionamento" data-mode="alert"><span class="field">Horário de funcionamento</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
             <div class="shield-row" data-field="Categoria" data-mode="alert"><span class="field">Categoria</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
             <div class="shield-row" data-field="Site externo" data-mode="restore"><span class="field">Site externo</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
           </div>
           <div class="shield-log" data-shield-log><svg class="icon" data-shield-log-icon><use href="#i-message"/></svg> <span data-shield-log-text>Alteração detectada — avisamos você.</span></div>
-          <p class="shield-foot">Nome, telefone e categoria dependem da sua decisão. Só o site externo volta sozinho.</p>
+          <p class="shield-foot">Os cinco campos do perfil dependem da sua decisão. Só o site externo volta sozinho.</p>
         </div>
       </div>
     </section>
@@ -1062,7 +1064,7 @@ ul{margin:0;padding:0;list-style:none}
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-b-2"><span>Alguém pode alterar minha ficha no Google sem eu saber?</span><span class="faq-plus"></span></button>
-            <div class="faq-answer" id="faq-2" role="region" aria-labelledby="faq-b-2"><div><p>Sim. O Google permite que usuários sugiram alterações no nome, telefone, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando o valor anterior e o novo. Nome, telefone e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google — a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente.</p></div></div>
+            <div class="faq-answer" id="faq-2" role="region" aria-labelledby="faq-b-2"><div><p>Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando o valor anterior e o novo. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar — a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente.</p></div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-b-3"><span>O que é a citação no Modo IA do Google?</span><span class="faq-plus"></span></button>
