@@ -1147,6 +1147,33 @@ ul{margin:0;padding:0;list-style:none}
   </aside>
 
   <script>
+(function(){
+  var NAME='fl_consent';
+  // Só emite Domain quando o host realmente é do domínio; em localhost o
+  // navegador rejeitaria o cookie e o desenvolvedor perderia o banner.
+  function domain(){
+    var h=location.hostname;
+    return /(^|\.)famalocal\.com\.br$/.test(h) ? ';domain=.famalocal.com.br' : '';
+  }
+  window.flConsent={
+    /** 'accepted' | 'necessary' -> cookie compartilhado */
+    write:function(value){
+      try{
+        document.cookie=NAME+'='+(value==='accepted'?'granted':'denied')+
+          ';path=/;max-age=15552000;samesite=lax'+(location.protocol==='https:'?';secure':'')+domain();
+      }catch(e){/* cookie bloqueado: o localStorage já guardou a escolha local */}
+    },
+    /** cookie compartilhado -> 'accepted' | 'necessary' | null */
+    read:function(){
+      var m=document.cookie.match(/(?:^|;\s*)fl_consent=([^;]+)/);
+      if(!m)return null;
+      return m[1]==='granted'?'accepted':(m[1]==='denied'?'necessary':null);
+    }
+  };
+})();
+</script>
+
+  <script>
     (function(){
       'use strict';
       var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1389,6 +1416,7 @@ ul{margin:0;padding:0;list-style:none}
       }
       function saveConsent(value){
         try{localStorage.setItem('famalocal-cookie-consent',value)}catch(error){cookie.setAttribute('data-storage-error','true')}
+        window.flConsent.write(value);
         updateGoogleConsent(value);
         if(value==='accepted')loadGtm();
         cookie.classList.remove('show');
@@ -1396,6 +1424,8 @@ ul{margin:0;padding:0;list-style:none}
       }
       var consent=null;
       try{consent=localStorage.getItem('famalocal-cookie-consent')}catch(error){cookie.setAttribute('data-storage-error','true')}
+      // Quem já respondeu na plataforma não precisa responder de novo aqui.
+      if(!consent)consent=window.flConsent.read();
       if(consent==='accepted'){updateGoogleConsent(consent);loadGtm()}
       else if(consent==='necessary'){updateGoogleConsent(consent)}
       else{window.setTimeout(function(){cookie.classList.add('show')},900)}

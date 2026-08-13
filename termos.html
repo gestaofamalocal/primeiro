@@ -285,6 +285,33 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
   </aside>
 
   <script>
+(function(){
+  var NAME='fl_consent';
+  // Só emite Domain quando o host realmente é do domínio; em localhost o
+  // navegador rejeitaria o cookie e o desenvolvedor perderia o banner.
+  function domain(){
+    var h=location.hostname;
+    return /(^|\.)famalocal\.com\.br$/.test(h) ? ';domain=.famalocal.com.br' : '';
+  }
+  window.flConsent={
+    /** 'accepted' | 'necessary' -> cookie compartilhado */
+    write:function(value){
+      try{
+        document.cookie=NAME+'='+(value==='accepted'?'granted':'denied')+
+          ';path=/;max-age=15552000;samesite=lax'+(location.protocol==='https:'?';secure':'')+domain();
+      }catch(e){/* cookie bloqueado: o localStorage já guardou a escolha local */}
+    },
+    /** cookie compartilhado -> 'accepted' | 'necessary' | null */
+    read:function(){
+      var m=document.cookie.match(/(?:^|;\s*)fl_consent=([^;]+)/);
+      if(!m)return null;
+      return m[1]==='granted'?'accepted':(m[1]==='denied'?'necessary':null);
+    }
+  };
+})();
+</script>
+
+  <script>
     document.querySelectorAll('[data-current-year]').forEach(function(el){el.textContent=String(new Date().getFullYear())});
     (function(){
       var banner=document.querySelector('[data-consent-banner]');
@@ -302,6 +329,7 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
       }
       function save(value){
         try{localStorage.setItem('famalocal-cookie-consent',value)}catch(error){banner.setAttribute('data-storage-error','true')}
+        window.flConsent.write(value);
         update(value);
         if(value==='accepted')load();
         banner.classList.remove('show');
@@ -309,6 +337,7 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
       }
       var consent=null;
       try{consent=localStorage.getItem('famalocal-cookie-consent')}catch(error){banner.setAttribute('data-storage-error','true')}
+      if(!consent)consent=window.flConsent.read();
       if(consent==='accepted'){update(consent);load()}
       else if(consent==='necessary'){update(consent)}
       else{banner.classList.add('show')}
