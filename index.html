@@ -181,7 +181,7 @@
             "name": "Alguém pode alterar informações da minha empresa no Google?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando o valor anterior e o novo. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar; a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente."
+              "text": "Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando como a informação estava antes e como está agora. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar; a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente."
             }
           },
           {
@@ -210,10 +210,18 @@
           },
           {
             "@type": "Question",
-            "name": "Como funciona o teste grátis?",
+            "name": "Como funciona o teste grátis e o que acontece no fim dos 14 dias?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Você tem 14 dias e 150 créditos para testar a Fama Local com uma empresa. Não pedimos cartão de crédito. Ao final, você decide se quer continuar. Seus dados e empresas ficam preservados."
+              "text": "São 14 dias com 150 créditos para uma empresa, com todos os módulos liberados — dá para até 150 respostas a avaliações, ou uma combinação com posts e imagens. Não pedimos cartão de crédito: nada é cobrado automaticamente e não há cancelamento a fazer. No 15º dia, se você não assinar, a conta entra em espera e a Fama Local para de gerar e publicar respostas, posts e imagens. Nada é apagado: a empresa conectada, o tom de voz configurado, o histórico de avaliações, os alertas e as respostas já publicadas no Google continuam lá. Se você assinar depois, mesmo semanas depois, tudo volta a funcionar de onde parou."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A IA vai responder com a cara da minha empresa ou com um texto genérico?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Com a sua. Antes de gerar qualquer resposta, a Fama Local usa a calibração de tom que você mesmo definiu num questionário de 15 perguntas de múltipla escolha: nível de formalidade, quem assina a resposta, tamanho, uso de emoji, como tratar uma crítica e o que o cliente deve sentir ao ler. Cada resposta ainda leva em conta a nota e o comentário específico daquele cliente, então não existe mensagem padrão repetida. Você pode refazer o questionário quando quiser em Configurações, Tom de Voz, e aprovar ou editar cada resposta antes de publicar nas situações que escolher."
             }
           },
           {
@@ -528,6 +536,19 @@ ul{margin:0;padding:0;list-style:none}
     .shield-row[data-alert="1"]{border-color:#fecaca;background:#fef2f2}
     .shield-row[data-alert="1"] .state{color:var(--red)}
     .shield-row[data-alert="2"]{border-color:#bbf7d0;background:var(--green-bg)}
+    /* O "antes → depois" é a razão de ser da Blindagem, e nomeá-lo ("o valor
+       anterior e o novo") não comunicava nada a quem nunca viu a tela. Mostrar
+       os dois valores resolve antes de o parágrafo ao lado ser lido. Ocupa
+       espaço mesmo oculto — só a opacidade muda — para não deslocar o cartão. */
+    .shield-diff{display:grid;gap:6px;margin-top:14px;padding:11px 13px;border:1px solid #fed7aa;border-radius:var(--r-chip);background:#fff7ed;opacity:0;transition:opacity .45s,border-color .3s,background .3s}
+    .shield-diff.on{opacity:1}
+    .shield-diff[data-tone="restore"]{border-color:#bbf7d0;background:var(--green-bg)}
+    .shield-diff .diff-field{color:var(--muted);font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .shield-diff .diff-values{display:flex;flex-wrap:wrap;align-items:center;gap:9px;font-size:.79rem;font-weight:700;line-height:1.35}
+    .shield-diff b{color:var(--muted);font-weight:700;text-decoration:line-through}
+    .shield-diff svg{width:14px;height:14px;flex:none;color:var(--muted)}
+    .shield-diff i{color:#9a3412;font-style:normal}
+    .shield-diff[data-tone="restore"] i{color:#166534}
     .shield-log{display:flex;align-items:center;gap:9px;margin-top:16px;padding:12px 13px;border-radius:var(--r-chip);font-size:.78rem;font-weight:700;opacity:0;transition:opacity .5s,color .3s,background .3s;color:#9a3412;background:#fff7ed}
     .shield-log.on{opacity:1}
     .shield-log[data-tone="restore"]{color:#166534;background:var(--green-bg)}
@@ -582,6 +603,59 @@ ul{margin:0;padding:0;list-style:none}
     .wa-input i{display:grid;width:29px;height:29px;place-items:center;border-radius:50%;color:#fff;background:#087a70;font-style:normal;font-size:.7rem}
     .notification-chip{position:absolute;z-index:3;top:72px;right:18px;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #d9e7e1;border-radius:12px;color:#16443c;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.12);font-size:.68rem;font-weight:800}
     .notification-chip b{display:grid;width:28px;height:28px;place-items:center;border-radius:8px;color:#fff;background:#25d366}
+
+    /* Tom de voz — mockup da configuração inicial, nos mesmos três passos do
+       onboarding real. Mesmo contrato dos outros mockups: role="img" com
+       aria-label, conteúdo interno decorativo. A sobreposição dos painéis só
+       existe sob .js — sem JavaScript os três empilham e continuam legíveis. */
+    .tone-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}
+    .setup-card{position:relative;padding:22px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow)}
+    .setup-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;border-bottom:1px solid var(--line)}
+    .setup-head .badge{display:grid;width:38px;height:38px;flex:none;place-items:center;border-radius:10px;color:var(--blue);background:var(--blue-050)}
+    .setup-head strong{display:block;color:var(--ink);font-size:.92rem}
+    .setup-head small{display:block;color:var(--muted);font-size:.74rem}
+    .setup-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 18px}
+    .setup-step{display:grid;gap:7px;color:var(--muted);font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.25;transition:color .4s}
+    .setup-step i{display:block;height:4px;border-radius:4px;background:#e3ebf5;transition:background .4s}
+    .setup-card[data-setup-step="0"] .setup-step:nth-child(1),
+    .setup-card[data-setup-step="1"] .setup-step:nth-child(2),
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(3){color:var(--blue-700)}
+    .setup-card[data-setup-step="0"] .setup-step:nth-child(1) i,
+    .setup-card[data-setup-step="1"] .setup-step:nth-child(2) i,
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(3) i{background:var(--blue)}
+    .setup-card[data-setup-step="1"] .setup-step:nth-child(1) i,
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(-n+2) i{background:var(--green)}
+    .setup-body{display:grid;gap:16px}
+    .js .setup-body{position:relative;min-height:286px;gap:0}
+    .js .setup-panel{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s}
+    .js .setup-card[data-setup-step="0"] .setup-panel[data-panel="0"],
+    .js .setup-card[data-setup-step="1"] .setup-panel[data-panel="1"],
+    .js .setup-card[data-setup-step="2"] .setup-panel[data-panel="2"]{opacity:1;transform:none}
+    .setup-hint{margin-bottom:12px;color:var(--muted);font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .setup-row{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--line);border-radius:var(--r-chip);background:var(--soft)}
+    .setup-row+.setup-row{margin-top:8px}
+    .setup-row strong{display:block;color:var(--ink);font-size:.79rem}
+    .setup-row small{display:block;margin-top:1px;color:var(--muted);font-size:.69rem;line-height:1.35}
+    .setup-row .mark{display:grid;width:30px;height:30px;flex:none;place-items:center;border-radius:8px;color:var(--blue);font-size:.78rem;font-weight:900}
+    .setup-row .mark.g{border:1px solid var(--line);background:#fff}
+    .setup-row .mark.store{background:var(--blue-050)}
+    .setup-row .mark svg{width:16px;height:16px}
+    .setup-row .done{display:inline-flex;flex:none;align-items:center;gap:5px;margin-left:auto;color:var(--green-dark);font-size:.67rem;font-weight:800}
+    .setup-row .done svg{width:13px;height:13px}
+    .setup-q{display:block;margin-bottom:12px;color:var(--ink);font-size:.88rem;font-weight:800;line-height:1.4}
+    .setup-options{display:grid;gap:8px}
+    .setup-option{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff;color:var(--text);font-size:.79rem;font-weight:700}
+    .setup-option s{display:block;width:15px;height:15px;flex:none;border:2px solid #cbd5e1;border-radius:50%;text-decoration:none}
+    .setup-option.on{border-color:#bcd5fa;background:var(--blue-050);color:var(--blue-700)}
+    .setup-option.on s{border-color:var(--blue);background:radial-gradient(circle,var(--blue) 0 42%,#fff 46%)}
+    .setup-foot{margin-top:13px;color:var(--muted);font-size:.72rem;line-height:1.5}
+    .setup-rules{display:grid;gap:7px}
+    .setup-rule{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff}
+    .setup-rule .stars{color:#f4b400;font-size:.84rem;letter-spacing:1px}
+    .setup-rule .stars u{color:#d9dee6;text-decoration:none}
+    .setup-rule em{flex:none;margin-left:auto;padding:4px 8px;border-radius:6px;font-size:.62rem;font-style:normal;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+    .setup-rule em.auto{color:var(--green-dark);background:var(--green-bg)}
+    .setup-rule em.wa{color:#086158;background:#d6f8c6}
 
     /* Calculadora */
     .calculator-section{background:linear-gradient(180deg,#fff,#f0f5fd)}
@@ -749,8 +823,8 @@ ul{margin:0;padding:0;list-style:none}
 
     @media (max-width:1060px){
       .hero-grid{grid-template-columns:1fr;gap:48px}.hero-copy{max-width:760px}.hero-visual{min-height:560px}.floating-health{right:15px}
-      .focus-grid,.wa-grid,.shield-grid{gap:44px}
-      .focus-grid,.shield-grid{grid-template-columns:1fr}.focus-copy,.shield-copy{max-width:760px}.big-map-card{min-height:500px}
+      .focus-grid,.wa-grid,.shield-grid,.tone-grid{gap:44px}
+      .focus-grid,.shield-grid,.tone-grid{grid-template-columns:1fr}.focus-copy,.shield-copy,.tone-copy{max-width:760px}.big-map-card{min-height:500px}
       .wide-grid{grid-template-columns:1fr;gap:24px}
       .wa-grid{grid-template-columns:1fr}.wa-copy{max-width:760px}
       .feature-card.large{grid-column:span 12}.feature-card.medium{grid-column:span 6}
@@ -797,6 +871,7 @@ ul{margin:0;padding:0;list-style:none}
       .demo-flow{grid-template-columns:145px 35px 238px;gap:7px;transform:translateX(-3px)}
       .source-review{padding:11px}.phone{width:238px;height:500px}.notification-chip{right:5px}
       .feature-card.medium{grid-column:span 12}.feature-card.large,.feature-card.medium{min-height:0}
+      .setup-card{padding:16px}.js .setup-body{min-height:320px}
       .calculator-card{padding:24px 20px;gap:26px}.calculator-number{font-size:3.6rem}
       .plan-price,.plan-body{padding:30px 24px}.price-main{font-size:3.4rem}.plan-list{grid-template-columns:1fr}
       .trial-band{align-items:flex-start}
@@ -1044,6 +1119,61 @@ ul{margin:0;padding:0;list-style:none}
       </div>
     </section>
 
+    <section class="section" id="tom-de-voz">
+      <div class="container tone-grid">
+        <div class="tone-copy reveal">
+          <span class="eyebrow">Tom de voz</span>
+          <h2 class="title-lg">A resposta sai com a cara da sua empresa. <span class="highlight">Você define qual é.</span></h2>
+          <p class="lead" style="margin-top:20px">Na configuração inicial você responde 15 perguntas de múltipla escolha sobre o jeito da sua empresa falar. Nenhuma delas pede que você escreva um texto: é só marcar a alternativa que combina com o seu negócio.</p>
+          <div class="benefit-list">
+            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Perguntas simples, respondidas em minutos</strong><span>Mais formal ou mais próxima? Quem parece estar respondendo: você, a equipe ou a empresa? Resposta curta ou detalhada? Com emoji ou sem?</span></div></div>
+            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Inclusive para os casos difíceis</strong><span>Você escolhe como prefere responder a uma crítica e o que o cliente deve sentir ao ler a sua resposta.</span></div></div>
+            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Dá para mudar quando quiser</strong><span>Refaça o questionário a qualquer momento em Configurações → Tom de Voz. Cada versão fica registrada, e toda resposta mostra qual versão a gerou.</span></div></div>
+          </div>
+          <p class="simulation-note" style="color:var(--muted)">A configuração inteira são as três telas ao lado, feitas uma única vez. Você começa com o perfil que já possui, sem criar outra ficha e sem entregar sua senha.</p>
+        </div>
+        <div class="setup-card reveal" data-setup data-setup-step="0" role="img" aria-label="Mockup da configuração inicial em três telas: conectar o Perfil da Empresa, responder o questionário de tom de voz e definir o que chega para aprovação no WhatsApp">
+          <div class="setup-head">
+            <span class="badge"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+            <span><strong>Configuração inicial</strong><small>Três telas, uma única vez</small></span>
+          </div>
+          <div class="setup-steps" aria-hidden="true">
+            <span class="setup-step"><i></i>1 · Empresa</span>
+            <span class="setup-step"><i></i>2 · Tom de voz</span>
+            <span class="setup-step"><i></i>3 · Aprovações</span>
+          </div>
+          <div class="setup-body" aria-hidden="true">
+            <div class="setup-panel" data-panel="0">
+              <p class="setup-hint">Passo 1 · conectar o Perfil da Empresa</p>
+              <div class="setup-row"><span class="mark g">G</span><span><strong>Entrar com o Google</strong><small>Autorização oficial — sua senha não é compartilhada</small></span><span class="done"><svg class="icon"><use href="#i-check"/></svg> Feito</span></div>
+              <div class="setup-row"><span class="mark store"><svg class="icon"><use href="#i-store"/></svg></span><span><strong>Clínica Aurora</strong><small>Av. Paulista, 1200 — São Paulo</small></span><span class="done"><svg class="icon"><use href="#i-check"/></svg> Conectada</span></div>
+              <p class="setup-foot">A Fama Local usa o perfil que já existe. Nada de criar outra ficha nem migrar avaliações.</p>
+            </div>
+            <div class="setup-panel" data-panel="1">
+              <p class="setup-hint">Passo 2 · pergunta 3 de 15</p>
+              <strong class="setup-q">Qual tamanho você prefere para as respostas?</strong>
+              <div class="setup-options">
+                <span class="setup-option"><s></s>Curtas</span>
+                <span class="setup-option on"><s></s>Médias</span>
+                <span class="setup-option"><s></s>Detalhadas</span>
+              </div>
+              <p class="setup-foot">As 15 perguntas são assim: múltipla escolha, sem nada para escrever.</p>
+            </div>
+            <div class="setup-panel" data-panel="2">
+              <p class="setup-hint">Passo 3 · o que passa por você</p>
+              <div class="setup-rules">
+                <div class="setup-rule"><span class="stars">★★★★★</span><em class="auto">Publica sozinho</em></div>
+                <div class="setup-rule"><span class="stars">★★★★<u>★</u></span><em class="auto">Publica sozinho</em></div>
+                <div class="setup-rule"><span class="stars">★★★<u>★★</u></span><em class="wa">Aprovar no WhatsApp</em></div>
+                <div class="setup-rule"><span class="stars">★★<u>★★★</u></span><em class="wa">Aprovar no WhatsApp</em></div>
+                <div class="setup-rule"><span class="stars">★<u>★★★★</u></span><em class="wa">Aprovar no WhatsApp</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section focus-dark" id="geogrid">
       <div class="container focus-grid">
         <div class="focus-copy reveal">
@@ -1075,10 +1205,10 @@ ul{margin:0;padding:0;list-style:none}
         <div class="shield-copy reveal">
           <span class="eyebrow">Blindagem da ficha</span>
           <h2 class="title-lg">Se alterarem sua ficha no Google, <span class="highlight">você fica sabendo.</span></h2>
-          <p class="lead" style="margin-top:20px">A Fama Local guarda uma cópia de referência das informações da sua empresa e compara com o que está no Google. Detectou mudança, avisa no WhatsApp e no painel com o valor anterior e o novo, para você decidir o que fazer.</p>
+          <p class="lead" style="margin-top:20px">A Fama Local guarda uma cópia de referência das informações da sua empresa e compara com o que está no Google. Detectou mudança, avisa no WhatsApp e no painel mostrando como a informação estava antes e como ficou, para você decidir o que fazer.</p>
           <div class="benefit-list">
             <div class="benefit"><span class="benefit-check">✓</span><div><strong>Informações importantes acompanhadas</strong><span>Nome, telefone principal, endereço, horário de funcionamento e categoria.</span></div></div>
-            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Aviso no WhatsApp e no painel</strong><span>Você vê o valor anterior e o novo para decidir rapidamente se a mudança é legítima.</span></div></div>
+            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Aviso no WhatsApp e no painel</strong><span>Você vê o antes e o depois lado a lado — o telefone (11) 4002-8922 virando (11) 3333-1010, por exemplo — e decide em segundos se a mudança é legítima.</span></div></div>
             <div class="benefit"><span class="benefit-check">✓</span><div><strong>Tentativas de assumir a propriedade</strong><span>Convites de terceiros para assumir a sua ficha são recusados automaticamente e ficam registrados para sua conferência.</span></div></div>
           </div>
           <p class="simulation-note" style="color:var(--muted)">Por segurança, os cinco campos principais não voltam sozinhos: quem decide é você. O endereço do site externo é a exceção e é restaurado automaticamente. <a href="#faq" style="color:var(--blue);font-weight:700">Entenda o porquê nas perguntas frequentes</a>.</p>
@@ -1089,12 +1219,16 @@ ul{margin:0;padding:0;list-style:none}
             <span><strong>Ficha monitorada</strong><small>Comparação contínua com a cópia de referência</small></span>
           </div>
           <div class="shield-rows" data-shield>
-            <div class="shield-row" data-field="Nome da empresa" data-mode="alert"><span class="field">Nome da empresa</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
-            <div class="shield-row" data-field="Telefone principal" data-mode="alert"><span class="field">Telefone principal</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
-            <div class="shield-row" data-field="Endereço" data-mode="alert"><span class="field">Endereço</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
-            <div class="shield-row" data-field="Horário de funcionamento" data-mode="alert"><span class="field">Horário de funcionamento</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
-            <div class="shield-row" data-field="Categoria" data-mode="alert"><span class="field">Categoria</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
-            <div class="shield-row" data-field="Site externo" data-mode="restore"><span class="field">Site externo</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Nome da empresa" data-mode="alert" data-before="Clínica Aurora" data-after="Clínica Aurora Odonto 24h"><span class="field">Nome da empresa</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Telefone principal" data-mode="alert" data-before="(11) 4002-8922" data-after="(11) 3333-1010"><span class="field">Telefone principal</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Endereço" data-mode="alert" data-before="Av. Paulista, 1200" data-after="Av. Paulista, 1500"><span class="field">Endereço</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Horário de funcionamento" data-mode="alert" data-before="Seg a sex, 8h às 19h" data-after="Seg a sex, 8h às 17h"><span class="field">Horário de funcionamento</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Categoria" data-mode="alert" data-before="Clínica odontológica" data-after="Consultório médico"><span class="field">Categoria</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+            <div class="shield-row" data-field="Site externo" data-mode="restore" data-before="clinicaaurora.com.br" data-after="aurora-agenda.net"><span class="field">Site externo</span><span class="state" data-state><svg class="icon"><use href="#i-check"/></svg> Íntegro</span></div>
+          </div>
+          <div class="shield-diff" data-shield-diff>
+            <span class="diff-field" data-diff-field>Telefone principal</span>
+            <span class="diff-values"><b data-diff-before>(11) 4002-8922</b><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><i data-diff-after>(11) 3333-1010</i></span>
           </div>
           <div class="shield-log" data-shield-log><svg class="icon" data-shield-log-icon><use href="#i-message"/></svg> <span data-shield-log-text>Alteração detectada: avisamos você.</span></div>
           <p class="shield-foot">Os cinco campos do perfil dependem da sua decisão. Só o site externo volta sozinho.</p>
@@ -1221,7 +1355,7 @@ ul{margin:0;padding:0;list-style:none}
         <div class="section-head center reveal"><span class="eyebrow">Começar é direto</span><h2 class="title-lg">Do login à primeira rotina em <span class="highlight">três passos.</span></h2></div>
         <div class="steps">
           <article class="step reveal"><span class="step-number">01</span><h3>Entre com sua conta Google</h3><p>A conexão usa a autorização oficial do Google. Sua senha não é compartilhada com a Fama Local.</p></article>
-          <article class="step reveal"><span class="step-number">02</span><h3>Conecte a empresa e diga como sua marca fala</h3><p>Escolha o Perfil da Empresa e defina o jeito da sua marca responder avaliações e se comunicar com os clientes.</p></article>
+          <article class="step reveal"><span class="step-number">02</span><h3>Conecte a empresa e diga como sua marca fala</h3><p>Escolha o Perfil da Empresa e responda 15 perguntas rápidas de múltipla escolha. É isso que define o tom de todas as respostas.</p></article>
           <article class="step reveal"><span class="step-number">03</span><h3>Escolha o que você quer aprovar</h3><p>Defina o que chega pelo WhatsApp e quais rotinas seguem sozinhas, sem passar por você.</p></article>
         </div>
         <div class="how-note reveal">Você começa com o perfil que já possui. Não precisa criar outra ficha, migrar avaliações nem entregar sua senha.</div>
@@ -1261,7 +1395,7 @@ ul{margin:0;padding:0;list-style:none}
             <div class="plan-micro">Sem cartão no teste. Cancele quando quiser. Pacotes avulsos de créditos a partir de R$ 19,90 quando precisar.</div>
           </div>
         </div>
-        <div class="trial-band reveal"><svg class="icon" style="color:var(--blue);flex:none"><use href="#i-check"/></svg><span><strong>Teste de 14 dias:</strong> 150 créditos, 1 Perfil da Empresa e acesso guiado para configurar a operação. Seus dados e empresas ficam preservados ao final.</span></div>
+        <div class="trial-band reveal"><svg class="icon" style="color:var(--blue);flex:none"><use href="#i-check"/></svg><span><strong>Teste de 14 dias, sem cartão:</strong> 150 créditos, 1 Perfil da Empresa e todos os módulos liberados. No 15º dia, se você não assinar, as ações automáticas param — perfil, empresa, tom de voz e histórico continuam no lugar.</span></div>
       </div>
     </section>
 
@@ -1303,7 +1437,7 @@ ul{margin:0;padding:0;list-style:none}
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-b-2"><span>Alguém pode alterar informações da minha empresa no Google?</span><span class="faq-plus"></span></button>
-            <div class="faq-answer" id="faq-2" role="region" aria-labelledby="faq-b-2"><div><p>Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando o valor anterior e o novo. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar; a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente.</p></div></div>
+            <div class="faq-answer" id="faq-2" role="region" aria-labelledby="faq-b-2"><div><p>Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando como a informação estava antes e como está agora. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar; a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente.</p></div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-b-3"><span>O que é a presença no Modo IA do Google?</span><span class="faq-plus"></span></button>
@@ -1318,8 +1452,12 @@ ul{margin:0;padding:0;list-style:none}
             <div class="faq-answer" id="faq-5" role="region" aria-labelledby="faq-b-5"><div><p>Não. A conexão é feita pela autorização oficial do Google. Sua senha não é compartilhada com a Fama Local, os tokens de acesso são criptografados e o acesso pode ser revogado pela sua conta Google.</p></div></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-6" id="faq-b-6"><span>Como funciona o teste grátis?</span><span class="faq-plus"></span></button>
-            <div class="faq-answer" id="faq-6" role="region" aria-labelledby="faq-b-6"><div><p>Você tem 14 dias e 150 créditos para testar a Fama Local com uma empresa. Não pedimos cartão de crédito. Ao final, você decide se quer continuar. Seus dados e empresas ficam preservados.</p></div></div>
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-6" id="faq-b-6"><span>Como funciona o teste grátis e o que acontece no fim dos 14 dias?</span><span class="faq-plus"></span></button>
+            <div class="faq-answer" id="faq-6" role="region" aria-labelledby="faq-b-6"><div><p>São 14 dias com 150 créditos para uma empresa, com todos os módulos liberados — dá para até 150 respostas a avaliações, ou uma combinação com posts e imagens. Não pedimos cartão de crédito: nada é cobrado automaticamente e não há cancelamento a fazer. No 15º dia, se você não assinar, a conta entra em espera e a Fama Local para de gerar e publicar respostas, posts e imagens. Nada é apagado: a empresa conectada, o tom de voz configurado, o histórico de avaliações, os alertas e as respostas já publicadas no Google continuam lá. Se você assinar depois, mesmo semanas depois, tudo volta a funcionar de onde parou.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-12" id="faq-b-12"><span>A IA vai responder com a cara da minha empresa ou com um texto genérico?</span><span class="faq-plus"></span></button>
+            <div class="faq-answer" id="faq-12" role="region" aria-labelledby="faq-b-12"><div><p>Com a sua. Antes de gerar qualquer resposta, a Fama Local usa a calibração de tom que você mesmo definiu num questionário de 15 perguntas de múltipla escolha: nível de formalidade, quem assina a resposta, tamanho, uso de emoji, como tratar uma crítica e o que o cliente deve sentir ao ler. Cada resposta ainda leva em conta a nota e o comentário específico daquele cliente, então não existe mensagem padrão repetida. Você pode refazer o questionário quando quiser em Configurações, Tom de Voz, e aprovar ou editar cada resposta antes de publicar nas situações que escolher.</p></div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-7" id="faq-b-7"><span>Posso aprovar respostas pelo WhatsApp?</span><span class="faq-plus"></span></button>
@@ -1614,6 +1752,10 @@ ul{margin:0;padding:0;list-style:none}
       var shieldLogText=document.querySelector('[data-shield-log-text]');
       var shieldLogIcon=document.querySelector('[data-shield-log-icon]');
       var shieldRows=shield?Array.prototype.slice.call(shield.querySelectorAll('.shield-row')):[];
+      var shieldDiff=document.querySelector('[data-shield-diff]');
+      var diffField=document.querySelector('[data-diff-field]');
+      var diffBefore=document.querySelector('[data-diff-before]');
+      var diffAfter=document.querySelector('[data-diff-after]');
       var shieldStep=0;
       function resetShield(){
         shieldRows.forEach(function(row){
@@ -1621,6 +1763,18 @@ ul{margin:0;padding:0;list-style:none}
           row.querySelector('[data-state]').innerHTML='<svg class="icon"><use href="#i-check"/></svg> Íntegro';
         });
         shieldLog.classList.remove('on');
+        shieldDiff.classList.remove('on');
+      }
+      /* O riscado é sempre o valor que sai de cena: na detecção é o original,
+         na restauração é o que o terceiro havia colocado. */
+      function showDiff(row,tone){
+        var original=row.getAttribute('data-before');
+        var alterado=row.getAttribute('data-after');
+        diffField.textContent=row.getAttribute('data-field');
+        diffBefore.textContent=tone==='restore'?alterado:original;
+        diffAfter.textContent=tone==='restore'?original:alterado;
+        shieldDiff.setAttribute('data-tone',tone);
+        shieldDiff.classList.add('on');
       }
       /* Dois desfechos distintos, porque o produto trata os campos de forma
          diferente: nome/telefone/categoria geram aviso e a decisão fica com o
@@ -1635,18 +1789,21 @@ ul{margin:0;padding:0;list-style:none}
         if(phase===0){
           row.setAttribute('data-alert','1');
           row.querySelector('[data-state]').innerHTML='Alterado por terceiro';
+          showDiff(row,'alert');
           shieldLog.setAttribute('data-tone','alert');
           shieldLogIcon.innerHTML='<use href="#i-message"/>';
           shieldLogText.textContent='Alteração detectada em '+row.getAttribute('data-field')+'.';
         }else if(restores){
           row.setAttribute('data-alert','2');
           row.querySelector('[data-state]').innerHTML='<svg class="icon"><use href="#i-check"/></svg> Restaurado';
+          showDiff(row,'restore');
           shieldLog.setAttribute('data-tone','restore');
           shieldLogIcon.innerHTML='<use href="#i-rotate"/>';
           shieldLogText.textContent=row.getAttribute('data-field')+' restaurado automaticamente.';
         }else{
           row.setAttribute('data-alert','1');
           row.querySelector('[data-state]').innerHTML='Aguardando você';
+          showDiff(row,'alert');
           shieldLog.setAttribute('data-tone','alert');
           shieldLogIcon.innerHTML='<use href="#i-message"/>';
           shieldLogText.textContent='Avisamos no WhatsApp: você decide se a mudança vale.';
@@ -1655,6 +1812,22 @@ ul{margin:0;padding:0;list-style:none}
         shieldStep++;
       }
       loopWhileVisible(shield,2400,runShield);
+
+      /* Tom de voz — percorre as três telas da configuração inicial. Com
+         movimento reduzido a demo para na última, que é a mais informativa
+         sozinha: mostra que a decisão por estrela é do dono. */
+      var setup=document.querySelector('[data-setup]');
+      if(setup){
+        if(reduced){
+          setup.setAttribute('data-setup-step','2');
+        }else{
+          var setupStep=0;
+          loopWhileVisible(setup,3000,
+            function(){setupStep=(setupStep+1)%3;setup.setAttribute('data-setup-step',String(setupStep))},
+            function(){setupStep=0;setup.setAttribute('data-setup-step','0')}
+          );
+        }
+      }
 
       /* Calculadora — âncora de valor, não previsão de retorno. A conta compara
          uma venda com a mensalidade; não estima quantos clientes virão. */
