@@ -43,7 +43,7 @@
         "isPartOf": { "@id": "https://www.famalocal.com.br/#website" },
         "about": { "@id": "https://www.famalocal.com.br/#organization" },
         "inLanguage": "pt-BR",
-        "dateModified": "2026-08-18",
+        "dateModified": "2026-08-20",
         "breadcrumb": { "@id": "https://www.famalocal.com.br/suporte#breadcrumb" }
       },
       {
@@ -259,8 +259,11 @@ ul{margin:0;padding:0;list-style:none}
 .layout{display:grid;grid-template-columns:220px 1fr;gap:54px;width:min(calc(100% - 32px),1120px);margin:50px auto 76px}
 .toc{position:sticky;top:96px;align-self:start;padding:16px;border:1px solid var(--line);border-radius:var(--r-card);background:var(--soft)}
 .toc strong{display:block;margin-bottom:9px;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
-.toc a{display:block;padding:5px 0;color:var(--muted);font-size:.76rem}
+.toc a{display:block;padding:5px 0 5px 10px;border-left:2px solid transparent;color:var(--muted);font-size:.76rem;transition:color .15s,border-color .15s}
 .toc a:hover{color:var(--blue)}
+/* Seção em leitura. O aria-current é o que informa quem usa leitor de tela;
+   a cor sozinha não diria nada. */
+.toc a[aria-current]{border-left-color:var(--blue);color:var(--blue);font-weight:700}
 
 main{min-width:0;width:min(100%,930px);margin:auto}
 section{scroll-margin-top:95px;padding:0 0 32px;margin:0 0 32px;border-bottom:1px solid var(--line)}

@@ -190,8 +190,11 @@ ul{margin:0;padding:0;list-style:none}
 .layout{display:grid;grid-template-columns:220px 1fr;gap:54px;width:min(calc(100% - 32px),1120px);margin:50px auto 76px}
 .toc{position:sticky;top:96px;align-self:start;padding:16px;border:1px solid var(--line);border-radius:var(--r-card);background:var(--soft)}
 .toc strong{display:block;margin-bottom:9px;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
-.toc a{display:block;padding:5px 0;color:var(--muted);font-size:.76rem}
+.toc a{display:block;padding:5px 0 5px 10px;border-left:2px solid transparent;color:var(--muted);font-size:.76rem;transition:color .15s,border-color .15s}
 .toc a:hover{color:var(--blue)}
+/* Seção em leitura. O aria-current é o que informa quem usa leitor de tela;
+   a cor sozinha não diria nada. */
+.toc a[aria-current]{border-left-color:var(--blue);color:var(--blue);font-weight:700}
 
 main{min-width:0;width:min(100%,930px);margin:auto}
 section{scroll-margin-top:95px;padding:0 0 32px;margin:0 0 32px;border-bottom:1px solid var(--line)}
@@ -287,6 +290,40 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
     <div class="cookie-actions"><button data-reject-consent type="button">Recusar opcionais</button><button class="accept" data-accept-consent type="button">Aceitar</button></div>
   </aside>
 
+  <script>
+(function(){
+  var toc=document.querySelector('.toc');
+  if(!toc||!('IntersectionObserver' in window))return;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  if(!links.length)return;
+  var order=[],map={};
+  for(var i=0;i<links.length;i++){
+    var id=decodeURIComponent(links[i].getAttribute('href').slice(1));
+    var el=document.getElementById(id);
+    if(!el)continue;
+    order.push(id);map[id]=links[i];
+  }
+  var visible={};
+  function paint(){
+    var active=null;
+    for(var i=0;i<order.length;i++){if(visible[order[i]]){active=order[i];break}}
+    for(var j=0;j<order.length;j++){
+      if(order[j]===active)map[order[j]].setAttribute('aria-current','true');
+      else map[order[j]].removeAttribute('aria-current');
+    }
+  }
+  var observer=new IntersectionObserver(function(entries){
+    for(var i=0;i<entries.length;i++){
+      var id=entries[i].target.id;
+      if(entries[i].isIntersecting)visible[id]=true;else delete visible[id];
+    }
+    paint();
+  // A faixa começa abaixo do cabeçalho fixo e termina antes do fim da tela,
+  // para o item só acender quando a seção está de fato em leitura.
+  },{rootMargin:'-96px 0px -55% 0px',threshold:0});
+  for(var k=0;k<order.length;k++)observer.observe(document.getElementById(order[k]));
+})();
+</script>
   <script>
 (function(){
   var NAME='fl_consent';

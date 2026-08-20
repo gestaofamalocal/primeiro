@@ -24,7 +24,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Fama Local — Seu Perfil da Empresa no Google ativo todos os dias, sem consumir seu tempo.">
-  <meta property="article:modified_time" content="2026-08-12">
+  <meta property="article:modified_time" content="2026-08-20">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Privacidade e LGPD | Fama Local">
   <meta name="twitter:description" content="Política de Privacidade e LGPD da Fama Local: quais dados tratamos, por quê, com quem compartilhamos e como exercer seus direitos.">
@@ -45,8 +45,8 @@
         "publisher": { "@id": "https://www.famalocal.com.br/#organization" },
         "about": { "@id": "https://www.famalocal.com.br/#organization" },
         "inLanguage": "pt-BR",
-        "datePublished": "2026-08-12",
-        "dateModified": "2026-08-12",
+        "datePublished": "2026-08-20",
+        "dateModified": "2026-08-20",
         "breadcrumb": { "@id": "https://www.famalocal.com.br/privacidade#breadcrumb" }
       },
       {
@@ -190,8 +190,11 @@ ul{margin:0;padding:0;list-style:none}
 .layout{display:grid;grid-template-columns:220px 1fr;gap:54px;width:min(calc(100% - 32px),1120px);margin:50px auto 76px}
 .toc{position:sticky;top:96px;align-self:start;padding:16px;border:1px solid var(--line);border-radius:var(--r-card);background:var(--soft)}
 .toc strong{display:block;margin-bottom:9px;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
-.toc a{display:block;padding:5px 0;color:var(--muted);font-size:.76rem}
+.toc a{display:block;padding:5px 0 5px 10px;border-left:2px solid transparent;color:var(--muted);font-size:.76rem;transition:color .15s,border-color .15s}
 .toc a:hover{color:var(--blue)}
+/* Seção em leitura. O aria-current é o que informa quem usa leitor de tela;
+   a cor sozinha não diria nada. */
+.toc a[aria-current]{border-left-color:var(--blue);color:var(--blue);font-weight:700}
 
 main{min-width:0;width:min(100%,930px);margin:auto}
 section{scroll-margin-top:95px;padding:0 0 32px;margin:0 0 32px;border-bottom:1px solid var(--line)}
@@ -252,7 +255,7 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
     <span class="eyebrow">Privacidade e LGPD</span>
     <h1>Seus dados devem trabalhar para o serviço, não contra você.</h1>
     <p>Esta política explica, em linguagem direta, quais dados a Fama Local trata, para quais finalidades, com quem os compartilha e como você exerce seus direitos.</p>
-    <p class="meta"><strong>Versão vigente:</strong> 12 de agosto de 2026</p>
+    <p class="meta"><strong>Versão vigente:</strong> 20 de agosto de 2026</p>
     <div class="summary"><div><strong>Sem venda de dados</strong>Não comercializamos dados pessoais nem dados da conta Google.</div><div><strong>Você controla a conexão</strong>O acesso ao Google depende de autorização e pode ser revogado.</div><div><strong>Exclusão com retenção definida</strong>Dados operacionais são eliminados ou anonimizados conforme os prazos abaixo.</div></div>
   </div></div>
 
@@ -262,9 +265,9 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
       <section id="escopo"><h2>1. Escopo e papéis</h2><p>Esta Política se aplica ao site, à plataforma SaaS Fama Local, aos fluxos de onboarding, suporte, cobrança e às Páginas Locais geradas pelo produto.</p><p>A Fama Local atua como <strong>controladora</strong> dos dados de cadastro, contratação, segurança e relacionamento com seus usuários. Quando um cliente usa a plataforma para administrar dados do seu Perfil da Empresa, avaliações, contatos ou uma Página Local, a Fama Local pode atuar como <strong>operadora</strong>, seguindo as instruções e configurações do cliente. O cliente continua responsável pela legitimidade das informações que conecta, importa ou publica.</p><div class="callout"><strong>Quem também pode ser titular:</strong> além do usuário da plataforma, autores de avaliações, consumidores que interagem com uma Página Local e contatos que enviam dados por formulários ou WhatsApp podem ter seus dados tratados.</div></section>
       <section id="dados"><h2>2. Quais dados tratamos</h2><ul><li><strong>Conta e identificação:</strong> nome, e-mail, foto, telefone verificado, idioma, função, empresa vinculada e registros de sessão.</li><li><strong>Google e Perfil da Empresa:</strong> identificadores da conta e dos locais, tokens de autorização, nome e categoria da empresa, endereço, telefone, horários, site externo, fotos, posts, produtos, serviços, métricas, perguntas, avaliações e respostas.</li><li><strong>Configuração do produto:</strong> respostas ao questionário de tom de voz, regras de aprovação, automações, preferências, fila de ações e histórico operacional.</li><li><strong>Integridade do perfil:</strong> cópia de referência dos campos monitorados pela Blindagem (nome, telefone, endereço, horário de funcionamento, categoria e site), histórico de alterações detectadas com o valor anterior e o novo, alertas enviados ao responsável e registros de convites de propriedade recebidos no Perfil da Empresa.</li><li><strong>WhatsApp e comunicações:</strong> número, consentimentos, status da conversa, mensagens necessárias ao fluxo de aprovação e metadados de entrega.</li><li><strong>Visibilidade local:</strong> palavra-chave, coordenadas, raio, pontos de grade, posições no Google Maps, concorrentes e resultados de medições GeoGrid e de presença em respostas de IA.</li><li><strong>Conteúdo e mídia:</strong> textos, imagens, fotos, materiais, QR Codes e arquivos enviados para publicação ou geração de conteúdo.</li><li><strong>Pagamento e faturamento:</strong> plano, status da assinatura, transações, créditos, faturas e identificadores do processador. Dados completos de cartão são tratados pelo provedor de pagamento, não pela Fama Local.</li><li><strong>Uso, dispositivo e segurança:</strong> IP, navegador, sistema operacional, eventos de uso, logs, auditoria, falhas e dados necessários para prevenir abuso.</li><li><strong>Dados de consumidores finais:</strong> nome, foto e comentário público de avaliações; e, quando enviados diretamente, telefone, e-mail, mensagem e IP.</li></ul></section>
       <section id="finalidades"><h2>3. Por que tratamos e qual é a base legal</h2><div class="table-wrap"><table><thead><tr><th>Finalidade</th><th>Base legal usual</th></tr></thead><tbody><tr><td>Criar a conta, entregar os módulos contratados, sincronizar o perfil, publicar ações e prestar suporte</td><td>Execução de contrato e procedimentos preliminares</td></tr><tr><td>Enviar aprovações, alertas operacionais e comunicações essenciais</td><td>Execução de contrato e legítimo interesse</td></tr><tr><td>Monitorar campos do perfil, alertar o responsável sobre alterações de terceiros e recusar convites de propriedade</td><td>Execução de contrato e legítimo interesse na proteção do ativo do cliente</td></tr><tr><td>Processar cobrança, notas, créditos e registros financeiros</td><td>Execução de contrato e obrigação legal/regulatória</td></tr><tr><td>Proteger contas, limitar abuso, auditar ações e defender direitos</td><td>Legítimo interesse, prevenção à fraude e exercício regular de direitos</td></tr><tr><td>Enviar marketing ou ativar tecnologias opcionais</td><td>Consentimento, quando exigido, com possibilidade de retirada</td></tr><tr><td>Atender solicitações de titulares e autoridades</td><td>Cumprimento de obrigação legal/regulatória</td></tr></tbody></table></div><p>A base aplicável pode variar conforme o contexto. Quando dependermos de consentimento, ele será destacado e poderá ser retirado, sem afetar tratamentos anteriores legítimos.</p></section>
-      <section id="google"><h2>4. Integração com o Google</h2><p>O login e a conexão ao Perfil da Empresa usam OAuth. A Fama Local não recebe sua senha do Google. Solicitamos apenas permissões necessárias aos recursos habilitados, como ler dados do perfil, avaliações e métricas ou executar publicações autorizadas.</p><p>O uso de informações recebidas das APIs do Google observa a <a href="https://developers.google.com/terms/api-services-user-data-policy" title="Abrir developers.google.com em uma nova aba" rel="noopener noreferrer">Google API Services User Data Policy</a>, inclusive os requisitos de Uso Limitado. Não usamos nem transferimos esses dados para publicidade personalizada, venda a terceiros ou criação de perfis de crédito. Tokens de acesso são criptografados e podem ser revogados pelo usuário. Se a autorização expirar ou for revogada, a sincronização é interrompida até a reconexão — e, nesse período, a Blindagem também deixa de conseguir detectar alterações e emitir alertas.</p></section>
+      <section id="google"><h2>4. Integração com o Google</h2><p>O login e a conexão ao Perfil da Empresa usam OAuth. A Fama Local não recebe sua senha do Google. Solicitamos apenas permissões necessárias aos recursos habilitados, como ler dados do perfil, avaliações e métricas ou executar publicações autorizadas.</p><p>O uso de informações recebidas das APIs do Google observa a <a href="https://developers.google.com/terms/api-services-user-data-policy" title="Abrir developers.google.com em uma nova aba" rel="noopener noreferrer">Google API Services User Data Policy</a>, inclusive os requisitos de Uso Limitado. Não usamos nem transferimos esses dados para publicidade personalizada, venda a terceiros ou criação de perfis de crédito. Tokens de acesso são criptografados e podem ser revogados pelo usuário. Se a autorização expirar ou for revogada, a sincronização é interrompida até a reconexão — e, nesse período, a Blindagem também deixa de conseguir detectar alterações e emitir alertas.</p><p>Para estimar a procura por termos de busca na sua região, enviamos ao provedor de dados de mercado a categoria do seu negócio, os nomes dos serviços cadastrados e as consultas que já geraram impressões do seu Perfil. Esse envio serve apenas para sugerir e medir as palavras-chave que você mesmo escolhe dentro da plataforma: não alimenta publicidade, não é vendido e não treina modelos de terceiros.</p></section>
       <section id="ia"><h2>5. Inteligência artificial e automações</h2><p>Usamos modelos de IA para sugerir respostas, textos, análises e prioridades. Enviamos ao provedor somente o contexto necessário à tarefa, com limites e instruções de segurança. Resultados podem conter erros e devem ser revisados quando o cliente não tiver habilitado publicação automática.</p><p>O cliente escolhe quais ações exigem aprovação e quais podem seguir automaticamente. A posição no Google e a presença em respostas de IA dependem também de distância, concorrência, relevância e regras externas; a Fama Local não garante classificação ou resultado comercial.</p></section>
-      <section id="compartilhamento"><h2>6. Com quem compartilhamos</h2><p>Compartilhamos dados apenas no limite necessário para operar o serviço, cumprir a lei ou proteger direitos.</p><div class="table-wrap"><table><thead><tr><th>Categoria/fornecedor</th><th>Finalidade</th></tr></thead><tbody><tr><td>Google</td><td>Login, Perfil da Empresa, avaliações, conteúdo, métricas, publicação e gerenciamento consentido de tags.</td></tr><tr><td>Google Gemini</td><td>Geração e análise de textos com IA.</td></tr><tr><td>Google Analytics 4 (Measurement Protocol)</td><td>Medição de conversões das nossas campanhas, mediante consentimento.</td></tr><tr><td>Meta (Conversions API)</td><td>Medição de conversões das nossas campanhas, mediante consentimento.</td></tr><tr><td>Meta WhatsApp Cloud API</td><td>Mensagens, aprovações e notificações configuradas.</td></tr><tr><td>DataForSEO</td><td>Medições GeoGrid, resultados locais e monitoramento de visibilidade em IA.</td></tr><tr><td>Stripe</td><td>Checkout, assinatura, faturas, cobrança e prevenção a fraude.</td></tr><tr><td>Neon</td><td>Banco de dados PostgreSQL.</td></tr><tr><td>Vercel</td><td>Hospedagem, arquivos temporários, desempenho e métricas técnicas.</td></tr><tr><td>Upstash</td><td>Limitação de requisições e proteção contra abuso.</td></tr><tr><td>Resend e serviços de push</td><td>E-mails transacionais e notificações.</td></tr><tr><td>Autoridades e assessores</td><td>Obrigação legal, defesa de direitos, auditoria e operações societárias legítimas.</td></tr></tbody></table></div><p>Não vendemos dados pessoais. Exigimos dos fornecedores medidas compatíveis com a natureza do tratamento e os vinculamos às finalidades contratadas.</p></section>
+      <section id="compartilhamento"><h2>6. Com quem compartilhamos</h2><p>Compartilhamos dados apenas no limite necessário para operar o serviço, cumprir a lei ou proteger direitos.</p><div class="table-wrap"><table><thead><tr><th>Categoria/fornecedor</th><th>Finalidade</th></tr></thead><tbody><tr><td>Google</td><td>Login, Perfil da Empresa, avaliações, conteúdo, métricas, publicação e gerenciamento consentido de tags.</td></tr><tr><td>Google Gemini</td><td>Geração e análise de textos com IA.</td></tr><tr><td>Google Analytics 4 (Measurement Protocol)</td><td>Medição de conversões das nossas campanhas, mediante consentimento.</td></tr><tr><td>Meta (Conversions API)</td><td>Medição de conversões das nossas campanhas, mediante consentimento.</td></tr><tr><td>Meta WhatsApp Cloud API</td><td>Mensagens, aprovações e notificações configuradas.</td></tr><tr><td>DataForSEO</td><td>Medições de posição no mapa, resultados locais, monitoramento de visibilidade em IA e pesquisa de procura por termos de busca na sua região.</td></tr><tr><td>Stripe</td><td>Checkout, assinatura, faturas, cobrança e prevenção a fraude.</td></tr><tr><td>Neon</td><td>Banco de dados PostgreSQL.</td></tr><tr><td>Vercel</td><td>Hospedagem, arquivos temporários, desempenho e métricas técnicas.</td></tr><tr><td>Upstash</td><td>Limitação de requisições e proteção contra abuso.</td></tr><tr><td>Resend e serviços de push</td><td>E-mails transacionais e notificações.</td></tr><tr><td>Autoridades e assessores</td><td>Obrigação legal, defesa de direitos, auditoria e operações societárias legítimas.</td></tr></tbody></table></div><p>Não vendemos dados pessoais. Exigimos dos fornecedores medidas compatíveis com a natureza do tratamento e os vinculamos às finalidades contratadas.</p></section>
       <section id="transferencia"><h2>7. Transferência internacional</h2><p>Alguns fornecedores podem processar ou armazenar dados fora do Brasil. Nessas situações, adotamos mecanismos admitidos pela LGPD e pela regulamentação da ANPD, como cláusulas contratuais adequadas, avaliação do fornecedor e medidas técnicas de proteção, conforme aplicável.</p></section>
       <section id="retencao"><h2>8. Por quanto tempo guardamos</h2><div class="table-wrap"><table><thead><tr><th>Dado</th><th>Prazo operacional padrão</th></tr></thead><tbody><tr><td>Conta ativa, perfil e configurações</td><td>Durante a relação contratual e enquanto necessários ao serviço.</td></tr><tr><td>Mensagens operacionais de WhatsApp</td><td>90 dias por padrão, salvo configuração ou obrigação diferente.</td></tr><tr><td>Arquivos temporários de publicação</td><td>Exclusão após o uso; arquivos órfãos em até 24 horas e demais blobs em até 60 dias por padrão.</td></tr><tr><td>Dados de negócio após exclusão da conta</td><td>Soft delete e posterior anonimização em até 90 dias por padrão.</td></tr><tr><td>Métricas históricas de desempenho</td><td>Até 2 anos por padrão para comparações e relatórios.</td></tr><tr><td>Logs operacionais comuns</td><td>7 dias por padrão; segurança e auditoria podem exigir prazo maior.</td></tr><tr><td>Registros fiscais, financeiros, créditos e auditoria</td><td>Pelo prazo exigido em lei ou necessário ao exercício regular de direitos, com minimização ou pseudonimização.</td></tr></tbody></table></div><p>Ao excluir a conta, sessões e conexões são revogadas, dados de contato são anonimizados e dados operacionais entram no fluxo de eliminação. Backups e registros legais podem persistir por período limitado e protegido.</p></section>
       <section id="seguranca"><h2>9. Segurança</h2><p>Aplicamos HTTPS/TLS em trânsito, criptografia AES-256-GCM para tokens OAuth e dados bancários armazenados, sessões persistentes revogáveis, controle de acesso por função, limites de requisição, validação de entradas, trilhas de auditoria e monitoramento. Nenhum sistema é infalível; em incidente relevante, seguiremos as obrigações de avaliação e comunicação previstas na LGPD e nas normas da ANPD.</p></section>
@@ -285,6 +288,40 @@ footer{padding:26px 16px;border-top:1px solid var(--line);color:var(--muted);fon
     <div class="cookie-actions"><button data-reject-consent type="button">Recusar opcionais</button><button class="accept" data-accept-consent type="button">Aceitar</button></div>
   </aside>
 
+  <script>
+(function(){
+  var toc=document.querySelector('.toc');
+  if(!toc||!('IntersectionObserver' in window))return;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  if(!links.length)return;
+  var order=[],map={};
+  for(var i=0;i<links.length;i++){
+    var id=decodeURIComponent(links[i].getAttribute('href').slice(1));
+    var el=document.getElementById(id);
+    if(!el)continue;
+    order.push(id);map[id]=links[i];
+  }
+  var visible={};
+  function paint(){
+    var active=null;
+    for(var i=0;i<order.length;i++){if(visible[order[i]]){active=order[i];break}}
+    for(var j=0;j<order.length;j++){
+      if(order[j]===active)map[order[j]].setAttribute('aria-current','true');
+      else map[order[j]].removeAttribute('aria-current');
+    }
+  }
+  var observer=new IntersectionObserver(function(entries){
+    for(var i=0;i<entries.length;i++){
+      var id=entries[i].target.id;
+      if(entries[i].isIntersecting)visible[id]=true;else delete visible[id];
+    }
+    paint();
+  // A faixa começa abaixo do cabeçalho fixo e termina antes do fim da tela,
+  // para o item só acender quando a seção está de fato em leitura.
+  },{rootMargin:'-96px 0px -55% 0px',threshold:0});
+  for(var k=0;k<order.length;k++)observer.observe(document.getElementById(order[k]));
+})();
+</script>
   <script>
 (function(){
   var NAME='fl_consent';
