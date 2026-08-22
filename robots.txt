@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.famalocal.com.br/sitemap.xml
+llms: https://www.famalocal.com.br/llms.txt

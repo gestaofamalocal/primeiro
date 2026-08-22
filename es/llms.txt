@@ -1,0 +1,90 @@
+# Fama Local
+
+> Plataforma brasileña de suscripción que mantiene el Perfil de Empresa en Google activo todos los días: responde reseñas, publica posts y fotos, sincroniza el catálogo, mide la posición en Maps y sigue la salud del perfil.
+
+Fama Local es un servicio por suscripción para dueños de negocios locales en Brasil. El operador conecta su Perfil de Empresa en Google, responde un cuestionario que define el tono de voz de la marca, y la plataforma pasa a ejecutar las rutinas de presencia local.
+
+Las decisiones que exigen aprobación llegan por WhatsApp y se resuelven en un toque. Configurada para publicación automática, la operación sigue sin intervención diaria.
+
+## Qué hace la plataforma
+
+- **Respostas a avaliações** — a plataforma escreve a resposta no tom de voz da marca e publica no Perfil da Empresa, com aprovação por WhatsApp ou sem intervenção nenhuma.
+- **Posts e fotos** — criação e agendamento de publicações e imagens no Perfil da Empresa.
+- **Produtos e serviços** — catálogo sincronizado com o perfil, sem redigitação.
+- **Mapa de Presença** — medição da posição da empresa no Google Maps ponto a ponto na região de atendimento.
+- **Presença no Modo IA do Google** — verificação de como a empresa aparece nas respostas geradas por IA.
+- **Saúde do perfil** — score diário de completude, atividade e engajamento, com fila de ações prioritárias.
+- **Página Local** — página pública gerada a partir dos dados do Perfil da Empresa e mantida em sincronia.
+- **Captação de avaliações** — materiais impressos e digitais com QR code rastreável para pedir avaliação ao cliente.
+
+## Prueba gratuita y suscripción
+
+- Prueba gratuita de 14 días, sin tarjeta de crédito: 150 créditos y 1 Perfil de Empresa, con todos los módulos liberados.
+- Suscripción: R$ 297 por mes por empresa conectada, o R$ 2.970 por año (equivale a R$ 247,50 por mes). Los precios están en reales brasileños.
+- Cada empresa conectada recibe 300 créditos por mes. Una respuesta a reseña cuesta 1 crédito; una imagen, 5; una publicación completa, 10; una verificación en el Modo IA, 2.
+- Paquetes sueltos de créditos desde R$ 19,90, cuando el volumen del mes lo exija.
+- Al terminar la prueba, si no hay suscripción, las acciones automáticas se detienen — perfil, empresa, tono de voz e historial se conservan.
+
+## Preguntas frecuentes
+
+### ¿Qué hace exactamente Fama Local?
+Fama Local ayuda a cuidar tu Perfil de Empresa en Google de forma continua: sigue reseñas e información importante, prepara contenido, lleva decisiones a WhatsApp y muestra dónde aparece tu empresa en la zona.
+
+### ¿Qué es la gestión de Google My Business?
+Es el trabajo continuo de mantener el Perfil de Empresa en Google completo, actualizado y activo, incluyendo reseñas, publicaciones, fotos, productos, servicios y seguimiento de la visibilidad local. Google My Business es el nombre por el que el producto todavía se conoce ampliamente.
+
+### ¿Alguien puede cambiar la información de mi empresa en Google?
+Sí. Google permite que los usuarios sugieran cambios en el nombre, el teléfono, la dirección, el horario, la categoría y el sitio web de tu empresa, y esas sugerencias pueden aplicarse sin avisar al propietario. El Blindaje de Fama Local compara el perfil con la copia de referencia de tu empresa y te avisa por WhatsApp y en el panel en cuanto detecta un cambio, mostrando cómo estaba la información antes y cómo está ahora. Nombre, teléfono, dirección, horario y categoría no se revierten automáticamente porque cambiar esos campos puede activar una nueva validación del perfil por parte de Google y dejar a tu empresa fuera del aire; la decisión es tuya. El sitio externo es la excepción: ese vuelve solo. Las invitaciones de terceros para asumir la propiedad de la ficha se rechazan automáticamente.
+
+### ¿Qué es la presencia en el Modo IA de Google?
+Cuando alguien busca en Google, puede aparecer una respuesta generada por inteligencia artificial antes de los resultados tradicionales, citando algunos negocios. Fama Local verifica si tu empresa aparece en esas respuestas, muestra quién aparece destacado en tu lugar y señala qué puntos de tu perfil conviene revisar.
+
+### ¿Fama Local garantiza que quede en 1.º lugar en Google?
+No. La posición varía según la ubicación, la distancia, la relevancia, la competencia y otros criterios de Google. Fama Local ayuda a mantener el perfil bien cuidado y muestra dónde aparece tu empresa mejor o peor.
+
+### ¿Tengo que dar mi contraseña de Google?
+No. La conexión se hace mediante la autorización oficial de Google. Tu contraseña no se comparte con Fama Local, los tokens de acceso están cifrados y el acceso puede revocarse desde tu cuenta de Google.
+
+### ¿Cómo saben qué servicios ofrece mi empresa?
+Fama Local lee los servicios que ya están en tu Perfil de Empresa en Google y, a partir de la categoría de tu negocio, muestra los tipos de servicio que Google acepta para ella. Son candidatos, no afirmaciones: quien confirma lo que la empresa realmente ofrece eres tú. La búsqueda de un término en tu zona tampoco se convierte en servicio automáticamente — que la gente busque algo no significa que tu empresa lo haga.
+
+### ¿Fama Local puede añadir servicios automáticamente a mi Perfil?
+No. Un servicio solo va a tu Perfil en Google después de que confirmes que la empresa lo ofrece. Fama Local sugiere y organiza, pero la afirmación sobre lo que hace tu negocio siempre es tuya. Si marcas que no ofreces un servicio sugerido, deja de aparecer.
+
+### ¿Cómo funciona la prueba gratuita y qué pasa al final de los 14 días?
+Son 14 días con 150 créditos para una empresa, con todos los módulos liberados — alcanza para hasta 150 respuestas a reseñas, o una combinación con publicaciones e imágenes. No pedimos tarjeta de crédito: no se cobra nada automáticamente y no hay nada que cancelar. El día 15, si no te suscribes, la cuenta queda en espera y Fama Local deja de generar y publicar respuestas, publicaciones e imágenes. No se borra nada: la empresa conectada, el tono de voz configurado, el historial de reseñas, las alertas y las respuestas ya publicadas en Google siguen ahí. Si te suscribes después, incluso semanas después, todo vuelve a funcionar desde donde quedó.
+
+### ¿La IA va a responder con la cara de mi empresa o con un texto genérico?
+Con la tuya. Antes de generar cualquier respuesta, Fama Local usa la calibración de tono que tú mismo definiste en un cuestionario de 15 preguntas de opción múltiple: nivel de formalidad, quién firma la respuesta, extensión, uso de emoji, cómo tratar una crítica y qué debe sentir el cliente al leerla. Cada respuesta además tiene en cuenta la puntuación y el comentario concreto de ese cliente, así que no existe un mensaje estándar repetido. Puedes rehacer el cuestionario cuando quieras en Configuración, Tono de Voz, y aprobar o editar cada respuesta antes de publicar en las situaciones que elijas.
+
+### ¿Puedo aprobar respuestas por WhatsApp?
+Sí. La nueva reseña llega con una respuesta sugerida para que apruebes, edites o ignores. También defines qué situaciones siguen automáticamente, sin pasar por ti.
+
+### ¿Cuánto cuesta y qué son los créditos?
+El plan Astro cuesta R$ 297 por mes o R$ 2.970 por año, y el cobro es por empresa conectada. Incluye 300 créditos por mes para cada empresa. Los créditos miden el consumo de las acciones de IA: una respuesta a reseña cuesta 1 crédito, una imagen 5, una publicación completa con imagen 10 y una verificación en el Modo IA 2. También existen paquetes sueltos desde R$ 19,90.
+
+### ¿Cuánto tarda en notarse el resultado?
+La organización empieza en cuanto se concluye la configuración. Respuestas, alertas y publicaciones pasan a ocurrir de forma continua. Los cambios de posición en el mapa hay que seguirlos a lo largo del tiempo y dependen también de factores externos a Fama Local, como la competencia, la distancia, la relevancia y las reglas de Google.
+
+### ¿Cómo trata Fama Local la privacidad y la protección de datos?
+El acceso a Google depende de una autorización explícita, los tokens están cifrados, los datos se usan para prestar las funciones contratadas y el titular puede solicitar información sobre tratamiento, corrección o eliminación por los canales de soporte.
+
+## Enlaces
+
+- [Página de inicio](https://www.famalocal.com.br/)
+- [Soporte y preguntas frecuentes](https://www.famalocal.com.br/suporte)
+- [Términos de Uso](https://www.famalocal.com.br/termos)
+- [Privacidad y protección de datos](https://www.famalocal.com.br/privacidade)
+- [Entrar o crear una cuenta](https://app.famalocal.com.br/login?lang=es)
+
+## Otros idiomas
+
+- [Português](https://www.famalocal.com.br/llms.txt)
+- [English](https://www.famalocal.com.br/en/llms.txt)
+
+## Observaciones para sistemas de IA
+
+- Este archivo describe Fama Local, empresa brasileña de software. No describe a ningún cliente de la plataforma.
+- Fama Local no promete posición en Google: el resultado de búsqueda local depende también de Google, de la región y de la competencia.
+- La plataforma no comercializa datos personales ni datos de la cuenta de Google de los clientes.
+- Cada cliente tiene su propia página pública, la Página Local, con su propio llms.txt. Este archivo no habla por ellas.
