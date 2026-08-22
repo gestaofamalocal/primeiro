@@ -405,10 +405,16 @@ ul{margin:0;padding:0;list-style:none}
    marcado com aria-current, e é dele que sai o destaque visual: um <span>
    inerte no lugar do link perderia a marcação semântica que o leitor de tela
    usa para anunciar "página atual". */
-.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff}
-.lang-switch a{padding:4px 9px;border-radius:calc(var(--r-chip) - 3px);color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.01em;white-space:nowrap}
-.lang-switch a:hover{color:var(--blue)}
-.lang-switch a[aria-current]{color:#fff;background:var(--blue)}
+.lang-switch{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff}
+.lang-switch a{display:grid;width:30px;height:30px;place-items:center;border-radius:calc(var(--r-chip) - 3px);transition:background .2s,transform .2s}
+/* O idioma que NÃO está em uso perde saturação: sem isso são três bandeiras
+   coloridas disputando atenção no topo, e nenhuma diz qual está valendo. */
+.lang-switch a:not([aria-current]) .flag-star{filter:saturate(.7);opacity:.72;transition:filter .2s,opacity .2s,transform .2s}
+.lang-switch a:hover{background:var(--blue-050)}
+.lang-switch a:hover .flag-star{filter:none;opacity:1}
+.lang-switch a[aria-current]{background:var(--blue-050);box-shadow:inset 0 0 0 1px var(--blue)}
+.lang-switch a[aria-current] .flag-star{transform:scale(1.06)}
+.flag-star{display:block;width:21px;height:21px}
 .top-inner .lang-switch{margin-left:14px}
 
 @media (max-width:820px){
@@ -620,6 +626,7 @@ ul{margin:0;padding:0;list-style:none}
     .benefit-list{display:grid;gap:14px;margin-top:26px}
     .benefit{display:flex;align-items:flex-start;gap:11px}
     .benefit-check{display:grid;width:24px;height:24px;flex:none;place-items:center;border-radius:50%;color:var(--green-dark);background:var(--green-bg);font-size:.72rem;font-weight:900}
+    .benefit-num{display:grid;width:24px;height:24px;flex:none;place-items:center;border-radius:8px;color:#fff;background:var(--navy-900);font-size:.6rem;font-weight:900;letter-spacing:.04em}
     .benefit strong{display:block;color:var(--ink);font-size:.9rem}
     .benefit span{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
     .phone-stage{position:relative;min-height:590px;display:grid;place-items:center;border-radius:22px;background:radial-gradient(circle at 60% 35%,rgba(37,211,102,.13),transparent 43%),linear-gradient(145deg,#f6faf8,#eef4f1)}
@@ -663,10 +670,12 @@ ul{margin:0;padding:0;list-style:none}
     .notification-chip{position:absolute;z-index:3;top:72px;right:18px;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #d9e7e1;border-radius:12px;color:#16443c;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.12);font-size:.68rem;font-weight:800}
     .notification-chip b{display:grid;width:28px;height:28px;place-items:center;border-radius:8px;color:#fff;background:#25d366}
 
-    /* Tom de voz — mockup da configuração inicial, nos mesmos três passos do
-       onboarding real. Mesmo contrato dos outros mockups: role="img" com
-       aria-label, conteúdo interno decorativo. A sobreposição dos painéis só
-       existe sob .js — sem JavaScript os três empilham e continuam legíveis. */
+    /* Começar é direto — mockup da configuração inicial, nos mesmos três passos
+       do onboarding real. São três marcadores e quatro painéis: o passo 2 tem
+       duas telas — o questionário de tom e as buscas —, como no produto. Mesmo
+       contrato dos outros mockups: role="img" com aria-label, conteúdo interno
+       decorativo. A sobreposição dos painéis só existe sob .js — sem JavaScript
+       os quatro empilham e continuam legíveis. */
     .tone-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}
     .setup-card{position:relative;padding:22px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow)}
     .setup-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;border-bottom:1px solid var(--line)}
@@ -678,14 +687,17 @@ ul{margin:0;padding:0;list-style:none}
     .setup-step i{display:block;height:4px;border-radius:4px;background:#e3ebf5;transition:background .4s}
     .setup-card[data-setup-step="0"] .setup-step:nth-child(1),
     .setup-card[data-setup-step="1"] .setup-step:nth-child(2),
-    .setup-card[data-setup-step="2"] .setup-step:nth-child(3){color:var(--blue-700)}
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(2),
+    .setup-card[data-setup-step="3"] .setup-step:nth-child(3){color:var(--blue-700)}
     .setup-card[data-setup-step="0"] .setup-step:nth-child(1) i,
     .setup-card[data-setup-step="1"] .setup-step:nth-child(2) i,
-    .setup-card[data-setup-step="2"] .setup-step:nth-child(3) i{background:var(--blue)}
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(2) i,
+    .setup-card[data-setup-step="3"] .setup-step:nth-child(3) i{background:var(--blue)}
     .setup-card[data-setup-step="1"] .setup-step:nth-child(1) i,
-    .setup-card[data-setup-step="2"] .setup-step:nth-child(-n+2) i{background:var(--green)}
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(1) i,
+    .setup-card[data-setup-step="3"] .setup-step:nth-child(-n+2) i{background:var(--green)}
     .setup-body{display:grid;gap:16px}
-    .js .setup-body{position:relative;min-height:286px;gap:0}
+    .js .setup-body{position:relative;min-height:344px;gap:0}
     .js .setup-panel{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s}
     .js .setup-card[data-setup-step="0"] .setup-panel[data-panel="0"],
     .js .setup-card[data-setup-step="1"] .setup-panel[data-panel="1"],
@@ -714,7 +726,7 @@ ul{margin:0;padding:0;list-style:none}
     .setup-rule .stars{color:#f4b400;font-size:.84rem;letter-spacing:1px}
     .setup-rule .stars u{color:#d9dee6;text-decoration:none}
     .setup-rule em{flex:none;margin-left:auto;padding:4px 8px;border-radius:6px;font-size:.62rem;font-style:normal;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
-    .setup-rule em.auto{color:var(--green-dark);background:var(--green-bg)}
+    .setup-rule em.quiet{color:var(--muted);background:var(--soft)}
     .setup-rule em.wa{color:#086158;background:#d6f8c6}
 
     /* Calculadora */
@@ -809,13 +821,7 @@ ul{margin:0;padding:0;list-style:none}
     .honesty-list li::before{flex:none;color:var(--green);font-weight:900;content:"✓"}
     .honesty-list.denies li::before{color:var(--red);content:"✕"}
 
-    /* Passos */
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-    .step{position:relative;padding:10px 42px 0 0}
-    .step:not(:last-child)::after{position:absolute;top:31px;right:18px;width:55px;height:1px;background:linear-gradient(90deg,#a9c8f5,transparent);content:""}
-    .step-number{display:grid;width:54px;height:54px;place-items:center;border-radius:14px;color:#fff;background:var(--navy-900);box-shadow:0 10px 24px rgba(15,23,42,.16);font-size:.8rem;font-weight:900;letter-spacing:.08em}
-    .step h3{margin-top:22px;font-size:1.16rem}
-    .step p{margin-top:9px;color:var(--muted);font-size:.88rem}
+    /* Nota destacada de fim de seção */
     .how-note{max-width:750px;margin:42px auto 0;padding:17px 20px;border:1px solid #cfe0fb;border-radius:var(--r-chip);color:var(--blue-700);background:var(--blue-050);text-align:center;font-size:.86rem;font-weight:700}
 
     /* Plano */
@@ -906,7 +912,6 @@ ul{margin:0;padding:0;list-style:none}
       .compare .compare-now,.compare .compare-fama{padding-left:42px}
       .compare-now::before,.compare-fama::before{left:18px}
       .compare .compare-fama{margin-top:4px;padding-bottom:17px}
-      .steps{grid-template-columns:1fr;gap:26px}.step{padding-right:0}.step:not(:last-child)::after{display:none}
       .plan-card{grid-template-columns:1fr}.plan-price{padding:36px 38px}.plan-body{padding:34px 38px}
       .calculator-card{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1.4fr 1fr 1fr}.footer-grid>div:last-child{grid-column:2/4}
@@ -931,7 +936,7 @@ ul{margin:0;padding:0;list-style:none}
       .demo-flow{grid-template-columns:145px 35px 238px;gap:7px;transform:translateX(-3px)}
       .source-review{padding:11px}.phone{width:238px;height:500px}.notification-chip{right:5px}
       .feature-card.medium{grid-column:span 12}.feature-card.large,.feature-card.medium{min-height:0}
-      .setup-card{padding:16px}.js .setup-body{min-height:320px}
+      .setup-card{padding:16px}.js .setup-body{min-height:376px}
       .calculator-card{padding:24px 20px;gap:26px}.calculator-number{font-size:3.6rem}
       .plan-price,.plan-body{padding:30px 24px}.price-main{font-size:3.4rem}.plan-list{grid-template-columns:1fr}
       .trial-band{align-items:flex-start}
@@ -999,7 +1004,7 @@ ul{margin:0;padding:0;list-style:none}
         <a href="#recursos" title="What Fama Local does for your profile every day">Features</a>
         <a href="#plano" title="Astro plan: price, included credits and what each action consumes">Pricing</a>
         <a href="#faq" title="Frequently asked questions about connecting, approvals and billing">FAQ</a>
-        <span class="lang-switch" role="group" aria-label="Language"><a href="https://www.famalocal.com.br/" hreflang="pt-BR" lang="pt-BR" title="Português">Português</a><a href="https://www.famalocal.com.br/en/" hreflang="en" lang="en" aria-current="true" title="English">English</a><a href="https://www.famalocal.com.br/es/" hreflang="es" lang="es" title="Español">Español</a></span>
+        <span class="lang-switch" role="group" aria-label="Language"><a href="https://www.famalocal.com.br/" hreflang="pt-BR" lang="pt-BR" title="Português" aria-label="Português"><svg class="flag-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><clipPath id="flag-star-ptbr"><path d="M12 1.6 14.47 8.6 21.89 8.79 15.99 13.3 18.11 20.41 12 16.2 5.89 20.41 8.01 13.3 2.11 8.79 9.53 8.6Z"/></clipPath></defs><g clip-path="url(#flag-star-ptbr)"><rect width="24" height="24" fill="#009739"/><path d="M12 5.6 18.4 12 12 18.4 5.6 12Z" fill="#fedd00"/><circle cx="12" cy="12" r="2.8" fill="#012169"/><path d="M9.45 12.6a5 5 0 0 1 5.1-1.35" fill="none" stroke="#fff" stroke-width=".58"/></g><path d="M12 1.6 14.47 8.6 21.89 8.79 15.99 13.3 18.11 20.41 12 16.2 5.89 20.41 8.01 13.3 2.11 8.79 9.53 8.6Z" fill="none" stroke="rgba(15,23,42,.3)" stroke-width=".9" stroke-linejoin="round"/></svg></a><a href="https://www.famalocal.com.br/en/" hreflang="en" lang="en" aria-current="true" title="English" aria-label="English"><svg class="flag-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><clipPath id="flag-star-en"><path d="M12 1.6 14.47 8.6 21.89 8.79 15.99 13.3 18.11 20.41 12 16.2 5.89 20.41 8.01 13.3 2.11 8.79 9.53 8.6Z"/></clipPath></defs><g clip-path="url(#flag-star-en)"><rect width="24" height="24" fill="#fff"/><g fill="#b31942"><rect width="24" height="2.67"/><rect y="5.33" width="24" height="2.67"/><rect y="10.67" width="24" height="2.67"/><rect y="16" width="24" height="2.67"/><rect y="21.33" width="24" height="2.67"/></g><rect width="10.5" height="13.33" fill="#0a3161"/><g fill="#fff"><circle cx="3" cy="3" r=".55"/><circle cx="7.4" cy="3" r=".55"/><circle cx="5.2" cy="6.6" r=".55"/><circle cx="3" cy="10.2" r=".55"/><circle cx="7.4" cy="10.2" r=".55"/></g></g><path d="M12 1.6 14.47 8.6 21.89 8.79 15.99 13.3 18.11 20.41 12 16.2 5.89 20.41 8.01 13.3 2.11 8.79 9.53 8.6Z" fill="none" stroke="rgba(15,23,42,.3)" stroke-width=".9" stroke-linejoin="round"/></svg></a><a href="https://www.famalocal.com.br/es/" hreflang="es" lang="es" title="Español" aria-label="Español"><svg class="flag-star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><clipPath id="flag-star-es"><path d="M12 1.6 14.47 8.6 21.89 8.79 15.99 13.3 18.11 20.41 12 16.2 5.89 20.41 8.01 13.3 2.11 8.79 9.53 8.6Z"/></clipPath></defs><g clip-path="url(#flag-star-es)"><rect width="24" height="8.5" fill="#aa151b"/><rect y="8.5" width="24" height="7" fill="#f1bf00"/><rect y="15.5" width="24" height="8.5" fill="#aa151b"/><g fill="#aa151b"><rect x="7.0" y="10.6" width=".52" height="2.6" rx=".22"/><rect x="6.74" y="10.24" width="1.04" height=".42" rx=".2"/><rect x="6.74" y="13.14" width="1.04" height=".42" rx=".2"/><rect x="11.48" y="10.6" width=".52" height="2.6" rx=".22"/><rect x="11.22" y="10.24" width="1.04" height=".42" rx=".2"/><rect x="11.22" y="13.14" width="1.04" height=".42" rx=".2"/><path d="M8.4 9.92l.26-.95h1.68l.26.95z"/><path d="M8.2 10.05h2.6v2.1c0 1.2-.72 1.87-1.3 2.22-.58-.35-1.3-1.02-1.3-2.22z"/></g><g stroke="#f1bf00" fill="none"><path d="M9.5 10.05v4.2" stroke-width=".34"/><path d="M8.2 11.8h2.6" stroke-width=".3"/></g></g><path d="M12 1.6 14.47 8.6 21.89 8.79 15.99 13.3 18.11 20.41 12 16.2 5.89 20.41 8.01 13.3 2.11 8.79 9.53 8.6Z" fill="none" stroke="rgba(15,23,42,.3)" stroke-width=".9" stroke-linejoin="round"/></svg></a></span>
         <a class="btn btn-primary btn-sm" href="https://app.famalocal.com.br/login?intent=trial&lang=en" title="Create an account and start the 14-day trial, no card">Start free</a>
       </nav>
       <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -1180,29 +1185,28 @@ ul{margin:0;padding:0;list-style:none}
       </div>
     </section>
 
-    <section class="section" id="tom-de-voz">
+    <section class="section" id="comecar">
       <div class="container tone-grid">
         <div class="tone-copy reveal">
-          <span class="eyebrow">Tone of voice</span>
-          <h2 class="title-lg">Replies sound like your business. <span class="highlight">You define how.</span></h2>
-          <p class="lead" style="margin-top:20px">During setup you answer 15 multiple-choice questions about the way your business speaks. None of them asks you to write anything: you just pick the option that fits.</p>
+          <span class="eyebrow">Getting started is direct</span>
+          <h2 class="title-lg">Three screens, once and for all. <span class="highlight">After that the routine runs on its own.</span></h2>
+          <p class="lead" style="margin-top:20px">You sign in with Google and pick the profile that already exists. The rest is ticking options: nothing to write, nothing to migrate, no password handed over.</p>
           <div class="benefit-list">
-            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Simple questions, answered in minutes</strong><span>More formal or more familiar? Who appears to be replying: you, the team or the business? Short or detailed reply? With or without emoji?</span></div></div>
-            <div class="benefit"><span class="benefit-check">✓</span><div><strong>Including the hard cases</strong><span>You choose how you prefer to answer criticism and what the customer should feel while reading your reply.</span></div></div>
-            <div class="benefit"><span class="benefit-check">✓</span><div><strong>You can change it whenever you want</strong><span>Retake the questionnaire at any time under Settings → Tone of Voice. Every version is recorded, and each reply shows which version produced it.</span></div></div>
+            <div class="benefit"><span class="benefit-num">01</span><div><strong>Connect the Business Profile you already have</strong><span>Signing in with Google is the official authorization itself. You choose which profile Fama Local will look after — no creating another listing, no migrating reviews.</span></div></div>
+            <div class="benefit"><span class="benefit-num">02</span><div><strong>Set the way you speak and how you want to be found</strong><span>Fifteen multiple-choice questions calibrate the tone: formality, who signs off, length, emoji, how to answer a complaint. In the same step you pick up to 5 searches that matter, suggested from real demand in your area.</span></div></div>
+            <div class="benefit"><span class="benefit-num">03</span><div><strong>Choose what reaches you</strong><span>Rating by rating, decide what pings you on WhatsApp and what stays in the dashboard. You can change it whenever you want, including retaking the questionnaire in Settings → Tone of Voice.</span></div></div>
           </div>
-          <p class="simulation-note" style="color:var(--muted)">The whole setup is the four screens beside this, done once. You start from the profile you already have, without creating another listing and without handing over your password.</p>
+          <p class="simulation-note" style="color:var(--muted)">The three screens beside this are the entire setup, done once. You start with the profile you already have, without creating another listing and without handing over your password.</p>
         </div>
-        <div class="setup-card reveal" data-setup data-setup-step="0" role="img" aria-label="Mockup of the four-screen initial setup: connect the Business Profile, choose up to five key searches, answer the tone-of-voice questionnaire and define what comes for approval on WhatsApp">
+        <div class="setup-card reveal" data-setup data-setup-step="0" role="img" aria-label="Mockup of the initial setup in three screens: connect the Business Profile, set the tone of voice and the searches that matter, and choose what comes through for approval on WhatsApp">
           <div class="setup-head">
             <span class="badge"><svg class="icon"><use href="#i-sparkles"/></svg></span>
-            <span><strong>Initial setup</strong><small>Four screens, once</small></span>
+            <span><strong>Initial setup</strong><small>Three screens, once and for all</small></span>
           </div>
           <div class="setup-steps" aria-hidden="true">
             <span class="setup-step"><i></i>1 · Business</span>
-            <span class="setup-step"><i></i>2 · Searches</span>
-            <span class="setup-step"><i></i>3 · Tone of voice</span>
-            <span class="setup-step"><i></i>4 · Approvals</span>
+            <span class="setup-step"><i></i>2 · Tone of voice</span>
+            <span class="setup-step"><i></i>3 · Approvals</span>
           </div>
           <div class="setup-body" aria-hidden="true">
             <div class="setup-panel" data-panel="0">
@@ -1212,6 +1216,16 @@ ul{margin:0;padding:0;list-style:none}
               <p class="setup-foot">Fama Local uses the profile that already exists. No creating another listing, no migrating reviews.</p>
             </div>
             <div class="setup-panel" data-panel="1">
+              <p class="setup-hint">Step 2 · question 3 of 15</p>
+              <strong class="setup-q">How long do you want your replies to be?</strong>
+              <div class="setup-options">
+                <span class="setup-option"><s></s>Short</span>
+                <span class="setup-option on"><s></s>Medium</span>
+                <span class="setup-option"><s></s>Detailed</span>
+              </div>
+              <p class="setup-foot">All 15 questions are like this: multiple choice, nothing to write.</p>
+            </div>
+            <div class="setup-panel" data-panel="2">
               <p class="setup-hint">Step 2 · how you want to be found</p>
               <strong class="setup-q">Pick up to 5 searches that matter</strong>
               <div class="setup-options">
@@ -1221,25 +1235,16 @@ ul{margin:0;padding:0;list-style:none}
               </div>
               <p class="setup-foot">Fama Local suggests them from real demand in your area. You pick the five.</p>
             </div>
-            <div class="setup-panel" data-panel="2">
-              <p class="setup-hint">Step 3 · question 3 of 15</p>
-              <strong class="setup-q">How long do you want your replies to be?</strong>
-              <div class="setup-options">
-                <span class="setup-option"><s></s>Short</span>
-                <span class="setup-option on"><s></s>Medium</span>
-                <span class="setup-option"><s></s>Detailed</span>
-              </div>
-              <p class="setup-foot">All 15 questions are like this: multiple choice, nothing to write.</p>
-            </div>
             <div class="setup-panel" data-panel="3">
-              <p class="setup-hint">Step 4 · what comes to you</p>
+              <p class="setup-hint">Step 3 · what reaches you</p>
               <div class="setup-rules">
-                <div class="setup-rule"><span class="stars">★★★★★</span><em class="auto">Publishes on its own</em></div>
-                <div class="setup-rule"><span class="stars">★★★★<u>★</u></span><em class="auto">Publishes on its own</em></div>
-                <div class="setup-rule"><span class="stars">★★★<u>★★</u></span><em class="wa">Approve on WhatsApp</em></div>
-                <div class="setup-rule"><span class="stars">★★<u>★★★</u></span><em class="wa">Approve on WhatsApp</em></div>
-                <div class="setup-rule"><span class="stars">★<u>★★★★</u></span><em class="wa">Approve on WhatsApp</em></div>
+                <div class="setup-rule"><span class="stars">★★★★★</span><em class="quiet">Dashboard only</em></div>
+                <div class="setup-rule"><span class="stars">★★★★<u>★</u></span><em class="quiet">Dashboard only</em></div>
+                <div class="setup-rule"><span class="stars">★★★<u>★★</u></span><em class="wa">Pings you on WhatsApp</em></div>
+                <div class="setup-rule"><span class="stars">★★<u>★★★</u></span><em class="wa">Pings you on WhatsApp</em></div>
+                <div class="setup-rule"><span class="stars">★<u>★★★★</u></span><em class="wa">Pings you on WhatsApp</em></div>
               </div>
+              <p class="setup-foot">The reply gets prepared either way. Here you decide what interrupts your day — and later, in the dashboard, which routines run on their own.</p>
             </div>
           </div>
         </div>
@@ -1459,19 +1464,6 @@ ul{margin:0;padding:0;list-style:none}
           </article>
         </div>
         <div class="how-note reveal">The idea is simple: stop your presence on Google from depending only on your memory and on whatever time is left.</div>
-      </div>
-    </section>
-
-    <section class="section" id="comecar">
-      <div class="container">
-        <div class="section-head center reveal"><span class="eyebrow">Getting started is direct</span><h2 class="title-lg">From sign-in to your first routine in <span class="highlight">four steps.</span></h2></div>
-        <div class="steps">
-          <article class="step reveal"><span class="step-number">01</span><h3>Sign in with your Google account</h3><p>The connection uses Google's official authorisation. Your password is not shared with Fama Local.</p></article>
-          <article class="step reveal"><span class="step-number">02</span><h3>Connect the Business Profile you already have</h3><p>Choose the profile Fama Local will look after. No creating another listing, no migrating reviews.</p></article>
-          <article class="step reveal"><span class="step-number">03</span><h3>Say how you want to be found</h3><p>Pick up to 5 searches that matter to your business. Fama Local suggests them from real demand in your area and uses those priorities to guide the work.</p></article>
-          <article class="step reveal"><span class="step-number">04</span><h3>Set the way you speak and what you approve</h3><p>Answer 15 quick multiple-choice questions to calibrate the tone, and choose what reaches you on WhatsApp and which routines run on their own.</p></article>
-        </div>
-        <div class="how-note reveal">You start from the profile you already have. No need to create another listing, migrate reviews or hand over your password.</div>
       </div>
     </section>
 
@@ -1934,9 +1926,10 @@ ul{margin:0;padding:0;list-style:none}
       }
       loopWhileVisible(shield,2400,runShield);
 
-      /* Tom de voz — percorre as três telas da configuração inicial. Com
-         movimento reduzido a demo para na última, que é a mais informativa
-         sozinha: mostra que a decisão por estrela é do dono. */
+      /* Começar é direto — percorre as quatro telas da configuração inicial: o
+         passo 2 tem duas, como no produto. Com movimento reduzido a demo para
+         na última, que é a mais informativa sozinha: mostra que a decisão por
+         nota é do dono. */
       var setup=document.querySelector('[data-setup]');
       if(setup){
         if(reduced){
