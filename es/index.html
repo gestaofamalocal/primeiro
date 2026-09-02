@@ -103,7 +103,7 @@
         "@id": "https://www.famalocal.com.br/#software"
       },
       "inLanguage": "pt-BR",
-      "dateModified": "2026-08-22"
+      "dateModified": "2026-09-01"
     },
     {
       "@type": [
@@ -332,8 +332,18 @@
   --r-card:16px;
   --r-btn:12px;
   --r-chip:8px;
-  --shadow:0 18px 48px rgba(15,23,42,.10);
-  --shadow-soft:0 8px 24px rgba(15,23,42,.06);
+  /* Elevação AZULADA, não preta. Sombra neutra sobre fundo frio lê como
+     sujeira; a mesma sombra em azul-ardósia lê como profundidade. Três camadas
+     para a borda ficar nítida de perto e o halo continuar amplo de longe. */
+  --shadow:0 1px 2px rgba(71,103,136,.06),0 6px 16px rgba(71,103,136,.09),0 18px 48px rgba(71,103,136,.10);
+  --shadow-soft:0 1px 2px rgba(71,103,136,.05),0 8px 24px rgba(71,103,136,.07);
+  --shadow-lift:0 2px 4px rgba(71,103,136,.07),0 10px 24px rgba(71,103,136,.11),0 24px 60px rgba(71,103,136,.12);
+  /* Movimento — uma escala, três degraus. Antes as mesmas curvas viviam
+     repetidas literalmente em oito regras e já haviam divergido entre si. */
+  --dur-fast:.18s;
+  --dur:.32s;
+  --dur-slow:.7s;
+  --ease:cubic-bezier(.22,1,.36,1);
   --container:1180px;
   --font:'Inter',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -363,7 +373,7 @@ ul{margin:0;padding:0;list-style:none}
 .brand-on-dark .brand-mark img{filter:brightness(0) invert(1)}
 
 /* Botões */
-.btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border:1px solid transparent;border-radius:var(--r-btn);font-weight:800;line-height:1.15;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border:1px solid transparent;border-radius:var(--r-btn);font-weight:800;line-height:1.15;transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease)}
 .btn:hover{transform:translateY(-2px)}
 .btn svg{width:18px;height:18px}
 .btn-primary{color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-700));box-shadow:0 12px 26px rgba(26,115,232,.26)}
@@ -375,7 +385,7 @@ ul{margin:0;padding:0;list-style:none}
 /* Redes sociais — geometria compartilhada; a cor é definida por cada página,
    que tem rodapé escuro (index) ou claro (legais e suporte). */
 .footer-social{display:flex;gap:9px}
-.footer-social a{display:grid;place-items:center;border:1px solid;border-radius:10px;transition:color .2s ease,border-color .2s ease,background .2s ease}
+.footer-social a{display:grid;place-items:center;border:1px solid;border-radius:10px;transition:color var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease)}
 .footer-social .icon{width:17px;height:17px}
 
 /* Consentimento — Consent Mode v2, o GTM só carrega após aceite */
@@ -406,10 +416,10 @@ ul{margin:0;padding:0;list-style:none}
    inerte no lugar do link perderia a marcação semântica que o leitor de tela
    usa para anunciar "página atual". */
 .lang-switch{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff}
-.lang-switch a{display:grid;width:30px;height:30px;place-items:center;border-radius:calc(var(--r-chip) - 3px);transition:background .2s,transform .2s}
+.lang-switch a{display:grid;width:30px;height:30px;place-items:center;border-radius:calc(var(--r-chip) - 3px);transition:background var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
 /* O idioma que NÃO está em uso perde saturação: sem isso são três bandeiras
    coloridas disputando atenção no topo, e nenhuma diz qual está valendo. */
-.lang-switch a:not([aria-current]) .flag-star{filter:saturate(.7);opacity:.72;transition:filter .2s,opacity .2s,transform .2s}
+.lang-switch a:not([aria-current]) .flag-star{filter:saturate(.7);opacity:.72;transition:filter var(--dur-fast) var(--ease),opacity var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
 .lang-switch a:hover{background:var(--blue-050)}
 .lang-switch a:hover .flag-star{filter:none;opacity:1}
 .lang-switch a[aria-current]{background:var(--blue-050);box-shadow:inset 0 0 0 1px var(--blue)}
@@ -442,13 +452,37 @@ ul{margin:0;padding:0;list-style:none}
     .text-link{display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-size:.92rem;font-weight:800}
     .text-link svg{width:16px;height:16px}
     .text-link:hover{color:var(--blue-700)}
-    .reveal{transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal{transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
     .js .reveal{opacity:0;transform:translateY(20px)}
     .js .reveal.visible{opacity:1;transform:none}
+    /* Cadência dentro de uma grade. Sem escalonamento, quatro cartões sobem como
+       um bloco só e a grade lê como uma imagem única; com 70ms entre eles, lê
+       como uma lista sendo apresentada. O atraso vale só na ENTRADA — na saída
+       do hover ou num reflow ele atrasaria a resposta sem motivo. */
+    .js .reveal-stagger>*{opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+    .js .reveal-stagger.visible>*{opacity:1;transform:none}
+    .js .reveal-stagger.visible>:nth-child(2){transition-delay:70ms}
+    .js .reveal-stagger.visible>:nth-child(3){transition-delay:140ms}
+    .js .reveal-stagger.visible>:nth-child(4){transition-delay:210ms}
+    .js .reveal-stagger.visible>:nth-child(5){transition-delay:280ms}
+    .js .reveal-stagger.visible>:nth-child(6){transition-delay:350ms}
+    @media (prefers-reduced-motion:reduce){
+      .js .reveal-stagger>*{opacity:1;transform:none}
+      .js .reveal-stagger.visible>*{transition-delay:0s!important}
+    }
 
     /* Header */
-    .site-header{position:fixed;z-index:100;top:0;right:0;left:0;border-bottom:1px solid rgba(226,232,240,.9);background:rgba(255,255,255,.96);box-shadow:0 8px 30px rgba(15,23,42,.06)}
-    .nav{display:flex;height:76px;align-items:center;justify-content:space-between;gap:24px}
+    /* O cabeçalho condensa depois da primeira dobra: 76px é a altura de repouso,
+       que dá presença à marca; 64px é a altura de leitura, que devolve 12px de
+       conteúdo em telas curtas. A troca é dirigida por uma sentinela no topo, e
+       não pelo evento de scroll — ver o script. */
+    .site-header{position:fixed;z-index:100;top:0;right:0;left:0;border-bottom:1px solid rgba(226,232,240,.9);background:rgba(255,255,255,.96);box-shadow:0 8px 30px rgba(71,103,136,.07);transition:box-shadow var(--dur) var(--ease)}
+    .site-header.condensed{box-shadow:0 10px 34px rgba(71,103,136,.11)}
+    .nav{display:flex;height:76px;align-items:center;justify-content:space-between;gap:24px;transition:height var(--dur) var(--ease)}
+    .site-header.condensed .nav{height:64px}
+    .site-header.condensed .brand-mark{width:34px;height:34px}
+    .brand-mark{transition:width var(--dur) var(--ease),height var(--dur) var(--ease)}
+    @media (prefers-reduced-motion:reduce){.nav,.brand-mark,.site-header{transition:none}}
     .nav-links{display:flex;align-items:center;gap:26px;color:var(--text);font-size:.9rem;font-weight:700}
     .nav-links>a:not(.btn):hover,.nav-links>a:not(.btn).active{color:var(--blue)}
     @media (min-width:821px){.nav-links>a:not(.btn).active{box-shadow:0 2px 0 0 var(--blue)}}
@@ -501,8 +535,13 @@ ul{margin:0;padding:0;list-style:none}
     .map-kpi strong{display:block;margin-top:5px;color:#fff;font-size:1.14rem;letter-spacing:-.04em;text-shadow:0 1px 4px rgba(4,19,38,.4);line-height:1.2}
     .map-kpi strong.good{color:#6ee7b7}
     .visual-caption{max-width:46ch;margin:14px auto 0;color:#8ea4bd;text-align:center;font-size:.73rem;line-height:1.5}
-    .floating-health{position:absolute;z-index:30;right:-24px;top:112px;display:flex;width:176px;align-items:center;gap:12px;padding:12px;border:1px solid #d8e6fb;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 16px 40px rgba(15,23,42,.16)}
-    .health-ring{--health-score:72;position:relative;display:grid;width:50px;height:50px;flex:none;place-items:center;border-radius:50%;background:conic-gradient(var(--green) calc(var(--health-score) * 1%),#dbe4e1 0)}
+    .floating-health{position:absolute;z-index:30;right:-24px;top:112px;display:flex;width:176px;align-items:center;gap:12px;padding:12px;border:1px solid #d8e6fb;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 2px 4px rgba(71,103,136,.08),0 16px 40px rgba(71,103,136,.16)}
+    /* `--health-score` é @property com syntax "<number>", ou seja, INTERPOLÁVEL:
+       uma transição basta para o anel varrer 72→86→100 em vez de saltar entre
+       as medições. É o único número da página que muda sozinho — vê-lo andar é
+       o que faz o cartão parecer um painel vivo e não uma imagem. */
+    .health-ring{--health-score:72;position:relative;display:grid;width:50px;height:50px;flex:none;place-items:center;border-radius:50%;background:conic-gradient(var(--green) calc(var(--health-score) * 1%),#dbe4e1 0);transition:--health-score var(--dur-slow) var(--ease)}
+    @media (prefers-reduced-motion:reduce){.health-ring{transition:none}}
     .health-ring::after{position:absolute;width:37px;height:37px;border-radius:50%;background:#fff;content:""}
     .health-ring b{position:relative;z-index:1;color:var(--navy-900);font-size:.84rem}
     .floating-health small{display:block;color:var(--muted);font-size:.59rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
@@ -542,7 +581,7 @@ ul{margin:0;padding:0;list-style:none}
 
     /* Rotina */
     .direction-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:stretch}
-    .direction-card{display:flex;flex-direction:column;padding:26px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow-soft)}
+    .direction-card{display:flex;flex-direction:column;padding:26px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow-soft);transition:box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease)}
     .direction-card h3{margin-bottom:9px;font-size:1.02rem}
     .direction-card>p{color:var(--muted);font-size:.87rem;line-height:1.6}
     .direction-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:19px}
@@ -555,7 +594,7 @@ ul{margin:0;padding:0;list-style:none}
     .direction-item:not(.on) i{color:var(--muted)}
     .direction-note{margin-top:auto;padding-top:16px;color:var(--muted);font-size:.72rem;line-height:1.5}
     .routine-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .routine-card{position:relative;overflow:hidden;padding:28px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow-soft)}
+    .routine-card{position:relative;overflow:hidden;padding:28px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow-soft);transition:box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease)}
     .routine-card::before{position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--blue),#6d9fe6);content:""}
     .routine-card:nth-child(2)::before{background:linear-gradient(90deg,var(--green),#4ade80)}
     .routine-card:nth-child(3)::before{background:linear-gradient(90deg,var(--yellow),#ffe17b)}
@@ -583,7 +622,7 @@ ul{margin:0;padding:0;list-style:none}
     .big-map-card .geo-map{inset:18px 18px 110px}
     .big-map-card .map-kpis{bottom:14px}
     .map-progress{position:absolute;z-index:22;right:32px;top:32px;padding:7px 10px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#dbe7f5;background:rgba(4,19,38,.7);font-size:.62rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;backdrop-filter:blur(8px)}
-    .map-search{position:absolute;z-index:11;top:32px;left:32px;display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #dde6ec;border-radius:10px;color:var(--text);background:rgba(255,255,255,.93);font-size:.73rem;font-weight:700;box-shadow:0 8px 20px rgba(15,23,42,.12)}
+    .map-search{position:absolute;z-index:11;top:32px;left:32px;display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #dde6ec;border-radius:10px;color:var(--text);background:rgba(255,255,255,.93);font-size:.73rem;font-weight:700;box-shadow:0 8px 20px rgba(71,103,136,.13)}
     .map-search svg{width:14px;height:14px;color:var(--blue)}
 
     /* Blindagem */
@@ -632,7 +671,7 @@ ul{margin:0;padding:0;list-style:none}
     .phone-stage{position:relative;min-height:590px;display:grid;place-items:center;border-radius:22px;background:radial-gradient(circle at 60% 35%,rgba(37,211,102,.13),transparent 43%),linear-gradient(145deg,#f6faf8,#eef4f1)}
     .phone-stage::before{position:absolute;width:390px;height:390px;border:1px solid rgba(18,140,126,.13);border-radius:50%;box-shadow:0 0 0 58px rgba(18,140,126,.035),0 0 0 116px rgba(18,140,126,.025);content:""}
     .demo-flow{position:relative;z-index:2;display:grid;grid-template-columns:176px 54px 276px;align-items:center;gap:12px}
-    .source-review{padding:16px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff;box-shadow:0 16px 38px rgba(15,23,42,.12)}
+    .source-review{padding:16px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff;box-shadow:0 2px 4px rgba(71,103,136,.07),0 16px 38px rgba(71,103,136,.13)}
     .source-head{display:flex;align-items:center;gap:9px}
     .source-avatar{display:grid;width:31px;height:31px;place-items:center;border-radius:50%;color:var(--text);background:#e2e8f0;font-size:.7rem;font-weight:900}
     .source-head strong{font-size:.76rem}
@@ -667,7 +706,7 @@ ul{margin:0;padding:0;list-style:none}
     .wa-input{position:absolute;right:0;bottom:0;left:0;display:flex;height:45px;align-items:center;gap:6px;padding:6px;background:#efebe7}
     .wa-input span{flex:1;padding:7px 10px;border-radius:99px;color:#9ba3a1;background:#fff;font-size:.58rem}
     .wa-input i{display:grid;width:29px;height:29px;place-items:center;border-radius:50%;color:#fff;background:#087a70;font-style:normal;font-size:.7rem}
-    .notification-chip{position:absolute;z-index:3;top:72px;right:18px;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #d9e7e1;border-radius:12px;color:#16443c;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.12);font-size:.68rem;font-weight:800}
+    .notification-chip{position:absolute;z-index:3;top:72px;right:18px;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #d9e7e1;border-radius:12px;color:#16443c;background:#fff;box-shadow:0 2px 4px rgba(71,103,136,.07),0 14px 32px rgba(71,103,136,.13);font-size:.68rem;font-weight:800}
     .notification-chip b{display:grid;width:28px;height:28px;place-items:center;border-radius:8px;color:#fff;background:#25d366}
 
     /* Começar é direto — mockup da configuração inicial, nos mesmos três passos
@@ -747,8 +786,12 @@ ul{margin:0;padding:0;list-style:none}
 
     /* Bento */
     .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:17px}
-    .feature-card{position:relative;overflow:hidden;padding:26px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:0 10px 28px rgba(15,23,42,.05)}
+    .feature-card{position:relative;overflow:hidden;padding:26px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow-soft);transition:box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease)}
     .feature-card.large{grid-column:span 6;min-height:228px}
+    /* Hover CONTIDO: 2px e troca de sombra, nunca escala. A referência resolve
+       profundidade por elevação, e um cartão que cresce sob o cursor empurra o
+       texto vizinho — movimento que custa leitura e não informa nada. */
+    @media (hover:hover){.feature-card:hover,.routine-card:hover,.direction-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}}
     .feature-card.medium{grid-column:span 4;min-height:206px}
     .feature-card::after{position:absolute;right:-40px;bottom:-55px;width:145px;height:145px;border-radius:50%;background:radial-gradient(circle,rgba(26,115,232,.08),transparent 68%);content:""}
     .feature-icon{display:grid;width:44px;height:44px;place-items:center;border-radius:12px;color:var(--blue);background:var(--blue-050)}
@@ -991,6 +1034,10 @@ ul{margin:0;padding:0;list-style:none}
     </symbol>
   </svg>
 
+  <!-- Sentinela do cabeçalho: enquanto ela estiver visível, estamos no topo.
+       Um IntersectionObserver sobre um elemento de 1px não custa nada; um
+       listener de scroll custaria uma leitura geométrica a cada quadro. -->
+  <div id="headerSentinel" aria-hidden="true" style="position:absolute;top:0;left:0;width:1px;height:1px"></div>
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a class="brand" href="#inicio" title="Fama Local — volver al inicio de la página" aria-label="Fama Local, inicio">
@@ -1069,7 +1116,7 @@ ul{margin:0;padding:0;list-style:none}
     </section>
 
     <div class="proof-strip" role="group" aria-label="Diferenciales del producto">
-      <div class="container proof-inner">
+      <div class="container proof-inner reveal reveal-stagger">
         <div class="proof-item"><span class="proof-icon"><svg class="icon"><use href="#i-shield"/></svg></span>Blindaje de la ficha</div>
         <div class="proof-item"><span class="proof-icon"><svg class="icon"><use href="#i-message"/></svg></span>Aprobación por WhatsApp</div>
         <div class="proof-item"><span class="proof-icon"><svg class="icon"><use href="#i-map"/></svg></span>Dónde apareces en el mapa</div>
@@ -1177,10 +1224,10 @@ ul{margin:0;padding:0;list-style:none}
           <h2 class="title-lg">Ya te ocupas de muchas cosas. <span class="highlight">Deja Google en manos de Fama Local.</span></h2>
           <p class="lead" style="margin-top:18px">Fama Local sigue lo que cambia, prepara lo que hay que hacer y te lleva las decisiones rápidas.</p>
         </div>
-        <div class="routine-grid">
-          <article class="routine-card reveal"><span class="routine-number">01</span><h3>Fama Local está atenta</h3><p>Nuevas reseñas, cambios importantes, pendientes y tu presencia en el mapa quedan organizados en un solo lugar.</p><ul><li>Reseñas y reputación</li><li>Cambios en el perfil</li><li>Presencia en Google Maps</li></ul></article>
-          <article class="routine-card reveal"><span class="routine-number">02</span><h3>Fama Local prepara</h3><p>Respuestas, contenidos y próximas acciones llegan listos según tu negocio y la forma en que tu empresa se comunica.</p><ul><li>Respuestas personalizadas</li><li>Contenido para el perfil</li><li>Prioridades claras</li></ul></article>
-          <article class="routine-card reveal"><span class="routine-number">03</span><h3>Tú decides por WhatsApp</h3><p>Aprueba, edita, ignora o deja rutinas concretas en automático. Mantienes el control sin abrir otro panel a cada rato.</p><ul><li>Aprobación con un toque</li><li>Reglas por tipo de acción</li><li>Historial de lo que se hizo</li></ul></article>
+        <div class="routine-grid reveal reveal-stagger">
+          <article class="routine-card"><span class="routine-number">01</span><h3>Fama Local está atenta</h3><p>Nuevas reseñas, cambios importantes, pendientes y tu presencia en el mapa quedan organizados en un solo lugar.</p><ul><li>Reseñas y reputación</li><li>Cambios en el perfil</li><li>Presencia en Google Maps</li></ul></article>
+          <article class="routine-card"><span class="routine-number">02</span><h3>Fama Local prepara</h3><p>Respuestas, contenidos y próximas acciones llegan listos según tu negocio y la forma en que tu empresa se comunica.</p><ul><li>Respuestas personalizadas</li><li>Contenido para el perfil</li><li>Prioridades claras</li></ul></article>
+          <article class="routine-card"><span class="routine-number">03</span><h3>Tú decides por WhatsApp</h3><p>Aprueba, edita, ignora o deja rutinas concretas en automático. Mantienes el control sin abrir otro panel a cada rato.</p><ul><li>Aprobación con un toque</li><li>Reglas por tipo de acción</li><li>Historial de lo que se hizo</li></ul></article>
         </div>
       </div>
     </section>
@@ -1258,8 +1305,8 @@ ul{margin:0;padding:0;list-style:none}
           <h2 class="title-lg">No es contenido aleatorio. Primero, Fama Local entiende <span class="highlight">lo que importa para tu empresa.</span></h2>
           <p class="lead" style="margin-top:18px">No necesitas saber SEO. En pocos clics defines cómo quieres que te encuentren y confirmas lo que tu empresa realmente ofrece. Eso es lo que orienta contenidos, descripciones y prioridades — sin inventar servicios ni repetir palabras de forma artificial.</p>
         </div>
-        <div class="direction-grid">
-          <article class="direction-card reveal">
+        <div class="direction-grid reveal reveal-stagger">
+          <article class="direction-card">
             <h3>¿Cómo quieres que te encuentren?</h3>
             <p>Elige hasta 5 búsquedas importantes para tu negocio. Fama Local sugiere a partir de la demanda real de tu zona.</p>
             <div class="direction-chips" role="img" aria-label="Ejemplo de cinco búsquedas elegidas por una clínica dental: dentista, implante dental, blanqueamiento dental, prótesis dental y tratamiento de conducto">
@@ -1271,7 +1318,7 @@ ul{margin:0;padding:0;list-style:none}
             </div>
             <p class="direction-note">Estas prioridades orientan el trabajo. No son una promesa de posición en Google.</p>
           </article>
-          <article class="direction-card reveal">
+          <article class="direction-card">
             <h3>¿Qué ofrece tu empresa?</h3>
             <p>A partir de la categoría de tu negocio, Fama Local muestra lo que ya está en tu Perfil y lo que puedes confirmar con un clic.</p>
             <p class="direction-label">Ya en tu Perfil</p>
@@ -1718,6 +1765,19 @@ ul{margin:0;padding:0;list-style:none}
         menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');
       })});
 
+      /* Cabeçalho condensado. Fica FORA do deferEnhancements: quem já chega com
+         a página rolada (link com âncora, restauração de posição) veria o
+         cabeçalho alto por um segundo e depois encolhendo sozinho. */
+      var headerSentinel=document.getElementById('headerSentinel');
+      var siteHeader=document.getElementById('siteHeader');
+      if(headerSentinel&&siteHeader&&'IntersectionObserver' in window){
+        new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            siteHeader.classList.toggle('condensed',!entry.isIntersecting);
+          });
+        },{threshold:0}).observe(headerSentinel);
+      }
+
       // As demos abaixo da primeira dobra não devem competir com o LCP.
       function deferEnhancements(task){
         function schedule(){
@@ -1792,12 +1852,38 @@ ul{margin:0;padding:0;list-style:none}
         }else start();
       }
 
-      /* GeoGrid */
+      /* GeoGrid — os KPIs viram NÚMERO para poderem ser interpolados; a
+         formatação (que era o valor literal) passou para as funções abaixo. */
       var frames=[
-        {positions:[12,9,14,6,1,11,13,10,15],average:'#10,1',share:'11%',health:72,status:'En evolución'},
-        {positions:[7,5,9,3,1,7,6,8,10],average:'#6,2',share:'33%',health:86,status:'Perfil saludable'},
-        {positions:[3,2,3,1,1,2,2,3,1],average:'#2,0',share:'100%',health:100,status:'Perfil destacado'}
+        {positions:[12,9,14,6,1,11,13,10,15],average:10.1,share:11,health:72,status:'En evolución'},
+        {positions:[7,5,9,3,1,7,6,8,10],average:6.2,share:33,health:86,status:'Perfil saludable'},
+        {positions:[3,2,3,1,1,2,2,3,1],average:2.0,share:100,health:100,status:'Perfil destacado'}
       ];
+      function formatAverage(v){return '#'+v.toFixed(1).replace('.',',')}
+      function formatShare(v){return Math.round(v)+'%'}
+
+      /* Interpola o texto de um KPI entre o valor atual e o próximo.
+         Guarda o valor corrente NO ELEMENTO (`_kpi`) em vez de num fechamento:
+         cada mapa da página tem os seus, e um estado compartilhado faria o mapa
+         de baixo contar a partir do número que o de cima estava mostrando. */
+      function tweenNumber(el,to,format){
+        var from=typeof el._kpi==='number'?el._kpi:to;
+        el._kpi=to;
+        if(reduced||from===to||!('requestAnimationFrame' in window)){el.textContent=format(to);return}
+        if(el._kpiRaf)window.cancelAnimationFrame(el._kpiRaf);
+        var startedAt=null;
+        var duration=600;
+        function step(now){
+          if(startedAt===null)startedAt=now;
+          var p=Math.min(1,(now-startedAt)/duration);
+          var eased=1-Math.pow(1-p,3);
+          el.textContent=format(from+(to-from)*eased);
+          if(p<1)el._kpiRaf=window.requestAnimationFrame(step);
+          else el._kpiRaf=0;
+        }
+        el._kpiRaf=window.requestAnimationFrame(step);
+      }
+
       function colorFor(value){
         return value<=3?{solid:'#22c55e',halo:'rgba(34,197,94,.55)'}
              :value<=10?{solid:'#eab308',halo:'rgba(234,179,8,.55)'}
@@ -1831,8 +1917,11 @@ ul{margin:0;padding:0;list-style:none}
             }
             if(heats[i])heats[i].style.background='radial-gradient(circle,'+palette.halo+' 0%,'+palette.halo+' 22%,transparent 72%)';
           });
-          if(avg)avg.textContent=frame.average;
-          if(share)share.textContent=frame.share;
+          /* Os KPIs sobem contando. Trocar "#10,1" por "#6,2" secamente lê como
+             erro de renderização; ver o número percorrer o caminho é o que faz
+             a medição parecer uma medição. Formatação idêntica à de antes. */
+          if(avg)tweenNumber(avg,frame.average,formatAverage);
+          if(share)tweenNumber(share,frame.share,formatShare);
           if(progress)progress.textContent='Medición '+String(index+1)+' de '+String(frames.length);
           dots.forEach(function(dot,i){dot.classList.toggle('active',i===index)});
           /* O selo de saúde é do bloco do topo — só a instância dele o atualiza. */
