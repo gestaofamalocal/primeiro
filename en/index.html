@@ -103,7 +103,7 @@
         "@id": "https://www.famalocal.com.br/#software"
       },
       "inLanguage": "pt-BR",
-      "dateModified": "2026-09-01"
+      "dateModified": "2026-09-02"
     },
     {
       "@type": [
@@ -709,39 +709,44 @@ ul{margin:0;padding:0;list-style:none}
     .notification-chip{position:absolute;z-index:3;top:72px;right:18px;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #d9e7e1;border-radius:12px;color:#16443c;background:#fff;box-shadow:0 2px 4px rgba(71,103,136,.07),0 14px 32px rgba(71,103,136,.13);font-size:.68rem;font-weight:800}
     .notification-chip b{display:grid;width:28px;height:28px;place-items:center;border-radius:8px;color:#fff;background:#25d366}
 
-    /* Começar é direto — mockup da configuração inicial, nos mesmos três passos
-       do onboarding real. São três marcadores e quatro painéis: o passo 2 tem
-       duas telas — o questionário de tom e as buscas —, como no produto. Mesmo
-       contrato dos outros mockups: role="img" com aria-label, conteúdo interno
-       decorativo. A sobreposição dos painéis só existe sob .js — sem JavaScript
-       os quatro empilham e continuam legíveis. */
+    /* Começar é direto — mockup da ativação real. São quatro marcadores e cinco
+       painéis: o passo 4 tem duas telas — os alertas por nota e a agenda —,
+       como no produto. O painel de buscas saiu daqui: a seção "direção", logo
+       abaixo, já dedica um cartão inteiro ao mesmo assunto, com os mesmos
+       chips. Mesmo contrato dos outros mockups: role="img" com aria-label,
+       conteúdo interno decorativo. A sobreposição dos painéis só existe sob
+       .js — sem JavaScript os cinco empilham e continuam legíveis. */
     .tone-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}
     .setup-card{position:relative;padding:22px;border:1px solid var(--line);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow)}
     .setup-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;border-bottom:1px solid var(--line)}
     .setup-head .badge{display:grid;width:38px;height:38px;flex:none;place-items:center;border-radius:10px;color:var(--blue);background:var(--blue-050)}
     .setup-head strong{display:block;color:var(--ink);font-size:.92rem}
     .setup-head small{display:block;color:var(--muted);font-size:.74rem}
-    .setup-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 18px}
+    .setup-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:16px 0 18px}
     .setup-step{display:grid;gap:7px;color:var(--muted);font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.25;transition:color .4s}
     .setup-step i{display:block;height:4px;border-radius:4px;background:#e3ebf5;transition:background .4s}
     .setup-card[data-setup-step="0"] .setup-step:nth-child(1),
     .setup-card[data-setup-step="1"] .setup-step:nth-child(2),
-    .setup-card[data-setup-step="2"] .setup-step:nth-child(2),
-    .setup-card[data-setup-step="3"] .setup-step:nth-child(3){color:var(--blue-700)}
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(3),
+    .setup-card[data-setup-step="3"] .setup-step:nth-child(4),
+    .setup-card[data-setup-step="4"] .setup-step:nth-child(4){color:var(--blue-700)}
     .setup-card[data-setup-step="0"] .setup-step:nth-child(1) i,
     .setup-card[data-setup-step="1"] .setup-step:nth-child(2) i,
-    .setup-card[data-setup-step="2"] .setup-step:nth-child(2) i,
-    .setup-card[data-setup-step="3"] .setup-step:nth-child(3) i{background:var(--blue)}
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(3) i,
+    .setup-card[data-setup-step="3"] .setup-step:nth-child(4) i,
+    .setup-card[data-setup-step="4"] .setup-step:nth-child(4) i{background:var(--blue)}
     .setup-card[data-setup-step="1"] .setup-step:nth-child(1) i,
-    .setup-card[data-setup-step="2"] .setup-step:nth-child(1) i,
-    .setup-card[data-setup-step="3"] .setup-step:nth-child(-n+2) i{background:var(--green)}
+    .setup-card[data-setup-step="2"] .setup-step:nth-child(-n+2) i,
+    .setup-card[data-setup-step="3"] .setup-step:nth-child(-n+3) i,
+    .setup-card[data-setup-step="4"] .setup-step:nth-child(-n+3) i{background:var(--green)}
     .setup-body{display:grid;gap:16px}
     .js .setup-body{position:relative;min-height:344px;gap:0}
     .js .setup-panel{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s}
     .js .setup-card[data-setup-step="0"] .setup-panel[data-panel="0"],
     .js .setup-card[data-setup-step="1"] .setup-panel[data-panel="1"],
     .js .setup-card[data-setup-step="2"] .setup-panel[data-panel="2"],
-    .js .setup-card[data-setup-step="3"] .setup-panel[data-panel="3"]{opacity:1;transform:none}
+    .js .setup-card[data-setup-step="3"] .setup-panel[data-panel="3"],
+    .js .setup-card[data-setup-step="4"] .setup-panel[data-panel="4"]{opacity:1;transform:none}
     .setup-hint{margin-bottom:12px;color:var(--muted);font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
     .setup-row{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--line);border-radius:var(--r-chip);background:var(--soft)}
     .setup-row+.setup-row{margin-top:8px}
@@ -760,6 +765,14 @@ ul{margin:0;padding:0;list-style:none}
     .setup-option.on{border-color:#bcd5fa;background:var(--blue-050);color:var(--blue-700)}
     .setup-option.on s{border-color:var(--blue);background:radial-gradient(circle,var(--blue) 0 42%,#fff 46%)}
     .setup-foot{margin-top:13px;color:var(--muted);font-size:.72rem;line-height:1.5}
+    .setup-text{margin-bottom:11px;padding:11px 13px;border:1px solid var(--line);border-radius:var(--r-chip);background:var(--soft);color:var(--text);font-size:.76rem;line-height:1.55}
+    .setup-ai{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid #bcd5fa;border-radius:var(--r-chip);background:var(--blue-050);color:var(--blue-700);font-size:.71rem;font-weight:800}
+    .setup-ai svg{width:13px;height:13px}
+    .setup-ai+.setup-row{margin-top:12px}
+    .setup-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .setup-day{padding:9px 0;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff;color:var(--muted);font-size:.67rem;font-weight:800;text-align:center;text-transform:uppercase}
+    .setup-day.on{border-color:#bcd5fa;background:var(--blue-050);color:var(--blue-700)}
+    .setup-days+.setup-row{margin-top:11px}
     .setup-rules{display:grid;gap:7px}
     .setup-rule{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-chip);background:#fff}
     .setup-rule .stars{color:#f4b400;font-size:.84rem;letter-spacing:1px}
@@ -1236,24 +1249,26 @@ ul{margin:0;padding:0;list-style:none}
       <div class="container tone-grid">
         <div class="tone-copy reveal">
           <span class="eyebrow">Getting started is direct</span>
-          <h2 class="title-lg">Three screens, once and for all. <span class="highlight">After that the routine runs on its own.</span></h2>
-          <p class="lead" style="margin-top:20px">You sign in with Google and pick the profile that already exists. The rest is ticking options: nothing to write, nothing to migrate, no password handed over.</p>
+          <h2 class="title-lg">Once, at the start. <span class="highlight">After that the routine runs on its own.</span></h2>
+          <p class="lead" style="margin-top:20px">You sign in with Google and pick the profile you already have. From there it is a guided setup where almost everything is choosing an option: nothing to migrate, no password handed over. You can stop halfway and pick up where you left off.</p>
           <div class="benefit-list">
             <div class="benefit"><span class="benefit-num">01</span><div><strong>Connect the Business Profile you already have</strong><span>Signing in with Google is the official authorization itself. You choose which profile Fama Local will look after — no creating another listing, no migrating reviews.</span></div></div>
             <div class="benefit"><span class="benefit-num">02</span><div><strong>Set the way you speak and how you want to be found</strong><span>Fifteen multiple-choice questions calibrate the tone: formality, who signs off, length, emoji, how to answer a complaint. In the same step you pick up to 5 searches that matter, suggested from real demand in your area.</span></div></div>
-            <div class="benefit"><span class="benefit-num">03</span><div><strong>Choose what reaches you</strong><span>Rating by rating, decide what pings you on WhatsApp and what stays in the dashboard. You can change it whenever you want, including retaking the questionnaire in Settings → Tone of Voice.</span></div></div>
+            <div class="benefit"><span class="benefit-num">03</span><div><strong>Fill in what Google reads about you</strong><span>Your business description comes back ready to review, written from what you have just answered. Next to it sit the attributes for your industry — accepts cards, wheelchair accessible — the points Google uses to decide when to show your business.</span></div></div>
+            <div class="benefit"><span class="benefit-num">04</span><div><strong>Choose what reaches you, and when the routine runs</strong><span>Star by star, choose what pings your WhatsApp and what stays in the panel only. In the same step you pick the automatic posting days and the photo reminder day. You can change it whenever you like, including retaking the questionnaire in Settings → Tone of Voice.</span></div></div>
           </div>
-          <p class="simulation-note" style="color:var(--muted)">The three screens beside this are the entire setup, done once. You start with the profile you already have, without creating another listing and without handing over your password.</p>
+          <p class="simulation-note" style="color:var(--muted)">The screens beside this are the setup, done once. You start with the profile you already have, without creating another listing and without handing over your password.</p>
         </div>
-        <div class="setup-card reveal" data-setup data-setup-step="0" role="img" aria-label="Mockup of the initial setup in three screens: connect the Business Profile, set the tone of voice and the searches that matter, and choose what comes through for approval on WhatsApp">
+        <div class="setup-card reveal" data-setup data-setup-step="0" role="img" aria-label="Mockup of the initial setup in four steps: connect your Business Profile, set the tone of voice, complete the profile description and attributes, and choose what comes through for WhatsApp approval and which days the routine posts">
           <div class="setup-head">
             <span class="badge"><svg class="icon"><use href="#i-sparkles"/></svg></span>
-            <span><strong>Initial setup</strong><small>Three screens, once and for all</small></span>
+            <span><strong>Initial setup</strong><small>Once, at the start</small></span>
           </div>
           <div class="setup-steps" aria-hidden="true">
             <span class="setup-step"><i></i>1 · Business</span>
             <span class="setup-step"><i></i>2 · Tone of voice</span>
-            <span class="setup-step"><i></i>3 · Approvals</span>
+            <span class="setup-step"><i></i>3 · Profile</span>
+            <span class="setup-step"><i></i>4 · Routine</span>
           </div>
           <div class="setup-body" aria-hidden="true">
             <div class="setup-panel" data-panel="0">
@@ -1273,17 +1288,15 @@ ul{margin:0;padding:0;list-style:none}
               <p class="setup-foot">All 15 questions are like this: multiple choice, nothing to write.</p>
             </div>
             <div class="setup-panel" data-panel="2">
-              <p class="setup-hint">Step 2 · how you want to be found</p>
-              <strong class="setup-q">Pick up to 5 searches that matter</strong>
-              <div class="setup-options">
-                <span class="setup-option on"><s></s>dentist</span>
-                <span class="setup-option on"><s></s>dental implant</span>
-                <span class="setup-option"><s></s>teeth whitening</span>
-              </div>
-              <p class="setup-foot">Fama Local suggests them from real demand in your area. You pick the five.</p>
+              <p class="setup-hint">Step 3 · profile details</p>
+              <strong class="setup-q">Business description</strong>
+              <p class="setup-text">Dental clinic on Av. Paulista, offering implants, whitening and prosthetics. Same-day appointments and on-site parking.</p>
+              <span class="setup-ai"><svg class="icon"><use href="#i-sparkles"/></svg> Improve with AI</span>
+              <div class="setup-row"><span class="mark store"><svg class="icon"><use href="#i-store"/></svg></span><span><strong>Attributes for your industry</strong><small>Accepts cards, wheelchair accessible, Wi-Fi</small></span><span class="done"><svg class="icon"><use href="#i-check"/></svg> 18 of 24</span></div>
+              <p class="setup-foot">This is what Google reads to decide when to show your business — and the item that weighs most on profile health.</p>
             </div>
             <div class="setup-panel" data-panel="3">
-              <p class="setup-hint">Step 3 · what reaches you</p>
+              <p class="setup-hint">Step 4 · what reaches you</p>
               <div class="setup-rules">
                 <div class="setup-rule"><span class="stars">★★★★★</span><em class="quiet">Dashboard only</em></div>
                 <div class="setup-rule"><span class="stars">★★★★<u>★</u></span><em class="quiet">Dashboard only</em></div>
@@ -1291,7 +1304,22 @@ ul{margin:0;padding:0;list-style:none}
                 <div class="setup-rule"><span class="stars">★★<u>★★★</u></span><em class="wa">Pings you on WhatsApp</em></div>
                 <div class="setup-rule"><span class="stars">★<u>★★★★</u></span><em class="wa">Pings you on WhatsApp</em></div>
               </div>
-              <p class="setup-foot">The reply gets prepared either way. Here you decide what interrupts your day — and later, in the dashboard, which routines run on their own.</p>
+              <p class="setup-foot">The reply is prepared either way. Here you decide what interrupts your day.</p>
+            </div>
+            <div class="setup-panel" data-panel="4">
+              <p class="setup-hint">Step 4 · when the routine runs</p>
+              <strong class="setup-q">Which days should we post to your profile?</strong>
+              <div class="setup-days">
+                <span class="setup-day">sun</span>
+                <span class="setup-day">mon</span>
+                <span class="setup-day on">tue</span>
+                <span class="setup-day">wed</span>
+                <span class="setup-day on">thu</span>
+                <span class="setup-day">fri</span>
+                <span class="setup-day">sat</span>
+              </div>
+              <div class="setup-row"><span class="mark store"><svg class="icon"><use href="#i-calendar"/></svg></span><span><strong>Photo reminder</strong><small>On the 15th of every month, on WhatsApp</small></span><span class="done"><svg class="icon"><use href="#i-check"/></svg> On</span></div>
+              <p class="setup-foot">You leave here with the schedule set. That is why the routine keeps going without you having to open the panel.</p>
             </div>
           </div>
         </div>
@@ -1320,7 +1348,7 @@ ul{margin:0;padding:0;list-style:none}
           </article>
           <article class="direction-card">
             <h3>What does your business offer?</h3>
-            <p>Based on your business category, Fama Local shows what is already on your profile and what you can confirm with one click.</p>
+            <p>Based on your business category, Fama Local shows what is already on your Profile and what you can confirm with one click. When Google does not offer services for your category, this step simply does not appear.</p>
             <p class="direction-label">Already on your profile</p>
             <div class="direction-items">
               <span class="direction-item on"><i>✓</i>Teeth whitening</span>
@@ -2015,18 +2043,18 @@ ul{margin:0;padding:0;list-style:none}
       }
       loopWhileVisible(shield,2400,runShield);
 
-      /* Começar é direto — percorre as quatro telas da configuração inicial: o
-         passo 2 tem duas, como no produto. Com movimento reduzido a demo para
-         na última, que é a mais informativa sozinha: mostra que a decisão por
-         nota é do dono. */
+      /* Começar é direto — percorre as cinco telas da ativação: o passo 4 tem
+         duas, como no produto. Com movimento reduzido a demo para na agenda,
+         que é a mais informativa sozinha: é ela que sustenta a promessa de que
+         a rotina segue sem o dono abrir o painel. */
       var setup=document.querySelector('[data-setup]');
       if(setup){
         if(reduced){
-          setup.setAttribute('data-setup-step','3');
+          setup.setAttribute('data-setup-step','4');
         }else{
           var setupStep=0;
           loopWhileVisible(setup,3000,
-            function(){setupStep=(setupStep+1)%4;setup.setAttribute('data-setup-step',String(setupStep))},
+            function(){setupStep=(setupStep+1)%5;setup.setAttribute('data-setup-step',String(setupStep))},
             function(){setupStep=0;setup.setAttribute('data-setup-step','0')}
           );
         }
