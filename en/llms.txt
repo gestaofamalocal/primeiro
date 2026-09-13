@@ -61,7 +61,7 @@ Like yours. Before generating any reply, Fama Local uses the tone calibration yo
 Yes. The new review arrives with a suggested reply for you to approve, edit or ignore. You also define which situations run automatically, without passing through you.
 
 ### How much does it cost and what are credits?
-The Astro plan costs R$ 297 per month or R$ 2.970 per year, and billing is per connected business. It includes 300 credits per month for each business. Credits measure the consumption of AI actions: a review reply costs 1 credit, an image costs 5, a complete post with an image costs 10 and an AI Mode check costs 2. There are also one-off packs from R$ 19,90.
+The Astro plan costs R$ 297 per month or R$ 2.970 per year for each connected business and includes 300 credits per month. Credits are used whenever Fama Local delivers a new AI creation or analysis, including in automations. A reply, text, title batch, or photo analysis costs 1 credit; a standalone image costs 5; and a complete post with text and image costs 10. WhatsApp messages, scheduling, publishing, manual replies, reading results already generated, and checks without AI generation do not deduct credits. Packs are available at 50 for R$ 19,90, 200 for R$ 59,90, and 500 for R$ 129,90.
 
 ### How long does it take to see results?
 The organisation starts as soon as setup is complete. Replies, alerts and posts begin to happen continuously. Changes in map position need to be followed over time and also depend on factors outside Fama Local, such as competition, distance, relevance and Google's rules.

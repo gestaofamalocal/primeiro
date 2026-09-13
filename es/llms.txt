@@ -61,7 +61,7 @@ Con la tuya. Antes de generar cualquier respuesta, Fama Local usa la calibració
 Sí. La nueva reseña llega con una respuesta sugerida para que apruebes, edites o ignores. También defines qué situaciones siguen automáticamente, sin pasar por ti.
 
 ### ¿Cuánto cuesta y qué son los créditos?
-El plan Astro cuesta R$ 297 por mes o R$ 2.970 por año, y el cobro es por empresa conectada. Incluye 300 créditos por mes para cada empresa. Los créditos miden el consumo de las acciones de IA: una respuesta a reseña cuesta 1 crédito, una imagen 5, una publicación completa con imagen 10 y una verificación en el Modo IA 2. También existen paquetes sueltos desde R$ 19,90.
+El plan Astro cuesta R$ 297 al mes o R$ 2.970 al año por cada empresa conectada e incluye 300 créditos al mes. Los créditos se usan siempre que Fama Local entrega una nueva creación o análisis hecho con IA, incluso en automatizaciones. Una respuesta, texto, lote de títulos o análisis de foto cuesta 1 crédito; una imagen individual cuesta 5; y una publicación completa con texto e imagen cuesta 10. Los mensajes de WhatsApp, la programación, la publicación, las respuestas manuales, la lectura de resultados ya generados y las verificaciones sin generación de IA no descuentan créditos. Hay paquetes de 50 por R$ 19,90, 200 por R$ 59,90 y 500 por R$ 129,90.
 
 ### ¿Cuánto tarda en notarse el resultado?
 La organización empieza en cuanto se concluye la configuración. Respuestas, alertas y publicaciones pasan a ocurrir de forma continua. Los cambios de posición en el mapa hay que seguirlos a lo largo del tiempo y dependen también de factores externos a Fama Local, como la competencia, la distancia, la relevancia y las reglas de Google.
