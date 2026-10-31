@@ -48,7 +48,7 @@
         "@id": "https://www.famalocal.com.br/#organization"
       },
       "inLanguage": "pt-BR",
-      "dateModified": "2026-10-15",
+      "dateModified": "2026-10-30",
       "breadcrumb": {
         "@id": "https://www.famalocal.com.br/suporte#breadcrumb"
       }
@@ -256,13 +256,14 @@
   </div></footer>
 
   <aside class="legal-consent cookie" data-consent-banner aria-label="Privacy preferences" aria-live="polite">
-    <p><strong>Privacy under your control</strong>GTM and optional technologies only load with your authorisation.</p>
+    <p><strong>Privacy under your control</strong>Necessary cookies keep the site working. If you accept, we enable analytics and marketing and send browsing data and identifiers, including hashed email addresses and phone numbers, to Meta and Google to measure conversions. See our <a href="https://www.famalocal.com.br/en/privacidade" title="What data we process, why, and how to exercise your rights">Privacy and Data Protection Policy</a>.</p>
     <div class="cookie-actions"><button data-reject-consent type="button">Decline optional</button><button class="accept" data-accept-consent type="button">Accept</button></div>
   </aside>
 
   <script>
 (function(){
   var NAME='fl_consent';
+  var VERSION='2026-10-26';
   // Só emite Domain quando o host realmente é do domínio; em localhost o
   // navegador rejeitaria o cookie e o desenvolvedor perderia o banner.
   function domain(){
@@ -273,15 +274,18 @@
     /** 'accepted' | 'necessary' -> cookie compartilhado */
     write:function(value){
       try{
-        document.cookie=NAME+'='+(value==='accepted'?'granted':'denied')+
+        document.cookie=NAME+'='+(value==='accepted'?'granted':'denied')+':'+VERSION+
           ';path=/;max-age=15552000;samesite=lax'+(location.protocol==='https:'?';secure':'')+domain();
+        if(value!=='accepted')sessionStorage.removeItem('fl_attr');
       }catch(e){/* cookie bloqueado: o localStorage já guardou a escolha local */}
     },
     /** cookie compartilhado -> 'accepted' | 'necessary' | null */
     read:function(){
       var m=document.cookie.match(/(?:^|;\s*)fl_consent=([^;]+)/);
       if(!m)return null;
-      return m[1]==='granted'?'accepted':(m[1]==='denied'?'necessary':null);
+      var parts=m[1].split(':');
+      if(parts[0]==='denied')return 'necessary';
+      return parts.length===2&&parts[0]==='granted'&&parts[1]===VERSION?'accepted':null;
     }
   };
 
@@ -373,8 +377,7 @@
         if(value==='necessary'&&document.getElementById('gtm-script'))window.location.reload();
       }
       var consent=null;
-      try{consent=localStorage.getItem('famalocal-cookie-consent')}catch(error){banner.setAttribute('data-storage-error','true')}
-      if(!consent)consent=window.flConsent.read();
+      consent=window.flConsent.read();
       if(consent==='accepted'){update(consent);load();window.flAttr.apply(consent)}
       else if(consent==='necessary'){update(consent)}
       else{banner.classList.add('show')}

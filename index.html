@@ -93,7 +93,7 @@
         "isPartOf": { "@id": "https://www.famalocal.com.br/#website" },
         "about": { "@id": "https://www.famalocal.com.br/#software" },
         "inLanguage": "pt-BR",
-        "dateModified": "2026-10-21"
+        "dateModified": "2026-10-30"
       },
       {
         "@type": ["SoftwareApplication", "WebApplication"],
@@ -113,7 +113,7 @@
           "Aprovação de respostas pelo WhatsApp",
           "Agendamento e publicação de posts e fotos",
           "Sincronização de produtos e serviços com o Google",
-          "Alerta de alteração da ficha por terceiros, com recusa de convites de propriedade",
+          "Alertas de alterações no perfil e de novos acessos, com decisão do titular sobre revogações",
           "Mapa de Presença: posição no Google Maps medida ponto a ponto",
           "Verificação de presença no Modo IA do Google",
           "Pontuação de saúde do perfil",
@@ -364,7 +364,7 @@
             <span><svg class="icon"><use href="#i-check"/></svg> Conexão oficial com o Google</span>
           </div>
   <aside class="cookie" id="cookieBanner" aria-label="Preferências de privacidade" aria-live="polite">
-    <p><strong>Privacidade sob seu controle</strong>Usamos cookies opcionais para métricas e marketing, com sua autorização. Consulte nossa <a href="https://www.famalocal.com.br/privacidade" title="Quais dados tratamos, por quê e como exercer seus direitos">Política de Privacidade e LGPD</a>.</p>
+    <p><strong>Privacidade sob seu controle</strong>Cookies necessários mantêm o site funcionando. Se aceitar, ativamos métricas e marketing e enviamos à Meta e ao Google dados de navegação e identificadores, incluindo e-mail e telefone em hash, para medir conversões. Consulte nossa <a href="https://www.famalocal.com.br/privacidade" title="Quais dados tratamos, por quê e como exercer seus direitos">Política de Privacidade e LGPD</a>.</p>
     <div class="cookie-actions"><button type="button" id="rejectCookies">Recusar opcionais</button><button class="accept" type="button" id="acceptCookies">Aceitar</button></div>
   </aside>
         </div>
@@ -952,6 +952,7 @@
   <script>
 (function(){
   var NAME='fl_consent';
+  var VERSION='2026-10-26';
   // Só emite Domain quando o host realmente é do domínio; em localhost o
   // navegador rejeitaria o cookie e o desenvolvedor perderia o banner.
   function domain(){
@@ -962,15 +963,18 @@
     /** 'accepted' | 'necessary' -> cookie compartilhado */
     write:function(value){
       try{
-        document.cookie=NAME+'='+(value==='accepted'?'granted':'denied')+
+        document.cookie=NAME+'='+(value==='accepted'?'granted':'denied')+':'+VERSION+
           ';path=/;max-age=15552000;samesite=lax'+(location.protocol==='https:'?';secure':'')+domain();
+        if(value!=='accepted')sessionStorage.removeItem('fl_attr');
       }catch(e){/* cookie bloqueado: o localStorage já guardou a escolha local */}
     },
     /** cookie compartilhado -> 'accepted' | 'necessary' | null */
     read:function(){
       var m=document.cookie.match(/(?:^|;\s*)fl_consent=([^;]+)/);
       if(!m)return null;
-      return m[1]==='granted'?'accepted':(m[1]==='denied'?'necessary':null);
+      var parts=m[1].split(':');
+      if(parts[0]==='denied')return 'necessary';
+      return parts.length===2&&parts[0]==='granted'&&parts[1]===VERSION?'accepted':null;
     }
   };
 
@@ -1439,9 +1443,7 @@
         if(value==='necessary'&&document.getElementById('gtm-script'))window.location.reload();
       }
       var consent=null;
-      try{consent=localStorage.getItem('famalocal-cookie-consent')}catch(error){cookie.setAttribute('data-storage-error','true')}
-      // Quem já respondeu na plataforma não precisa responder de novo aqui.
-      if(!consent)consent=window.flConsent.read();
+      consent=window.flConsent.read();
       if(consent==='accepted'){updateGoogleConsent(consent);loadGtm();window.flAttr.apply(consent)}
       else if(consent==='necessary'){updateGoogleConsent(consent)}
       else{cookie.classList.add('show')}
