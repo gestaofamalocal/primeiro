@@ -31,7 +31,7 @@ Decisions that need approval arrive on WhatsApp and are resolved in one tap. Set
 Fama Local helps you look after your Google Business Profile continuously: it tracks reviews and important information, prepares content, brings decisions to WhatsApp and shows where your business appears in your area.
 
 ### What is Google My Business management?
-It is the continuous work of keeping the Google Business Profile complete, up to date and active, including reviews, posts, photos, products, services and monitoring of local visibility. Google My Business is the name by which the product is still widely known.
+It is the continuous work of keeping the Google Business Profile complete, up to date and active, including reviews, posts, photos, services and monitoring of local visibility. Google My Business is the name by which the product is still widely known.
 
 ### Can someone change my business information on Google?
 Yes. Google lets users suggest changes to your business name, phone, address, hours, category and website, and those suggestions can be applied without notifying the owner. Fama Local's Profile Shield compares the profile with your reference copy and warns you on WhatsApp and in the dashboard as soon as it detects a change, showing how the information was before and how it is now. Name, phone, address, hours and category are not reverted automatically because changing those fields can trigger a new profile validation by Google and take your business offline; the decision is yours. The external website is the exception: that one is restored on its own. Third-party invitations to take ownership of the listing are declined automatically.

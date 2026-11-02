@@ -31,7 +31,7 @@ As decisões que exigem aprovação chegam por WhatsApp e são resolvidas em um 
 A Fama Local ajuda a cuidar do seu Perfil da Empresa no Google de forma contínua: acompanha avaliações e informações importantes, prepara conteúdo, leva decisões para o WhatsApp e mostra onde sua empresa aparece na região.
 
 ### O que é gestão do Google Meu Negócio?
-É o trabalho contínuo de manter o Perfil da Empresa no Google completo, atualizado e ativo, incluindo avaliações, publicações, fotos, produtos, serviços e acompanhamento da visibilidade local. Google Meu Negócio é o nome pelo qual o produto ainda é amplamente conhecido.
+É o trabalho contínuo de manter o Perfil da Empresa no Google completo, atualizado e ativo, incluindo avaliações, publicações, fotos, serviços e acompanhamento da visibilidade local. Google Meu Negócio é o nome pelo qual o produto ainda é amplamente conhecido.
 
 ### Alguém pode alterar informações da minha empresa no Google?
 Sim. O Google permite que usuários sugiram alterações no nome, telefone, endereço, horário, categoria e site da sua empresa, e essas sugestões podem ser aplicadas sem aviso ao dono. A Blindagem da Fama Local compara o perfil com a cópia de referência da sua empresa e avisa você pelo WhatsApp e pelo painel assim que detecta uma alteração, mostrando como a informação estava antes e como está agora. Nome, telefone, endereço, horário e categoria não são revertidos automaticamente porque alterar esses campos pode acionar uma nova validação do perfil pelo Google e tirar sua empresa do ar; a decisão fica com você. O site externo é a exceção: esse volta sozinho. Convites de terceiros para assumir a propriedade da ficha são recusados automaticamente.
